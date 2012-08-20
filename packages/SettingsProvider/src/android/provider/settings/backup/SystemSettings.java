@@ -106,5 +106,6 @@ public class SystemSettings {
         Settings.System.AUTO_BRIGHTNESS_ONE_SHOT,
         Settings.System.ENABLE_RIPPLE_EFFECT,
         Settings.System.NAVBAR_LAYOUT_VIEWS,
+        Settings.System.VOLUME_KEY_CURSOR_CONTROL,
     };
 }
