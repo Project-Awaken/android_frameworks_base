@@ -97,4 +97,9 @@
 
   <!-- Ambient notification light color -->
   <java-symbol type="integer" name="config_ambientNotificationDefaultColor" />
+
+  <!-- Button backlight -->
+  <java-symbol type="dimen" name="config_buttonBrightnessSettingDefaultFloat" />
+  <java-symbol type="bool" name="config_deviceHasVariableButtonBrightness" />
+
 </resources>
