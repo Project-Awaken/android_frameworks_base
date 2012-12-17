@@ -76,8 +76,6 @@
         android:key="airplane"
         android:title="@string/status_bar_airplane" />
 
-    <!-- other weird signal stuff -->
-
     <com.android.systemui.tuner.BatteryPreference
         android:title="@string/battery"
         android:summary="%s"
