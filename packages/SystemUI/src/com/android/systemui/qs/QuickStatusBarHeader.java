@@ -169,6 +169,7 @@ public class QuickStatusBarHeader extends FrameLayout implements
         mClockView = findViewById(R.id.clock);
         mClockView.setOnClickListener(this);
         mClockView.setOnLongClickListener(this);
+        mClockView.setQsHeader();
         mDatePrivacySeparator = findViewById(R.id.space);
         // Tint for the battery icons are handled in setupHost()
         mBatteryRemainingIcon = findViewById(R.id.batteryRemainingIcon);
@@ -467,6 +468,7 @@ public class QuickStatusBarHeader extends FrameLayout implements
         if (mExpanded == expanded) return;
         mExpanded = expanded;
         quickQSPanelController.setExpanded(expanded);
+	mDateView.setVisibility(mClockView.isClockDateEnabled() ? View.INVISIBLE : View.VISIBLE);
         updateEverything();
         setBatteryClickable(mExpanded || mPrivacyChip.getVisibility() != View.VISIBLE);
     }
