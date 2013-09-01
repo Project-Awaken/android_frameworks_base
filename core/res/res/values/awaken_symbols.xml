@@ -41,4 +41,7 @@
     <!-- Screen off delay -->
     <java-symbol type="integer" name="config_screen_off_delay" />
 
+    <!-- Package Manager -->
+    <java-symbol type="array" name="config_disabledComponents" />
+
 </resources>
