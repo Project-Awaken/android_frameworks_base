@@ -225,6 +225,9 @@ public class QuickSettingsController {
      */
     private boolean mAnimatorExpand;
 
+    // Quick pull down
+    private boolean mOneFingerQsIntercept;
+
     /**
      * The amount of progress we are currently in if we're transitioning to the full shade.
      * 0.0f means we're not transitioning yet, while 1 means we're all the way in the full
@@ -521,7 +524,18 @@ public class QuickSettingsController {
                         MotionEvent.BUTTON_SECONDARY) || event.isButtonPressed(
                         MotionEvent.BUTTON_TERTIARY));
 
-        return twoFingerDrag || stylusButtonClickDrag || mouseButtonClickDrag;
+        final float w = mQs.getView().getMeasuredWidth();
+        final float x = event.getX();
+        float region = w * 1.f / 4.f; // TODO overlay region fraction?
+        boolean showQsOverride = false;
+
+        if (mOneFingerQsIntercept) {
+                showQsOverride = mQs.getView().isLayoutRtl() ? x < region : w - region < x;
+        }
+
+        showQsOverride &= mBarState == StatusBarState.SHADE;
+
+        return showQsOverride || twoFingerDrag || stylusButtonClickDrag || mouseButtonClickDrag;
     }
 
 
@@ -887,6 +901,10 @@ public class QuickSettingsController {
     @VisibleForTesting
     boolean isTwoFingerExpandPossible() {
         return mTwoFingerExpandPossible;
+    }
+
+    void setOneFingerQsIntercept(boolean enable) {
+        mOneFingerQsIntercept = enable;
     }
 
     /** Called when Qs starts expanding */
