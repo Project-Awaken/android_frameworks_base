@@ -184,4 +184,10 @@
 
     <!-- Name of the call strength status bar icon. -->
     <string name="status_bar_call_strength">Call strength</string>
+
+    <!-- OnTheSpot: Action denial button text. [CHAR LIMIT=NONE] -->
+    <string name="on_the_spot_deny">NO THANKS</string>
+
+    <!-- OnTheSpot: Action confirmation button text. [CHAR LIMIT=NONE] -->
+    <string name="on_the_spot_confirm">OKAY</string>
 </resources>
