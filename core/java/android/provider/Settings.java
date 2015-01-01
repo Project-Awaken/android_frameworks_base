@@ -9165,6 +9165,12 @@ public final class Settings {
         public static final String VOLUME_LINK_NOTIFICATION = "volume_link_notification";
 
         /**
+         * Whether to vibrate when quick settings tile is pressed.
+         * @hide
+         */
+        public static final String QUICK_SETTINGS_VIBRATE = "quick_settings_vibrate";
+
+        /**
          * Wheter to have transparent background on lockscreen notifications
          *
          * @hide
