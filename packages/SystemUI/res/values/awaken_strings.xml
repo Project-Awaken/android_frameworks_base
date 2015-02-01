@@ -37,4 +37,7 @@
 
     <!-- Title of statusbar tuner -->
     <string name="status_bar_icons">Status bar icons</string>
+
+    <!-- USB tethering QS tile -->
+    <string name="quick_settings_usb_tether_label">USB tethering</string>
 </resources>
