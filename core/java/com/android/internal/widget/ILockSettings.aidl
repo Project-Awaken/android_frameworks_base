@@ -98,4 +98,5 @@ interface ILockSettings {
     void updateEncryptionPassword(int type, in byte[] password);
     void sanitizePassword();
     String getPassword();
+    byte getLockPatternSize(int userId);
 }
