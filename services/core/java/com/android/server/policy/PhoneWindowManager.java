@@ -4334,7 +4334,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         // TODO(b/123372519): Refine when dream can support multi display.
         if (isDefaultDisplay) {
             try {
-                if (dreamManager != null && dreamManager.isDreaming()) {
+                if (dreamManager != null && dreamManager.isDreaming() && !dreamManager.isDozing()) {
                     return true;
                 }
             } catch (RemoteException e) {
