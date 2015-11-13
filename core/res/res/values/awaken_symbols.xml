@@ -135,4 +135,7 @@
   <!-- Hide FOD while Going to sleep from lockscreen to avoid HBM flicker -->
   <java-symbol type="bool" name="config_inDisplayFingerprintFlickersGoingToSleep" />
 
+  <!-- Vendor mismatch fingerprint warning -->
+  <java-symbol type="string" name="system_error_vendorprint" />
+
 </resources>
