@@ -27,6 +27,7 @@ import com.android.systemui.plugins.qs.QSTileView;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.external.CustomTile;
 import com.android.systemui.qs.tiles.AirplaneModeTile;
+import com.android.systemui.qs.tiles.AmbientDisplayTile;
 import com.android.systemui.qs.tiles.AODTile;
 import com.android.systemui.qs.tiles.BatterySaverTile;
 import com.android.systemui.qs.tiles.BluetoothTile;
@@ -102,6 +103,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<SoundTile> mSoundTileProvider;
     private final Provider<CompassTile> mCompassTileProvider;
     private final Provider<AODTile> mAODTileProvider;
+    private final Provider<AmbientDisplayTile> mAmbientDisplayTileProvider;
 
     private final Lazy<QSHost> mQsHostLazy;
 
@@ -138,7 +140,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<SoundSearchTile> soundSearchTileProvider,
             Provider<SoundTile> soundTileProvider,
             Provider<CompassTile> compassTileProvider,
-            Provider<AODTile> aodTileProvider) {
+            Provider<AODTile> aodTileProvider,
+            Provider<AmbientDisplayTile> ambientDisplayTileProvider) {
         mQsHostLazy = qsHostLazy;
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
@@ -172,6 +175,7 @@ public class QSFactoryImpl implements QSFactory {
         mSoundTileProvider = soundTileProvider;
         mCompassTileProvider = compassTileProvider;
         mAODTileProvider = aodTileProvider;
+        mAmbientDisplayTileProvider = ambientDisplayTileProvider;
     }
 
     public QSTile createTile(String tileSpec) {
@@ -247,6 +251,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mCompassTileProvider.get();
             case "aod":
                 return mAODTileProvider.get();
+            case "ambient_display":
+                return mAmbientDisplayTileProvider.get();
         }
 
         // Custom tiles
