@@ -132,4 +132,8 @@
     <string name="quick_settings_monotoggle_tile">Audio mode</string>
     <string name="quick_settings_monotoggle_tile_mono">Mono audio</string>
     <string name="quick_settings_monotoggle_tile_stereo">Stereo audio</string>
+
+    <!-- Heads up snooze toast -->
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Peeking notification are snoozing for 1 minute.</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%1$s</xliff:g> - Peeking notifications are snoozing for <xliff:g id="number">%1$d</xliff:g> minutes.</string>
 </resources>
