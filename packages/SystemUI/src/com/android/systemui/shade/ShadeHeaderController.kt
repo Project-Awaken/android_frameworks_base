@@ -71,6 +71,7 @@ import com.android.systemui.statusbar.phone.dagger.CentralSurfacesComponent.Cent
 import com.android.systemui.statusbar.phone.dagger.StatusBarViewModule.SHADE_HEADER
 import com.android.systemui.statusbar.policy.Clock
 import com.android.systemui.statusbar.policy.ConfigurationController
+import com.android.systemui.statusbar.policy.NetworkTraffic
 import com.android.systemui.statusbar.policy.VariableDateView
 import com.android.systemui.statusbar.policy.VariableDateViewController
 import com.android.systemui.util.ViewController
@@ -138,6 +139,7 @@ constructor(
     private val date: TextView = header.findViewById(R.id.date)
     private val iconContainer: StatusIconContainer = header.findViewById(R.id.statusIcons)
     private val qsCarrierGroup: QSCarrierGroup = header.findViewById(R.id.carrier_group)
+    private val networkTraffic: NetworkTraffic = header.findViewById(R.id.networkTraffic)
     private val vibrator: Vibrator = header.context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
     private var roundedCorners = 0
@@ -244,6 +246,7 @@ constructor(
                 header.updateAllConstraints(update)
                 privacyChipVisible = visible
                 setBatteryClickable(qsExpandedFraction == 1f || !visible)
+                setNetworkTrafficVisible(qsExpandedFraction == 1f && !privacyChipVisible)
             }
         }
 
@@ -298,6 +301,7 @@ constructor(
         clock.setOnClickListener(this)
         date.setOnClickListener(this)
         setBatteryClickable(true)
+        setNetworkTrafficVisible(false)
     }
 
     override fun onClick(v: View) {
@@ -490,6 +494,7 @@ constructor(
             updateBatteryMode()
         }
         setBatteryClickable(qsExpandedFraction == 1f || !privacyChipVisible)
+        setNetworkTrafficVisible(qsExpandedFraction == 1f && !privacyChipVisible)
     }
 
     private fun logInstantEvent(message: String) {
@@ -541,6 +546,7 @@ constructor(
             date.setTextColor(textColorPrimary)
             qsCarrierGroup.updateColors(textColorPrimary, colorStateList)
             batteryIcon.updateColors(textColorPrimary, textColorSecondary, textColorPrimary)
+            networkTraffic.setTintColor(textColorPrimary)
         }
     }
 
@@ -568,6 +574,11 @@ constructor(
     private fun setBatteryClickable(clickable: Boolean) {
         batteryIcon.setOnClickListener(if (clickable) this else null)
         batteryIcon.setClickable(clickable)
+    }
+
+    private fun setNetworkTrafficVisible(visible: Boolean) {
+        val isLandscape = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+        networkTraffic.setAlpha(if (visible && !isLandscape) 1f else 0f)
     }
 
     override fun dump(pw: PrintWriter, args: Array<out String>) {
