@@ -41,6 +41,7 @@ public class NavigationHandle extends View implements ButtonInterface {
     private @ColorInt final int mDarkColor;
     private final int mRadius;
     private final int mBottom;
+    private int mVerticalShift;
     private boolean mIsDreaming = false;
     private boolean mIsKeyguard = false;
     private boolean mRequiresInvalidate;
@@ -109,7 +110,7 @@ public class NavigationHandle extends View implements ButtonInterface {
         int navHeight = getHeight();
         int height = mRadius * 2;
         int width = getWidth();
-        int y = (navHeight - mBottom - height);
+        int y = (navHeight - mBottom - height + mVerticalShift);
         canvas.drawRoundRect(0, y, width, y + height, mRadius, mRadius, mPaint);
     }
 
@@ -153,5 +154,10 @@ public class NavigationHandle extends View implements ButtonInterface {
     public void onDetachedFromWindow() {
         mUpdateMonitor.removeCallback(mMonitorCallback);
         super.onDetachedFromWindow();
+    }
+
+    public void shiftHandle(int verticalShift) {
+        mVerticalShift = verticalShift;
+        invalidate();
     }
 }
