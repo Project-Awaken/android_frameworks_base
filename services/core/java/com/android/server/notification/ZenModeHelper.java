@@ -1021,8 +1021,12 @@ public class ZenModeHelper {
 
     void setManualZenMode(int zenMode, Uri conditionId, @ConfigChangeOrigin int origin,
             String reason, @Nullable String caller, int callingUid) {
-        setManualZenMode(zenMode, conditionId, origin, reason, caller, true /*setRingerMode*/,
-                callingUid);
+        boolean setRingerMode = true;
+        if (zenMode == Global.ZEN_MODE_OFF_ONLY) {
+            setRingerMode = false;
+            zenMode = Global.ZEN_MODE_OFF;
+        }
+        setManualZenMode(zenMode, conditionId, origin, reason, caller, setRingerMode, callingUid);
         Settings.Secure.putInt(mContext.getContentResolver(),
                 Settings.Secure.SHOW_ZEN_SETTINGS_SUGGESTION, 0);
     }
