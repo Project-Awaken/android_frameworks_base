@@ -5866,6 +5866,12 @@ public final class Settings {
         public static final String QS_FOOTER_SHOW_USER = "qs_footer_show_user";
 
         /**
+         * Sensor block per-package
+         * @hide
+         */
+        public static final String SENSOR_BLOCK = "sensor_block";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
