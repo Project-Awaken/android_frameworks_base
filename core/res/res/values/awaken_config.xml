@@ -23,6 +23,12 @@
          to communicate pocket state to the pocket judge kernel driver. -->
     <string name="config_pocketBridgeSysfsInpocket"></string>
 
+    <!-- Path to fast charging status file to detect whether an oem fast charger is active -->
+    <string name="config_oemFastChargerStatusPath" translatable="false"></string>
+
+    <!-- Expected value from fast charging status file  -->
+    <string name="config_oemFastChargerStatusValue" translatable="false"></string>
+
     <!-- Pocket Lock -->
     <bool name="config_pocketModeSupported">true</bool>
     <bool name="config_pocketUseLightSensor">true</bool>
