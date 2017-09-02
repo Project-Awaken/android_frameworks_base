@@ -169,7 +169,7 @@ public class SystemNotificationChannels {
         NotificationChannel foregroundChannel = new NotificationChannel(
                 FOREGROUND_SERVICE,
                 context.getString(R.string.notification_channel_foreground_service),
-                NotificationManager.IMPORTANCE_LOW);
+                NotificationManager.IMPORTANCE_NONE);
         foregroundChannel.setBlockable(true);
         channelsList.add(foregroundChannel);
 
