@@ -99,4 +99,7 @@ interface IPowerManager
 
     // Forces the system to suspend even if there are held wakelocks.
     boolean forceSuspend();
+
+    // Wakelock blocker
+    String getSeenWakeLocks();
 }
