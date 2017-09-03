@@ -769,6 +769,17 @@ public class StatusBarManagerService extends IStatusBarService.Stub implements D
         }
     }
 
+    @Override
+    public void toggleCameraFlash() {
+        if (mBar != null) {
+            try {
+                mBar.toggleCameraFlash();
+            } catch (RemoteException ex) {
+                // do nothing
+            }
+        }
+    }
+
     // TODO(b/117478341): make it aware of multi-display if needed.
     @Override
     public void disable(int what, IBinder token, String pkg) {
