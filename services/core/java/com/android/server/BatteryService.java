@@ -188,6 +188,10 @@ public final class BatteryService extends SystemService {
 
     private Led mLed;
 
+    // Battery light customization
+    private boolean mBatteryLightEnabled;
+    private boolean mHasIntrusiveBatteryLed;
+
     private boolean mSentLowBatteryBroadcast = false;
 
     private ActivityManagerInternal mActivityManagerInternal;
@@ -237,6 +241,9 @@ public final class BatteryService extends SystemService {
             invalidChargerObserver.startObserving(
                     "DEVPATH=/devices/virtual/switch/invalid_charger");
         }
+        mHasIntrusiveBatteryLed = mContext.getResources().getBoolean(
+                com.android.internal.R.bool.config_intrusiveBatteryLed);
+        mBatteryLightEnabled = mHasIntrusiveBatteryLed;
 
         mBatteryInputSuspended = PowerProperties.battery_input_suspended().orElse(false);
     }
@@ -271,6 +278,39 @@ public final class BatteryService extends SystemService {
                         false, obs, UserHandle.USER_ALL);
                 updateBatteryWarningLevelLocked();
             }
+        } else if (phase == PHASE_BOOT_COMPLETED) {
+            SettingsObserver mObserver = new SettingsObserver(new Handler());
+            mObserver.observe();
+        }
+    }
+
+    private synchronized void updateLed() {
+        mLed.updateLightsLocked();
+    }
+
+    class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.Global.getUriFor(
+                    Settings.Global.BATTERY_LIGHT_ENABLED),
+                    false, this, UserHandle.USER_ALL);
+            update();
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            update();
+        }
+
+        public void update() {
+            ContentResolver resolver = mContext.getContentResolver();
+            mBatteryLightEnabled = Settings.Global.getInt(resolver,
+                    Settings.Global.BATTERY_LIGHT_ENABLED, mHasIntrusiveBatteryLed ? 1 : 0) == 1;
+            updateLed();
         }
     }
 
@@ -1161,7 +1201,9 @@ public final class BatteryService extends SystemService {
             }
             final int level = mHealthInfo.batteryLevel;
             final int status = mHealthInfo.batteryStatus;
-            if (level < mLowBatteryWarningLevel) {
+            if (!mBatteryLightEnabled) {
+                mBatteryLight.turnOff();
+            } else if (level < mLowBatteryWarningLevel) {
                 if (status == BatteryManager.BATTERY_STATUS_CHARGING) {
                     // Solid red when battery is charging
                     mBatteryLight.setColor(mBatteryLowARGB);
