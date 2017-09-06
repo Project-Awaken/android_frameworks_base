@@ -3943,6 +3943,9 @@ public class StatusBar extends SystemUI implements
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.PULSE_ON_NEW_TRACKS),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QS_FOOTER_WARNINGS),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -3965,6 +3968,9 @@ public class StatusBar extends SystemUI implements
             } else if (uri.equals(Settings.Secure.getUriFor(
                     Settings.Secure.PULSE_ON_NEW_TRACKS))) {
                 setPulseOnNewTracks();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.QS_FOOTER_WARNINGS))) {
+                setQsPanelOptions();
             }
             update();
         }
@@ -3975,12 +3981,19 @@ public class StatusBar extends SystemUI implements
             setHeadsUpStoplist();
             setHeadsUpBlacklist();
             setPulseOnNewTracks();
+            setQsPanelOptions();
         }
     }
 
     private void setDoubleTapToSleepGesture() {
         if (mNotificationShadeWindowViewController != null) {
             mNotificationShadeWindowViewController.setDoubleTapToSleepGesture();
+        }
+    }
+
+    private void setQsPanelOptions() {
+        if (mQSPanelController != null) {
+            mQSPanelController.updateSettings();
         }
     }
 
