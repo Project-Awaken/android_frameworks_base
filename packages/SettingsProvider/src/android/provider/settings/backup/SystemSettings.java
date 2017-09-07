@@ -92,5 +92,7 @@ public class SystemSettings {
         Settings.System.QS_PANEL_BG_USE_NEW_TINT,
         Settings.System.LOCKSCREEN_MEDIA_ART,
         Settings.System.NOTIFICATION_HEADERS,
+        Settings.System.ENABLE_CONDITIONS,
+        Settings.System.ENABLE_SUGGESTIONS,
     };
 }
