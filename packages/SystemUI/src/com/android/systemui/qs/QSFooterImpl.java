@@ -37,6 +37,7 @@ import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -68,7 +69,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 public class QSFooterImpl extends FrameLayout implements QSFooter,
-        OnClickListener, OnUserInfoChangedListener {
+        OnClickListener, OnLongClickListener, OnUserInfoChangedListener {
 
     private static final String TAG = "QSFooterImpl";
 
@@ -144,6 +145,7 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
         mSettingsButton = findViewById(R.id.settings_button);
         mSettingsContainer = findViewById(R.id.settings_button_container);
         mSettingsButton.setOnClickListener(this);
+        mSettingsButton.setOnLongClickListener(this);
 
         mRunningServicesButton = findViewById(R.id.running_services_button);
         mRunningServicesButton.setOnClickListener(this);
@@ -392,6 +394,21 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
         intent.setClassName("com.android.settings",
                 "com.android.settings.Settings$DevRunningServicesActivity");
         mActivityStarter.startActivity(intent, true /* dismissShade */);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        if (v == mSettingsButton) {
+            startAwakenSettings();
+        }
+        return false;
+    }
+
+    private void startAwakenSettings() {
+        Intent nIntent = new Intent(Intent.ACTION_MAIN);
+        nIntent.setClassName("com.android.settings",
+            "com.android.settings.Settings$AwakenSettingsActivity");
+        mActivityStarter.startActivity(nIntent, true);
     }
 
     private void startSettingsActivity() {
