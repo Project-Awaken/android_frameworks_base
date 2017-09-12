@@ -41,6 +41,8 @@ import android.view.InputDevice;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.util.DisplayMetrics;
+import android.view.IWindowManager;
+import android.view.WindowManagerGlobal;
 
 import com.android.internal.R;
 
@@ -49,6 +51,9 @@ import java.util.List;
 import java.util.Locale;
 
 public class AwakenUtils {
+
+    public static final String INTENT_SCREENSHOT = "action_handler_screenshot";
+    public static final String INTENT_REGION_SCREENSHOT = "action_handler_region_screenshot";
 
 	// Check if device is connected to Wi-Fi
     public static boolean isWiFiConnected(Context context) {
@@ -89,6 +94,15 @@ public class AwakenUtils {
         // Use boolean to determine celsius or fahrenheit
         return String.valueOf((n - c) % 2 == 0 ? (int) temp :
                 ForC ? c * 9/5 + 32:c);
+    }
+
+    public static void takeScreenshot(boolean full) {
+        IWindowManager wm = WindowManagerGlobal.getWindowManagerService();
+        try {
+            wm.sendCustomAction(new Intent(full? INTENT_SCREENSHOT : INTENT_REGION_SCREENSHOT));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     // Method to detect countries that use Fahrenheit
