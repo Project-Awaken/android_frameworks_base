@@ -1355,10 +1355,10 @@
     <color name="config_defaultNotificationColor">#ffffffff</color>
 
     <!-- Default LED on time for notification LED in milliseconds. -->
-    <integer name="config_defaultNotificationLedOn">500</integer>
+    <integer name="config_defaultNotificationLedOn">3000</integer>
 
     <!-- Default LED off time for notification LED in milliseconds. -->
-    <integer name="config_defaultNotificationLedOff">2000</integer>
+    <integer name="config_defaultNotificationLedOff">5000</integer>
 
     <!-- LED behavior when battery is low.
          Color for solid is taken from config_notificationsBatteryLowARGB
