@@ -23,6 +23,11 @@
     <java-symbol type="string" name="reboot_title" />
     <java-symbol type="string" name="reboot_message" />
 
+    <!-- Battery light customization -->
+    <java-symbol type="bool" name="config_hasNotificationLed" />
+    <java-symbol type="bool" name="config_intrusiveBatteryLed" />
+    <java-symbol type="bool" name="config_ledCanPulse" />
+
     <!-- Device keyhandlers -->
     <java-symbol type="array" name="config_deviceKeyHandlerLibs" />
     <java-symbol type="array" name="config_deviceKeyHandlerClasses" />
