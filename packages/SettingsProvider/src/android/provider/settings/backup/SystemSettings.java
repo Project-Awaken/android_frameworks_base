@@ -107,5 +107,6 @@ public class SystemSettings {
         Settings.System.ENABLE_RIPPLE_EFFECT,
         Settings.System.NAVBAR_LAYOUT_VIEWS,
         Settings.System.VOLUME_KEY_CURSOR_CONTROL,
+        Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL,
     };
 }
