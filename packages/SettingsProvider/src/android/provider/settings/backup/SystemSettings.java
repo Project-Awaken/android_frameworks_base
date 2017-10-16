@@ -93,5 +93,6 @@ public class SystemSettings {
         Settings.System.NAVBAR_LAYOUT_VIEWS,
         Settings.System.KEYGAURD_MEDIA_ART,
         Settings.System.AUTO_BRIGHTNESS_ONE_SHOT,
+        Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL,
     };
 }

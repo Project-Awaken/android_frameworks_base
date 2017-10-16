@@ -231,5 +231,6 @@ public class SystemSettingsValidators {
                 });
         VALIDATORS.put(System.KEYGAURD_MEDIA_ART, BOOLEAN_VALIDATOR);
         VALIDATORS.put(System.AUTO_BRIGHTNESS_ONE_SHOT, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(System.STATUS_BAR_BRIGHTNESS_CONTROL, BOOLEAN_VALIDATOR);
     }
 }
