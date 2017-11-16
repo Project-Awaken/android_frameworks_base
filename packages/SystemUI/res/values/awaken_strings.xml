@@ -161,4 +161,7 @@
 
     <!-- Now playing lockscreen / ambient music ticker -->
     <string name="ambientmusic_songinfo" formatted="false" translatable="false">%s • %s</string>
+
+    <!-- Screenshot Delete Toast -->
+    <string name="delete_screenshot_toast">Screenshot deleted</string>
 </resources>
