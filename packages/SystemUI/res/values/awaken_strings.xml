@@ -105,4 +105,11 @@
     <string name="qs_data_switch_toast_1">Currently only one SIM card is inserted</string>
     <string name="qs_data_switch_changed_1">Switch data card to SIM 1.</string>
     <string name="qs_data_switch_changed_2">Switch data card to SIM 2.</string>
+
+    <!-- CPUInfo tile -->
+    <string name="quick_settings_cpuinfo_label">CPU Info</string>
+    <string name="accessibility_quick_settings_cpuinfo_off">CPU Info off</string>
+    <string name="accessibility_quick_settings_cpuinfo_on">CPU Info on</string>
+    <string name="accessibility_quick_settings_cpuinfo_changed_off">CPU Info turned off</string>
+    <string name="accessibility_quick_settings_cpuinfo_changed_on">CPU Info turned on</string>
 </resources>
