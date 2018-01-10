@@ -81,4 +81,7 @@
   <java-symbol type="array" name="config_rebootActionsList" />
   <java-symbol type="array" name="values_globalActionsList" />
 
+  <!-- Flashlight proximity check -->
+  <java-symbol type="integer" name="config_flashlightProximityTimeout" />
+
 </resources>
