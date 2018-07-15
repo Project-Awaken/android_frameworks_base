@@ -263,5 +263,6 @@ public class SecureSettings {
         Settings.Secure.QS_BRIGHTNESS_POSITION_BOTTOM,
         Settings.Secure.QS_SHOW_AUTO_BRIGHTNESS_BUTTON,
         Settings.Secure.BERRY_BLACK_THEME,
+        Settings.Secure.STATUS_BAR_CLOCK_POSITION,
     };
 }
