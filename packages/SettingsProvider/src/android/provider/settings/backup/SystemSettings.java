@@ -101,5 +101,6 @@ public class SystemSettings {
         Settings.System.AOD_NOTIFICATION_PULSE_TIMEOUT,
         Settings.System.NOTIFICATION_PULSE_DURATION,
         Settings.System.KEYGAURD_MEDIA_ART,
+        Settings.System.LOCKSCREEN_BATTERY_INFO,
     };
 }
