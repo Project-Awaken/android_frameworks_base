@@ -161,6 +161,7 @@ import java.io.PrintWriter;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -336,6 +337,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
     // Battery status
     @VisibleForTesting
     BatteryStatus mBatteryStatus;
+    Date mLastBatteryUpdate;
 
     private StrongAuthTracker mStrongAuthTracker;
 
@@ -1624,7 +1626,8 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
                 @Override
                 public void onAuthenticationError(int errMsgId, CharSequence errString) {
                     Trace.beginSection("KeyguardUpdateMonitor#onAuthenticationError");
-                    handleFingerprintError(errMsgId, errString.toString());
+                    handleFingerprintError(errMsgId, errString != null
+                            ? errString.toString() : "");
                     Trace.endSection();
                 }
 
@@ -2110,7 +2113,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
         }
 
         // Take a guess at initial SIM state, battery status and PLMN until we get an update
-        mBatteryStatus = new BatteryStatus(BATTERY_STATUS_UNKNOWN, 100, 0, 0, 0, true, false);
+        mBatteryStatus = new BatteryStatus(BATTERY_STATUS_UNKNOWN, 100, 0, 0, 0, true, false, 0, 0, 0);
 
         // Watch for interesting updates
         final IntentFilter filter = new IntentFilter();
@@ -3121,6 +3124,15 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
     private void handleBatteryUpdate(BatteryStatus status) {
         Assert.isMainThread();
         mLogger.d("handleBatteryUpdate");
+        if (mLastBatteryUpdate == null) {
+            mLastBatteryUpdate = new Date();
+        } else {
+            Date newDate = new Date();
+            if (mLastBatteryUpdate.getTime() + 2000 > newDate.getTime()) {
+                return;
+            }
+            mLastBatteryUpdate = newDate;
+        }
         final boolean batteryUpdateInteresting = isBatteryUpdateInteresting(mBatteryStatus, status);
         mBatteryStatus = status;
         if (batteryUpdateInteresting) {
@@ -3398,8 +3410,16 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
             return true;
         }
 
+        // change in battery temperature
+        if (old.temperature != current.temperature) {
+            return true;
+        }
+
         // change in charging current while plugged in
-        if (nowPluggedIn && current.maxChargingWattage != old.maxChargingWattage) {
+        if (nowPluggedIn &&
+              (current.maxChargingWattage != old.maxChargingWattage ||
+               current.maxChargingCurrent != old.maxChargingCurrent ||
+               current.maxChargingVoltage != old.maxChargingVoltage)) {
             return true;
         }
 
