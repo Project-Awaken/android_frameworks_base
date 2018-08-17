@@ -112,6 +112,7 @@ public class TunerServiceImpl extends TunerService {
             }
         };
         mUserTracker.startTracking();
+        setTunerEnabled(mContext, true);
     }
 
     @Override
