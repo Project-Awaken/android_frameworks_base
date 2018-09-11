@@ -19,7 +19,9 @@ package com.android.internal.util.awaken;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.PowerManager;
 import android.os.RemoteException;
+import android.os.SystemClock;
 import android.view.IWindowManager;
 import android.view.WindowManagerGlobal;
 
@@ -36,6 +38,14 @@ public class AwakenUtils {
             wm.sendCustomAction(new Intent(full? INTENT_SCREENSHOT : INTENT_REGION_SCREENSHOT));
         } catch (RemoteException e) {
             e.printStackTrace();
+        }
+    }
+
+    // Method to turn off the screen
+    public static void switchScreenOff(Context ctx) {
+        PowerManager pm = (PowerManager) ctx.getSystemService(Context.POWER_SERVICE);
+        if (pm!= null) {
+            pm.goToSleep(SystemClock.uptimeMillis());
         }
     }
 }
