@@ -33,6 +33,7 @@ import androidx.annotation.Nullable;
 
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
+import com.android.internal.util.awaken.AwakenUtils;
 import com.android.systemui.broadcast.BroadcastDispatcher;
 import com.android.systemui.dagger.qualifiers.Background;
 import com.android.systemui.dagger.qualifiers.Main;
@@ -187,6 +188,11 @@ public class CompassTile extends QSTileImpl<BooleanState> implements SensorEvent
         } else {
             return mContext.getString(R.string.accessibility_quick_settings_compass_off);
         }
+    }
+
+    @Override
+    public boolean isAvailable() {
+        return AwakenUtils.deviceHasCompass(mContext);
     }
 
     @Override
