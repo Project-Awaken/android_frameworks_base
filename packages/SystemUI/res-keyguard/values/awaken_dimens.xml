@@ -24,4 +24,7 @@
     <!-- Custom clock -->
     <dimen name="custom_clock_left_padding">50dp</dimen>
 
+    <!-- Weather condition icon  -->
+    <dimen name="weather_icon_size">24dp</dimen>
+
 </resources>
