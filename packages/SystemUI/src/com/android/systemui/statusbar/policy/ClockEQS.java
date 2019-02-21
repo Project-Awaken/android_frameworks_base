@@ -24,20 +24,20 @@ import android.view.View;
 
 import com.android.systemui.Dependency;
 
-public class ClockRight extends Clock {
+public class ClockEQS extends Clock {
 
     private boolean mClockVisibleByPolicy = true;
     private boolean mClockVisibleByUser = true;
 
-    public ClockRight(Context context) {
+    public ClockEQS(Context context) {
         this(context, null);
     }
 
-    public ClockRight(Context context, AttributeSet attrs) {
+    public ClockEQS(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ClockRight(Context context, AttributeSet attrs, int defStyle) {
+    public ClockEQS(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
@@ -51,24 +51,11 @@ public class ClockRight extends Clock {
         updateClockVisibility();
     }
 
-    protected void autoHideClock() {
-        setVisibility(View.GONE);
-        autoHideHandler.postDelayed(()->updateClockVisibility(), mHideDuration * 1000);
-    }
-
     protected void updateClockVisibility() {
-        boolean visible = mClockStyle == STYLE_CLOCK_RIGHT && mShowClock
+        boolean visible = mShowClock
                 && mClockVisibleByPolicy && mClockVisibleByUser;
         int visibility = visible ? View.VISIBLE : View.GONE;
-        try {
-            autoHideHandler.removeCallbacksAndMessages(null);
-        } catch (NullPointerException e) {
-            // Do nothing
-        }
         setVisibility(visibility);
-        if (mClockAutoHide && visible) {
-            autoHideHandler.postDelayed(()->autoHideClock(), mShowDuration * 1000);
-        }
     }
 
     public void disable(int state1, int state2, boolean animate) {

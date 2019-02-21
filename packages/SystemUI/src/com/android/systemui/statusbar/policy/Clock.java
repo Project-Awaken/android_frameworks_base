@@ -92,6 +92,10 @@ public class Clock extends TextView implements
     private SimpleDateFormat mContentDescriptionFormat;
     protected Locale mLocale;
     private DateTimePatternGenerator mDateTimePatternGenerator;
+    protected Handler autoHideHandler = new Handler();
+
+    private static final int HIDE_DURATION = 60; // 1 minute
+    private static final int SHOW_DURATION = 5; // 5 seconds
 
     public static final int AM_PM_STYLE_GONE    = 0;
     public static final int AM_PM_STYLE_SMALL   = 1;
@@ -124,6 +128,11 @@ public class Clock extends TextView implements
     private boolean mShowSeconds;
     private Handler mSecondsHandler;
     private SettingsObserver mSettingsObserver;
+
+    protected boolean mClockAutoHide;
+    protected int mHideDuration = HIDE_DURATION;
+    protected int mShowDuration = SHOW_DURATION;
+    private Handler mHandler = new Handler();
 
     // Fields to cache the width so the clock remains at an approximately constant width
     private int mCharsAtCurrentWidth = -1;
@@ -166,6 +175,15 @@ public class Clock extends TextView implements
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUSBAR_CLOCK_DATE_POSITION),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE_HDURATION),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE_SDURATION),
                     false, this, UserHandle.USER_ALL);
             updateSettings();
         }
@@ -306,7 +324,7 @@ public class Clock extends TextView implements
             String action = intent.getAction();
             if (action.equals(Intent.ACTION_TIMEZONE_CHANGED)) {
                 String tz = intent.getStringExtra(Intent.EXTRA_TIMEZONE);
-                handler.post(() -> {
+                mHandler.post(() -> {
                     mCalendar = Calendar.getInstance(TimeZone.getTimeZone(tz));
                     if (mClockFormat != null) {
                         mClockFormat.setTimeZone(mCalendar.getTimeZone());
@@ -314,7 +332,7 @@ public class Clock extends TextView implements
                 });
             } else if (action.equals(Intent.ACTION_CONFIGURATION_CHANGED)) {
                 final Locale newLocale = getResources().getConfiguration().locale;
-                handler.post(() -> {
+                mHandler.post(() -> {
                     if (!newLocale.equals(mLocale)) {
                         mLocale = newLocale;
                         mDateTimePatternGenerator = null;
@@ -324,6 +342,7 @@ public class Clock extends TextView implements
                 });
             }
             handler.post(() -> updateClock());
+            if (mClockAutoHide) autoHideHandler.post(() -> updateClockVisibility());
         }
     };
 
@@ -356,7 +375,15 @@ public class Clock extends TextView implements
         boolean visible = ((mClockStyle == STYLE_CLOCK_LEFT) || (mQsHeader))
                 && mShowClock && mClockVisibleByPolicy && mClockVisibleByUser;
         int visibility = visible ? View.VISIBLE : View.GONE;
+        try {
+            autoHideHandler.removeCallbacksAndMessages(null);
+        } catch (NullPointerException e) {
+            // Do nothing
+        }
         super.setVisibility(visibility);
+        if (mClockAutoHide && visible) {
+            autoHideHandler.postDelayed(()->autoHideClock(), mShowDuration * 1000);
+        }
     }
 
     public boolean isClockVisible() {
@@ -365,6 +392,11 @@ public class Clock extends TextView implements
 
     public void setClockHideableByUser(boolean value) {
         mClockHideableByUser = value;
+    }
+
+    protected void autoHideClock() {
+        setVisibility(View.GONE);
+        autoHideHandler.postDelayed(()->updateClockVisibility(), mHideDuration * 1000);
     }
 
     final void updateClock() {
@@ -599,6 +631,7 @@ public class Clock extends TextView implements
         mShowClock = Settings.System.getIntForUser(resolver,
                 Settings.System.STATUSBAR_CLOCK, 1,
                 UserHandle.USER_CURRENT) == 1;
+
         if (mQsHeader) {
             mShowClock = true; // QSHeader clock may override show clock
         }
@@ -636,6 +669,18 @@ public class Clock extends TextView implements
 
         mClockDatePosition = Settings.System.getIntForUser(resolver,
                 Settings.System.STATUSBAR_CLOCK_DATE_POSITION, STYLE_DATE_LEFT,
+                UserHandle.USER_CURRENT);
+
+        mClockAutoHide = Settings.System.getIntForUser(resolver,
+                Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE, 0,
+                UserHandle.USER_CURRENT) == 1;
+
+        mHideDuration = Settings.System.getIntForUser(resolver,
+                Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE_HDURATION, HIDE_DURATION ,
+                UserHandle.USER_CURRENT);
+
+        mShowDuration = Settings.System.getIntForUser(resolver,
+                Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE_SDURATION, SHOW_DURATION ,
                 UserHandle.USER_CURRENT);
 
         if (mAttached) {
