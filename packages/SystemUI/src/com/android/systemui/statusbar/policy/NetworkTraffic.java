@@ -17,6 +17,7 @@ import android.view.Gravity;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.TrafficStats;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.UserHandle;
 import android.os.Message;
@@ -57,6 +58,7 @@ public class NetworkTraffic extends TextView {
 
     protected boolean mVisible = true;
     private ConnectivityManager mConnectivityManager;
+    protected boolean mTrafficInHeaderView;
 
     private Handler mTrafficHandler = new Handler() {
         @Override
@@ -101,7 +103,7 @@ public class NetworkTraffic extends TextView {
                 if (output != getText()) {
                     setText(output);
                 }
-                makeVisible();
+                updateVisibility();
             }
 
             // Post delayed message to refresh in ~1000ms
@@ -183,9 +185,14 @@ public class NetworkTraffic extends TextView {
         return getConnectAvailable() && mAutoHideThreshold == 0;
     }
 
-    protected void makeVisible() {
-        setVisibility(View.VISIBLE);
-        mVisible = true;
+    protected void updateVisibility() {
+        if (mIsEnabled && mTrafficInHeaderView) {
+            setVisibility(View.VISIBLE);
+            mVisible = true;
+        } else {
+            setVisibility(View.GONE);
+            mVisible = false;
+        }
     }
 
     /*
@@ -268,6 +275,9 @@ public class NetworkTraffic extends TextView {
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD), false,
                     this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.NETWORK_TRAFFIC_VIEW_LOCATION), false,
+                    this, UserHandle.USER_ALL);
         }
 
         /*
@@ -297,6 +307,11 @@ public class NetworkTraffic extends TextView {
     }
 
     protected void update() {
+        final ContentResolver resolver = getContext().getContentResolver();
+        mTrafficInHeaderView = Settings.System.getIntForUser(resolver,
+                Settings.System.NETWORK_TRAFFIC_VIEW_LOCATION, 0,
+                UserHandle.USER_CURRENT) == 1;
+        updateVisibility();
         if (mIsEnabled) {
             if (mAttached) {
                 totalRxBytes = TrafficStats.getTotalRxBytes();
@@ -319,6 +334,9 @@ public class NetworkTraffic extends TextView {
         mAutoHideThreshold = Settings.System.getIntForUser(resolver,
                 Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, 1,
                 UserHandle.USER_CURRENT);
+        mTrafficInHeaderView = Settings.System.getIntForUser(resolver,
+                Settings.System.NETWORK_TRAFFIC_VIEW_LOCATION, 0,
+                UserHandle.USER_CURRENT) == 1;
         setGravity(Gravity.CENTER);
         setMaxLines(2);
         setSpacingAndFonts();
