@@ -153,4 +153,7 @@
   <!-- Whether device has turbo power charging support -->
   <java-symbol type="bool" name="config_hasTurboPowerCharger" />
 
+  <!-- Smart charging battery percentage -->
+  <java-symbol type="integer" name="config_smartChargingBatteryLevel" />
+
 </resources>
