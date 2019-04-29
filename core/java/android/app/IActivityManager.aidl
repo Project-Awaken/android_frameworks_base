@@ -683,4 +683,9 @@ interface IActivityManager {
      * Kills uid with the reason of permission change.
      */
     void killUidForPermissionChange(int appId, int userId, String reason);
+
+    /**
+     *  Force full screen for devices with cutout
+     */
+    boolean shouldForceCutoutFullscreen(in String packageName);
 }
