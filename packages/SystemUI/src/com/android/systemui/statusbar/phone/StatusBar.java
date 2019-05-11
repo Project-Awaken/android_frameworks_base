@@ -619,7 +619,10 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     private VolumePluginManager mVolumePluginManager;
 
+    private boolean mPocketJudgeAllowFP;
+
     private final BroadcastReceiver mWallpaperChangedReceiver = new BroadcastReceiver() {
+
         @Override
         public void onReceive(Context context, Intent intent) {
             if (!mWallpaperSupported) {
@@ -4320,6 +4323,9 @@ public class StatusBar extends SystemUI implements DemoMode,
 	    resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.SWITCH_STYLE),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.POCKET_JUDGE_ALLOW_FP),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -4345,6 +4351,9 @@ public class StatusBar extends SystemUI implements DemoMode,
                     Settings.System.SWITCH_STYLE))) {
                 stockSwitchStyle();
                 updateSwitchStyle();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.POCKET_JUDGE_ALLOW_FP))) {
+                updatePocketJudgeFP();
             }
        update();
         }
@@ -4353,6 +4362,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             setFpToDismissNotifications();
             setLockScreenMediaBlurLevel();
             updateCorners();
+            updatePocketJudgeFP();
         }
     }
 
@@ -4440,6 +4450,11 @@ public class StatusBar extends SystemUI implements DemoMode,
                 UserHandle.USER_CURRENT) == 1;
         if (mNotificationInterruptStateProvider != null)
             mNotificationInterruptStateProvider.setUseLessBoringHeadsUp(lessBoringHeadsUp);
+    }
+
+    private void updatePocketJudgeFP() {
+        mPocketJudgeAllowFP = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.POCKET_JUDGE_ALLOW_FP, 0, UserHandle.USER_CURRENT) == 1;
     }
 
     private void setGamingMode() {

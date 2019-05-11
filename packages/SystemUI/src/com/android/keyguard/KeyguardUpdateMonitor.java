@@ -290,6 +290,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
     private int mActiveMobileDataSubscription = SubscriptionManager.INVALID_SUBSCRIPTION_ID;
     private final Executor mBackgroundExecutor;
     private final boolean mFaceAuthOnlyOnSecurityView;
+    private boolean mPocketJudgeAllowFP;
 
     /**
      * Short delay before restarting fingerprint authentication after a successful try. This should
@@ -1974,6 +1975,16 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
     }
 
     private boolean shouldListenForFingerprint() {
+        mPocketJudgeAllowFP = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.POCKET_JUDGE_ALLOW_FP, 0, UserHandle.USER_CURRENT) == 1;
+        if (!mPocketJudgeAllowFP) {
+            return (mKeyguardIsVisible || !mDeviceInteractive ||
+                    (mBouncer && !mKeyguardGoingAway) || mGoingToSleep ||
+                    shouldListenForFingerprintAssistant() || (mKeyguardOccluded && mIsDreaming))
+                    && !mSwitchingUser && !isFingerprintDisabled(getCurrentUser())
+                    && (!mKeyguardGoingAway || !mDeviceInteractive) && mIsPrimaryUser
+                    && !mKeyguardGoingAway && !mIsDeviceInPocket;
+        }
         final boolean allowedOnBouncer =
                 !(mFingerprintLockedOut && mBouncer && mCredentialAttempted);
 

@@ -5034,6 +5034,11 @@ public final class Settings {
         public static final String QS_HEADER_CLOCK_SIZE = "qs_header_clock_size";
 
         /**
+         * @hide
+         */
+        public static final String POCKET_JUDGE_ALLOW_FP = "pocket_judge_allow_fp";
+
+        /**
          * Clock font size
          * @hide
          */
