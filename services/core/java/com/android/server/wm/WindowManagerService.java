@@ -8282,4 +8282,9 @@ public class WindowManagerService extends IWindowManager.Stub
             Binder.restoreCallingIdentity(origId);
         }
     }
+
+    @Override
+    public void takeAlternativeScreenshot() {
+        mPolicy.takeAlternativeScreenshot();
+    }
 }
