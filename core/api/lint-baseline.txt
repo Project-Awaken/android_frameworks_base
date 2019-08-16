@@ -1501,6 +1501,8 @@ UnflaggedApi: android.os.UserManager#DISALLOW_NEAR_FIELD_COMMUNICATION_RADIO:
     New API must be flagged with @FlaggedApi: field android.os.UserManager.DISALLOW_NEAR_FIELD_COMMUNICATION_RADIO
 UnflaggedApi: android.provider.Settings#ACTION_CREDENTIAL_PROVIDER:
     New API must be flagged with @FlaggedApi: field android.provider.Settings.ACTION_CREDENTIAL_PROVIDER
+UnflaggedApi: android.provider.Settings.Secure#TETHERING_ALLOW_VPN_UPSTREAMS:
+    New API must be flagged with @FlaggedApi: field android.provider.Settings.Secure.TETHERING_ALLOW_VPN_UPSTREAMS
 UnflaggedApi: android.telecom.Call.Details#getId():
     New API must be flagged with @FlaggedApi: method android.telecom.Call.Details.getId()
 UnflaggedApi: android.telephony.PhoneNumberUtils#isWpsCallNumber(String):
