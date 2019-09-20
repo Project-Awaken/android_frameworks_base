@@ -102,5 +102,6 @@ public class SystemSettings {
         Settings.System.NOTIFICATION_PULSE_DURATION,
         Settings.System.KEYGAURD_MEDIA_ART,
         Settings.System.LOCKSCREEN_BATTERY_INFO,
+        Settings.System.NAVIGATION_BAR_INVERSE,
     };
 }
