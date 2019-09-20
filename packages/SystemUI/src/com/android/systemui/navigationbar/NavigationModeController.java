@@ -25,6 +25,8 @@ import android.content.IntentFilter;
 import android.content.om.IOverlayManager;
 import android.content.pm.PackageManager;
 import android.content.res.ApkAssets;
+import android.database.ContentObserver;
+import android.os.Handler;
 import android.os.PatternMatcher;
 import android.os.RemoteException;
 import android.os.ServiceManager;
@@ -35,11 +37,13 @@ import android.util.Log;
 
 import com.android.systemui.Dumpable;
 import com.android.systemui.dagger.SysUISingleton;
+import com.android.systemui.dagger.qualifiers.Main;
 import com.android.systemui.dagger.qualifiers.UiBackground;
 import com.android.systemui.dump.DumpManager;
 import com.android.systemui.shared.system.ActivityManagerWrapper;
 import com.android.systemui.statusbar.policy.ConfigurationController;
 import com.android.systemui.statusbar.policy.DeviceProvisionedController;
+import com.android.systemui.util.settings.SystemSettings;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -58,12 +62,14 @@ public class NavigationModeController implements Dumpable {
 
     public interface ModeChangedListener {
         void onNavigationModeChanged(int mode);
+        default void onNavBarLayoutInverseChanged(boolean inverse) {}
     }
 
     private final Context mContext;
     private Context mCurrentUserContext;
     private final IOverlayManager mOverlayManager;
     private final Executor mUiBgExecutor;
+    private final SystemSettings mSystemSettings;
 
     private ArrayList<ModeChangedListener> mListeners = new ArrayList<>();
 
@@ -100,7 +106,9 @@ public class NavigationModeController implements Dumpable {
             DeviceProvisionedController deviceProvisionedController,
             ConfigurationController configurationController,
             @UiBackground Executor uiBgExecutor,
-            DumpManager dumpManager) {
+            DumpManager dumpManager,
+            @Main Handler mainHandler,
+            SystemSettings systemSettings) {
         mContext = context;
         mCurrentUserContext = context;
         mOverlayManager = IOverlayManager.Stub.asInterface(
@@ -124,6 +132,19 @@ public class NavigationModeController implements Dumpable {
                 updateCurrentInteractionMode(true /* notify */);
             }
         });
+
+
+        mSystemSettings = systemSettings;
+        mSystemSettings.registerContentObserverForUser(
+            Settings.System.NAVIGATION_BAR_INVERSE,
+            new ContentObserver(mainHandler) {
+                @Override
+                public void onChange(boolean selfChange) {
+                    mListeners.forEach(listener ->
+                        listener.onNavBarLayoutInverseChanged(
+                            shouldInvertNavBarLayout()));
+                }
+            }, UserHandle.USER_ALL);
 
         updateCurrentInteractionMode(false /* notify */);
     }
@@ -187,6 +208,11 @@ public class NavigationModeController implements Dumpable {
             Log.e(TAG, "Failed to create package context", e);
             return null;
         }
+    }
+
+    public boolean shouldInvertNavBarLayout() {
+        return mSystemSettings.getIntForUser(Settings.System.NAVIGATION_BAR_INVERSE,
+            0, UserHandle.USER_CURRENT) == 1;
     }
 
     @Override
