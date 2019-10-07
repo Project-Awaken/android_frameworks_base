@@ -90,5 +90,6 @@ public class SystemSettings {
         Settings.System.VIBRATE_ON_CALLWAITING,
         Settings.System.VIBRATE_ON_DISCONNECT,
         Settings.System.FULLSCREEN_GESTURES,
+        Settings.System.DOZE_ON_CHARGE,
     };
 }
