@@ -5534,6 +5534,13 @@ public final class Settings {
         public static final String NAVIGATION_BAR_INVERSE = "navigation_bar_inverse";
 
         /**
+         * Which navigation bar layout to use
+         * @hide
+         */
+        @Readable
+        public static final String NAVBAR_LAYOUT_VIEWS = "navbar_layout_views";
+
+        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate

@@ -63,6 +63,7 @@ public class NavigationModeController implements Dumpable {
     public interface ModeChangedListener {
         void onNavigationModeChanged(int mode);
         default void onNavBarLayoutInverseChanged(boolean inverse) {}
+        default void onNavBarCustomLayoutChanged(String layout) {}
     }
 
     private final Context mContext;
@@ -145,6 +146,16 @@ public class NavigationModeController implements Dumpable {
                             shouldInvertNavBarLayout()));
                 }
             }, UserHandle.USER_ALL);
+        mSystemSettings.registerContentObserverForUser(
+            Settings.System.NAVBAR_LAYOUT_VIEWS,
+            new ContentObserver(mainHandler) {
+                @Override
+                public void onChange(boolean selfChange) {
+                    mListeners.forEach(listener ->
+                        listener.onNavBarCustomLayoutChanged(
+                            getCustomNavbarLayout()));
+                }
+            }, UserHandle.USER_ALL);
 
         updateCurrentInteractionMode(false /* notify */);
     }
@@ -210,9 +221,14 @@ public class NavigationModeController implements Dumpable {
         }
     }
 
+    public String getCustomNavbarLayout() {
+        return mSystemSettings.getStringForUser(
+                Settings.System.NAVBAR_LAYOUT_VIEWS, UserHandle.USER_CURRENT);
+    }
+
     public boolean shouldInvertNavBarLayout() {
-        return mSystemSettings.getIntForUser(Settings.System.NAVIGATION_BAR_INVERSE,
-            0, UserHandle.USER_CURRENT) == 1;
+        return mSystemSettings.getIntForUser(
+                Settings.System.NAVIGATION_BAR_INVERSE, 0, UserHandle.USER_CURRENT) == 1;
     }
 
     @Override
