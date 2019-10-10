@@ -6134,6 +6134,12 @@ public final class Settings {
         };
 
         /**
+         * Use doubletap as doze pulse triggers
+         * @hide
+         */
+        public static final String DOZE_TRIGGER_DOUBLETAP = "doze_trigger_doubletap";
+
+        /**
          * These are all public system settings
          *
          * @hide
