@@ -5672,6 +5672,15 @@ public final class Settings {
         public static final String VIBRATE_ON_DISCONNECT = "vibrate_on_disconnect";
 
         /**
+         * Whether allowing pocket service to register sensors and dispatch informations.
+         *   0 = disabled
+         *   1 = enabled
+         * @author Carlo Savignano
+         * @hide
+         */
+        public static final String POCKET_JUDGE = "pocket_judge";
+
+        /**
          * Whether to launch default music player when headset plugged in
          * @hide
          */
@@ -5795,6 +5804,15 @@ public final class Settings {
          */
         public static final String SMART_CHARGING_RESUME_LEVEL = "smart_charging_resume_level";
 
+        /**
+         * Use with {@link #getSystemService} to retrieve a
+         * {@link android.os.PocketManager} for accessing and listening to device pocket state.
+         *
+         * @hide
+         * @see #getSystemService
+         * @see android.os.PocketManager
+         */
+        public static final String POCKET_SERVICE = "pocket";
 
         /**
          * Keys we no longer back up under the current schema, but want to continue to
@@ -5965,6 +5983,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_DATE_STYLE);
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_DATE_FORMAT);
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_DATE_POSITION);
+            PRIVATE_SETTINGS.add(POCKET_JUDGE);
         }
 
         /**
