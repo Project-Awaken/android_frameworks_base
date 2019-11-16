@@ -46,7 +46,7 @@
     <!-- Vibrator pattern for camera gesture launch. -->
     <integer-array translatable="false" name="config_cameraLaunchGestureVibePattern">
         <item>0</item>
-        <item>400</item>
+        <item>500</item>
     </integer-array>
 
     <!-- How many icons may be shown at once in the system bar. Includes any
@@ -145,8 +145,8 @@
     <bool name="quick_settings_rssi_tile_capitalization">true</bool>
 
     <!-- Timeouts for brightness dialog to disappear -->
-    <integer name="quick_settings_brightness_dialog_short_timeout">2000</integer>
-    <integer name="quick_settings_brightness_dialog_long_timeout">4000</integer>
+    <integer name="quick_settings_brightness_dialog_short_timeout">2500</integer>
+    <integer name="quick_settings_brightness_dialog_long_timeout">4500</integer>
 
     <!-- Show indicator for Wifi on but not connected. -->
     <bool name="config_showWifiIndicatorWhenEnabled">false</bool>
@@ -165,7 +165,7 @@
     <integer name="heads_up_notification_minimum_time">2000</integer>
 
     <!-- The number of milliseconds before the heads up notification accepts touches. -->
-    <integer name="touch_acceptance_delay">700</integer>
+    <integer name="touch_acceptance_delay">800</integer>
 
     <!-- The number of milliseconds to extend ambient pulse by when prompted (e.g. on touch) -->
     <integer name="ambient_notification_extension_time">10000</integer>
@@ -175,7 +175,7 @@
     <bool name="recents_grow_in_multiwindow">true</bool>
 
     <!-- Animation duration when using long press on recents to dock -->
-    <integer name="long_press_dock_anim_duration">250</integer>
+    <integer name="long_press_dock_anim_duration">350</integer>
 
     <!-- Whether to enable KeyguardService or not -->
     <bool name="config_enableKeyguardService">true</bool>
