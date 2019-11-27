@@ -19,6 +19,7 @@ package com.android.systemui.statusbar.phone;
 import android.annotation.NonNull;
 import android.content.Context;
 import android.os.Handler;
+import android.provider.Settings;
 import android.telephony.SubscriptionInfo;
 import android.util.ArraySet;
 import android.util.Log;
@@ -48,6 +49,9 @@ public class StatusBarSignalPolicy implements SignalCallback,
         SecurityController.SecurityControllerCallback, Tunable {
     private static final String TAG = "StatusBarSignalPolicy";
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
+
+    private static final String USE_OLD_MOBILETYPE =
+            "system:" + Settings.System.USE_OLD_MOBILETYPE;
 
     private final String mSlotAirplane;
     private final String mSlotMobile;
@@ -117,7 +121,7 @@ public class StatusBarSignalPolicy implements SignalCallback,
             return;
         }
         mInitialized = true;
-        mTunerService.addTunable(this, StatusBarIconController.ICON_HIDE_LIST);
+        mTunerService.addTunable(this, StatusBarIconController.ICON_HIDE_LIST, USE_OLD_MOBILETYPE);
         mNetworkController.addCallback(this);
         mSecurityController.addCallback(this);
     }
@@ -151,6 +155,10 @@ public class StatusBarSignalPolicy implements SignalCallback,
 
     @Override
     public void onTuningChanged(String key, String newValue) {
+        if (USE_OLD_MOBILETYPE.equals(key)) {
+            mNetworkController.removeCallback(this);
+            mNetworkController.addCallback(this);
+        }
         if (!StatusBarIconController.ICON_HIDE_LIST.equals(key)) {
             return;
         }
