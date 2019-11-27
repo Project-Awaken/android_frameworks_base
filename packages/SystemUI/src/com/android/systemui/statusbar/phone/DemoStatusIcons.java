@@ -276,7 +276,7 @@ public class DemoStatusIcons extends StatusIconContainer implements DemoMode, Da
         StatusBarMobileView view = StatusBarMobileView
                 .fromContext(mobileContext, state.slot);
 
-        view.applyMobileState(state);
+        view.applyMobileState(state, false);
         view.setStaticDrawableColor(mColor);
 
         // mobile always goes at the end
