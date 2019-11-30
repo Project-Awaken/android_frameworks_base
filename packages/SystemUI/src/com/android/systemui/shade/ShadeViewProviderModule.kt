@@ -49,7 +49,6 @@ import com.android.systemui.statusbar.phone.StatusIconContainer
 import com.android.systemui.statusbar.phone.TapAgainView
 import com.android.systemui.statusbar.policy.BatteryController
 import com.android.systemui.statusbar.policy.ConfigurationController
-import com.android.systemui.tuner.TunerService
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
@@ -232,7 +231,6 @@ abstract class ShadeViewProviderModule {
             @Named(SHADE_HEADER) batteryMeterView: BatteryMeterView,
             userTracker: UserTracker,
             configurationController: ConfigurationController,
-            tunerService: TunerService,
             @Main mainHandler: Handler,
             contentResolver: ContentResolver,
             featureFlags: FeatureFlags,
@@ -243,7 +241,6 @@ abstract class ShadeViewProviderModule {
                 StatusBarLocation.QS,
                 userTracker,
                 configurationController,
-                tunerService,
                 mainHandler,
                 contentResolver,
                 featureFlags,

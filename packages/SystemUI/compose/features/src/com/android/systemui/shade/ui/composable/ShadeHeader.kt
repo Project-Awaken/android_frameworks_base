@@ -306,7 +306,6 @@ private fun BatteryIcon(
             val batteryMaterViewController =
                 createBatteryMeterViewController(batteryIcon, StatusBarLocation.QS)
             batteryMaterViewController.init()
-            batteryMaterViewController.ignoreTunerUpdates()
 
             batteryIcon
         },
