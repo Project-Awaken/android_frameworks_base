@@ -84,4 +84,6 @@
   <!-- Flashlight proximity check -->
   <java-symbol type="integer" name="config_flashlightProximityTimeout" />
 
+  <java-symbol type="array" name="config_customPermissionsList" />
+
 </resources>
