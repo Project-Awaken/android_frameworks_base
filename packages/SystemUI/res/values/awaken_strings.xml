@@ -175,6 +175,9 @@
     <!-- Name of the volte status bar icon. -->
     <string name="status_bar_volte">VoLTE</string>
 
+    <!-- Name of the location status bar icon. -->
+    <string name="status_bar_location">Location</string>
+
     <!-- Text to use when the number in a notification info is too large
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.
