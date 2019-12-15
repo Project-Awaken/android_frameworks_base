@@ -210,6 +210,8 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
     private int mEdgeWidthRight;
     // The bottom gesture area height
     private float mBottomGestureHeight;
+    // Displaysize divider to check the edge height where touch down is allowed
+    private int mYDeadzoneDivider = 0;
     // The slop to distinguish between horizontal and vertical motion
     private float mTouchSlop;
     // The threshold for triggering back
@@ -412,6 +414,8 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
         mEdgeWidthRight = mGestureNavigationSettingsObserver.getRightSensitivity(res);
         mIsBackGestureAllowed =
                 !mGestureNavigationSettingsObserver.areNavigationButtonForcedVisible();
+
+        mYDeadzoneDivider = mGestureNavigationSettingsObserver.getDeadZoneMode();
 
         final DisplayMetrics dm = res.getDisplayMetrics();
         final float defaultGestureHeight = res.getDimension(
@@ -761,6 +765,10 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
         // gesture
         final boolean isInsidePip = mIsInPip && mPipExcludedBounds.contains(x, y);
         if (isInsidePip || mNavBarOverlayExcludedBounds.contains(x, y)) {
+            return false;
+        }
+
+        if (mYDeadzoneDivider != 0 && y < (mDisplaySize.y / mYDeadzoneDivider)) {
             return false;
         }
 
