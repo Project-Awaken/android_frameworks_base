@@ -4081,6 +4081,13 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
     };
 
+    @Override
+    public void setBlockedGesturalNavigation(boolean blocked) {
+        if (getNavigationBarView() != null) {
+            getNavigationBarView().setBlockedGesturalNavigation(blocked);
+        }
+    }
+
     private AwakenSettingsObserver mAwakenSettingsObserver = new AwakenSettingsObserver(mHandler);
     private class AwakenSettingsObserver extends ContentObserver {
         AwakenSettingsObserver(Handler handler) {
