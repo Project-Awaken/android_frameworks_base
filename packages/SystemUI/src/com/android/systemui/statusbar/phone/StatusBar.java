@@ -255,7 +255,6 @@ import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.statusbar.policy.OnHeadsUpChangedListener;
 import com.android.systemui.statusbar.policy.PulseController;
 import com.android.systemui.statusbar.policy.RemoteInputQuickSettingsDisabler;
-import com.android.systemui.statusbar.policy.TelephonyIcons;
 import com.android.systemui.statusbar.policy.TaskHelper;
 import com.android.systemui.statusbar.policy.UserInfoControllerImpl;
 import com.android.systemui.statusbar.policy.UserSwitcherController;
@@ -4269,9 +4268,6 @@ public class StatusBar extends SystemUI implements DemoMode,
         void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.USE_OLD_MOBILETYPE),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_PANEL_BG_USE_NEW_TINT),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -4296,10 +4292,7 @@ public class StatusBar extends SystemUI implements DemoMode,
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
-            if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.USE_OLD_MOBILETYPE))) {
-                setOldMobileType();
-            } else if (uri.equals(Settings.System.getUriFor(Settings.System.QS_PANEL_BG_USE_NEW_TINT))) {
+            if (uri.equals(Settings.System.getUriFor(Settings.System.QS_PANEL_BG_USE_NEW_TINT))) {
                 mQSPanel.getHost().reloadAllTiles();
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_CHARGING_ANIMATION_STYLE))) {
@@ -4324,7 +4317,6 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
 
         public void update() {
-            setOldMobileType();
             updateChargingAnimation();
             setFpToDismissNotifications();
             setLockScreenMediaBlurLevel();
@@ -4364,13 +4356,6 @@ public class StatusBar extends SystemUI implements DemoMode,
                 Settings.Secure.SYSUI_ROUNDED_CONTENT_PADDING, contentPaddingRes, UserHandle.USER_CURRENT);
 
         return (cornerRadiusRes == cornerRadius) && (contentPaddingRes == contentPadding);
-    }
-
-    private void setOldMobileType() {
-        USE_OLD_MOBILETYPE = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.USE_OLD_MOBILETYPE, 0,
-                UserHandle.USER_CURRENT) != 0;
-        TelephonyIcons.updateIcons(USE_OLD_MOBILETYPE);
     }
 
     private void setPulseOnNewTracks() {
