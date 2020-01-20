@@ -128,4 +128,7 @@
     <string name="global_action_reboot_bootloader">Bootloader</string>
     <string name="global_action_settings">Settings</string>
 
+    <!-- Spidey Analog clock -->
+    <string name="clock_title_spidey" translatable="false">Spidey</string>
+
 </resources>
