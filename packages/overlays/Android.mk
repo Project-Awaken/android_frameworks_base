@@ -21,6 +21,10 @@ LOCAL_REQUIRED_MODULES := \
 	AccentColorCinnamonOverlay \
 	AccentColorPurpleOverlay \
 	AccentColorPaletteOverlay \
+	AccentColorRazerOverlay \
+	AccentColorIndigoOverlay \
+	AccentColorOrchidOverlay \
+	AccentColorSpaceOverlay \
 	AccentColorAquamarineOverlay \
 	AccentColorCyanOverlay \
 	AccentColorMidnightPurpleOverlay \
