@@ -19,48 +19,16 @@ LOCAL_MODULE := frameworks-base-overlays
 LOCAL_REQUIRED_MODULES := \
 	AccentColorBlackOverlay \
 	AccentColorCinnamonOverlay \
-	AccentColorOceanOverlay \
-	AccentColorOrchidOverlay \
-	AccentColorSpaceOverlay \
-	AccentColorGreenOverlay \
 	AccentColorPurpleOverlay \
 	AccentColorPaletteOverlay \
-	AccentColorCarbonOverlay \
-	AccentColorSandOverlay \
-	AccentColorAmethystOverlay \
 	AccentColorAquamarineOverlay \
-	AccentColorTangerineOverlay \
-	AccentColorBlueGrayOverlay \
 	AccentColorCyanOverlay \
-	AccentColorFlatPinkOverlay \
-	AccentColorIndigoOverlay \
-	AccentColorLightPurpleOverlay \
 	AccentColorMidnightPurpleOverlay \
-        AccentColorNeonCarrotOverlay \
-	AccentColorPinkOverlay \
-	AccentColorRedOverlay \
-	AccentColorTealOverlay \
-	AccentColorCocaColaOverlay \
-	AccentColorCoralOverlay \
-	AccentColorDiscordOverlay \
 	AccentColorFerrariRedOverlay \
-	AccentColorGoldenShowerOverlay \
-	AccentColorJollibeeOverlay \
 	AccentColorNextbitOverlay \
 	AccentColorOnePlusOverlay \
-	AccentColorParanoidOverlay \
-	AccentColorPepsiOverlay \
-	AccentColorPixelBlueOGOverlay \
-	AccentColorRazerOverlay \
-	AccentColorStarbucksOverlay \
 	AccentColorXboxOverlay \
 	AccentColorXiaomiOverlay \
-	AccentColorPixelBlueOverlay \
-	AccentColorGoogleBlueOverlay \
-	AccentColorGoogleRedOverlay \
-	AccentColorGoogleYellowOverlay \
-	AccentColorGoogleGreenOverlay \
-	AccentColorGoogleGrayOverlay \
 	AccentColorAppleBlueOverlay \
 	AccentColorAppleGreenOverlay \
 	AccentColorAppleIndigoOverlay \
@@ -106,9 +74,7 @@ LOCAL_REQUIRED_MODULES := \
 	IconPackRoundedSettingsOverlay \
 	IconPackRoundedSystemUIOverlay \
 	IconPackRoundedThemePickerOverlay \
-        IconShapeHeartOverlay \
 	IconShapePebbleOverlay \
-	IconShapeLeafOverlay \
 	IconShapeRoundedRectOverlay \
 	IconShapeSquareOverlay \
 	IconShapeSquircleOverlay \
