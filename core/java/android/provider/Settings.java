@@ -5117,6 +5117,12 @@ public final class Settings {
         public static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
 
         /**
+         * Whether to change the transparency of the qs status bar
+         * @hide
+         */
+        public static final String QS_SB_BG_ALPHA = "qs_sb_bg_alpha";
+
+        /**
          * Display style of AM/PM next to clock in status bar
          * 0: Normal display (Eclair stock)
          * 1: Small display (Froyo stock)
