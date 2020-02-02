@@ -59,6 +59,11 @@
     <string name="accessibility_quick_settings_heads_up_off">Heads up off.</string>
     <string name="accessibility_quick_settings_heads_up_on">Heads up on.</string>
 
+    <!-- Mono QS Tile -->
+    <string name="quick_settings_monotoggle_tile">Audio mode</string>
+    <string name="quick_settings_monotoggle_tile_mono">Mono audio</string>
+    <string name="quick_settings_monotoggle_tile_stereo">Stereo audio</string>
+
     <!-- Sound QS Tile -->
     <string name="quick_settings_sound_label">Sound</string>
     <string name="quick_settings_sound_ring">Ring</string>
