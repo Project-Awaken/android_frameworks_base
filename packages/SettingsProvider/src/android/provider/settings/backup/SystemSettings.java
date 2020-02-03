@@ -95,5 +95,7 @@ public class SystemSettings {
         Settings.System.AUTO_BRIGHTNESS_ONE_SHOT,
         Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL,
         Settings.System.FULLSCREEN_GESTURES,
+        Settings.System.RINGTONE_VIBRATION_PATTERN,
+        Settings.System.CUSTOM_RINGTONE_VIBRATION_PATTERN,
     };
 }
