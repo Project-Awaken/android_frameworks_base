@@ -92,5 +92,9 @@ public class SystemSettings {
         Settings.System.KEYGAURD_MEDIA_ART,
         Settings.System.AUTO_BRIGHTNESS_ONE_SHOT,
         Settings.System.FULLSCREEN_GESTURES,
+        Settings.System.RINGTONE_VIBRATION_PATTERN,
+        Settings.System.CUSTOM_RINGTONE_VIBRATION_PATTERN,
+        Settings.System.NOTIFICATION_VIBRATION_PATTERN,
+        Settings.System.CUSTOM_NOTIFICATION_VIBRATION_PATTERN,
     };
 }
