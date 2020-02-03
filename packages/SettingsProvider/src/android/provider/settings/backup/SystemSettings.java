@@ -94,5 +94,6 @@ public class SystemSettings {
         Settings.System.NOTIFICATION_HEADERS,
         Settings.System.ENABLE_CONDITIONS,
         Settings.System.ENABLE_SUGGESTIONS,
+        Settings.System.RINGTONE_VIBRATION_PATTERN,
     };
 }
