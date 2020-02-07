@@ -36,7 +36,7 @@
         android:layout_height="@*android:dimen/quick_qs_offset_height"
         android:clipToPadding="false"
         android:clipChildren="false"
-        android:background="#ff000000" />
+        android:background="@android:color/transparent" />
 
     <!-- Gradient view behind QS -->
     <View
@@ -46,7 +46,7 @@
         android:layout_marginTop="@*android:dimen/quick_qs_offset_height"
         android:clipToPadding="false"
         android:clipChildren="false"
-        android:background="@drawable/qs_bg_gradient" />
+        android:background="@android:color/transparent" />
 
     <com.android.systemui.qs.NonInterceptingScrollView
         android:id="@+id/expanded_qs_scroll_view"
