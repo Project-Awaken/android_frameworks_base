@@ -5411,6 +5411,12 @@ public final class Settings {
         public static final String BACK_GESTURE_HEIGHT = "back_gesture_height";
 
         /**
+         * FOD recognizing animation picker
+         * @hide
+         */
+        public static final String FOD_ANIM = "fod_anim";
+
+        /**
          * Whether to take partial screenshot with volume down + power click.
          */
         public static final String CLICK_PARTIAL_SCREENSHOT = "click_partial_screenshot";
