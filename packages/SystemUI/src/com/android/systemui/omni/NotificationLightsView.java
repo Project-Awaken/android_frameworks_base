@@ -122,11 +122,22 @@ public class NotificationLightsView extends RelativeLayout {
         int repeats = Settings.System.getIntForUser(resolver,
                 Settings.System.NOTIFICATION_PULSE_REPEATS, 0,
                 UserHandle.USER_CURRENT);
+        int layout = Settings.System.getIntForUser(resolver,
+                Settings.System.PULSE_AMBIENT_LIGHT_LAYOUT, 0,
+                UserHandle.USER_CURRENT);
 
-        ImageView leftView = (ImageView) findViewById(R.id.notification_animation_left);
-        ImageView rightView = (ImageView) findViewById(R.id.notification_animation_right);
-        leftView.setColorFilter(color);
-        rightView.setColorFilter(color);
+        ImageView leftViewSolid = (ImageView) findViewById(R.id.notification_animation_left_solid);
+        ImageView leftViewFaded = (ImageView) findViewById(R.id.notification_animation_left_faded);
+        leftViewSolid.setColorFilter(color);
+        leftViewFaded.setColorFilter(color);
+        leftViewSolid.setVisibility(layout == 0 ? View.VISIBLE : View.GONE);
+        leftViewFaded.setVisibility(layout == 1 ? View.VISIBLE : View.GONE);
+        ImageView rightViewSolid = (ImageView) findViewById(R.id.notification_animation_right_solid);
+        ImageView rightViewFaded = (ImageView) findViewById(R.id.notification_animation_right_faded);
+        rightViewSolid.setColorFilter(color);
+        rightViewFaded.setColorFilter(color);
+        rightViewSolid.setVisibility(layout == 0 ? View.VISIBLE : View.GONE);
+        rightViewFaded.setVisibility(layout == 1 ? View.VISIBLE : View.GONE);
         mLightAnimator = ValueAnimator.ofFloat(new float[]{0.0f, 2.0f});
         mLightAnimator.setDuration(duration);
         mLightAnimator.setRepeatCount(repeats == 0 ?
@@ -155,16 +166,20 @@ public class NotificationLightsView extends RelativeLayout {
             public void onAnimationUpdate(ValueAnimator animation) {
                 if (DEBUG) Log.d(TAG, "onAnimationUpdate");
                 float progress = ((Float) animation.getAnimatedValue()).floatValue();
-                leftView.setScaleY(progress);
-                rightView.setScaleY(progress);
+                leftViewSolid.setScaleY(progress);
+                leftViewFaded.setScaleY(progress);
+                rightViewSolid.setScaleY(progress);
+                rightViewFaded.setScaleY(progress);
                 float alpha = 1.0f;
                 if (progress <= 0.3f) {
                     alpha = progress / 0.3f;
                 } else if (progress >= 1.0f) {
                     alpha = 2.0f - progress;
                 }
-                leftView.setAlpha(alpha);
-                rightView.setAlpha(alpha);
+                leftViewSolid.setAlpha(alpha);
+                leftViewFaded.setAlpha(alpha);
+                rightViewSolid.setAlpha(alpha);
+                rightViewFaded.setAlpha(alpha);
             }
         });
         if (DEBUG) Log.d(TAG, "start");
