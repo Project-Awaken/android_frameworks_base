@@ -7432,5 +7432,7 @@ message MetricsEvent {
     // Awaken Settings constant
     AWAKEN = 1999;
 
+    // Panel for Mobile Data
+    PANEL_MOBILE_DATA = 2002;
   }
 }
