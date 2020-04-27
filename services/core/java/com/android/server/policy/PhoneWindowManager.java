@@ -5777,7 +5777,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                         TAG + "sendCustomAction permission denied");
                 mHandler.removeCallbacks(mScreenshotRunnable);
                 mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_FULLSCREEN);
-                mHandler.post(mScreenshotRunnable);
+                mHandler.postDelayed(mScreenshotRunnable, ViewConfiguration.get(mContext).getDeviceGlobalActionKeyTimeout());
             } else if (Utils.INTENT_REGION_SCREENSHOT.equals(action)) {
                 mContext.enforceCallingOrSelfPermission(Manifest.permission.ACCESS_SURFACE_FLINGER,
                         TAG + "sendCustomAction permission denied");
