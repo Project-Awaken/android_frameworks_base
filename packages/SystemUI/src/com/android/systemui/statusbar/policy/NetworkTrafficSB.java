@@ -7,13 +7,12 @@ import static com.android.systemui.statusbar.StatusBarIconView.STATE_ICON;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.Typeface;
-import android.text.style.RelativeSizeSpan;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.android.internal.util.awaken.Utils;
-
 import com.android.systemui.Dependency;
+import com.android.systemui.R;
 import com.android.systemui.plugins.DarkIconDispatcher;
 import com.android.systemui.plugins.DarkIconDispatcher.DarkReceiver;
 import com.android.systemui.statusbar.StatusIconDisplayable;
@@ -23,7 +22,6 @@ public class NetworkTrafficSB extends NetworkTraffic implements DarkReceiver, St
     public static final String SLOT = "networktraffic";
     private int mVisibleState = -1;
     private boolean mSystemIconVisible = true;
-    private boolean mStatusbarExpanded;
     private boolean mKeyguardShowing;
 
     /*
@@ -57,29 +55,6 @@ public class NetworkTrafficSB extends NetworkTraffic implements DarkReceiver, St
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         Dependency.get(DarkIconDispatcher.class).removeDarkReceiver(this);
-    }
-
-    @Override
-    protected void setMode() {
-        super.setMode();
-        mIsEnabled = mIsEnabled && !Utils.hasNotch(mContext);
-    }
-
-    @Override
-    protected void setSpacingAndFonts() {
-        super.setSpacingAndFonts();
-        setTypeface(Typeface.create(txtFont, Typeface.BOLD));
-        setLineSpacing(0.75f, 0.75f);
-    }
-
-    @Override
-    protected RelativeSizeSpan getSpeedRelativeSizeSpan() {
-        return new RelativeSizeSpan(0.75f);
-    }
-
-    @Override
-    protected RelativeSizeSpan getUnitRelativeSizeSpan() {
-        return new RelativeSizeSpan(0.7f);
     }
 
     @Override
@@ -127,7 +102,7 @@ public class NetworkTrafficSB extends NetworkTraffic implements DarkReceiver, St
 
     @Override
     protected void updateVisibility() {
-        boolean show = !mStatusbarExpanded && mSystemIconVisible && !mKeyguardShowing && mIsEnabled && !mTrafficInHeaderView;
+        boolean show = mSystemIconVisible && !mKeyguardShowing && mIsEnabled && !mTrafficInHeaderView;
         setVisibility(show ? View.VISIBLE
                 : View.GONE);
         mVisible = show;
@@ -144,34 +119,30 @@ public class NetworkTrafficSB extends NetworkTraffic implements DarkReceiver, St
     public void setDecorColor(int color) {
     }
 
-    public void onPanelExpanded(boolean isExpanded) {
-        mStatusbarExpanded = isExpanded;
-        if (isExpanded) {
-          setVisibility(View.GONE);
-          mVisible = false;
-        } else {
-            maybeRestoreVisibility();
-        }
+    @Override
+    protected void updateTrafficDrawable() {
+        Drawable d = getContext().getDrawable(R.drawable.stat_sys_network_traffic_spacer);
+        setCompoundDrawablesWithIntrinsicBounds(null, null, d, null);
+        setTextColor(mTintColor);
     }
 
     public void setKeyguardShowing(boolean showing) {
         mKeyguardShowing = showing;
         if (showing) {
-          setVisibility(View.GONE);
-          mVisible = false;
+            setVisibility(View.GONE);
+            mVisible = false;
         } else {
             maybeRestoreVisibility();
         }
     }
 
     private void maybeRestoreVisibility() {
-        if (!mVisible && mIsEnabled && !mStatusbarExpanded && !mKeyguardShowing && mSystemIconVisible
-           && restoreViewQuickly()) {
-          setVisibility(View.VISIBLE);
-          mVisible = true;
-          // then let the traffic handler do its checks
-          update();
+        if (!mVisible && mIsEnabled && !mKeyguardShowing &&
+                mSystemIconVisible && restoreViewQuickly()) {
+            setVisibility(View.VISIBLE);
+            mVisible = true;
+            // then let the traffic handler do its checks
+            update();
         }
-  
     }
 }

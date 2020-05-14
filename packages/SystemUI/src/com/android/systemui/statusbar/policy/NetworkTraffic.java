@@ -1,7 +1,5 @@
 package com.android.systemui.statusbar.policy;
 
-import java.text.DecimalFormat;
-
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -33,6 +31,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.android.systemui.R;
+import java.text.DecimalFormat;
 
 /*
 *
@@ -50,7 +49,7 @@ public class NetworkTraffic extends TextView {
     private static final int KB = 1024;
     private static final int MB = KB * KB;
     private static final int GB = MB * KB;
-    private static final String symbol = "/s";
+    private static final String symbol = "/S";
 
     protected boolean mIsEnabled;
     protected boolean mAttached;
@@ -243,7 +242,7 @@ public class NetworkTraffic extends TextView {
 
         private boolean shouldShowUpload(long rxData, long txData, long timeDelta) {
             long speedRxKB = (long)(rxData / (timeDelta / 1000f)) / KB;
-                long speedTxKB = (long)(txData / (timeDelta / 1000f)) / KB;
+            long speedTxKB = (long)(txData / (timeDelta / 1000f)) / KB;
 
             return (speedTxKB > speedRxKB);
         }
@@ -318,11 +317,11 @@ public class NetworkTraffic extends TextView {
     }
 
     protected RelativeSizeSpan getSpeedRelativeSizeSpan() {
-        return new RelativeSizeSpan(0.80f);
+        return new RelativeSizeSpan(0.70f);
     }
 
     protected RelativeSizeSpan getUnitRelativeSizeSpan() {
-        return new RelativeSizeSpan(0.75f);
+        return new RelativeSizeSpan(0.65f);
     }
 
     private Runnable mRunnable = new Runnable() {
@@ -410,7 +409,7 @@ public class NetworkTraffic extends TextView {
                 Settings.System.NETWORK_TRAFFIC_STATE, 0,
                 UserHandle.USER_CURRENT) == 1;
         mAutoHideThreshold = Settings.System.getIntForUser(resolver,
-                Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, 1,
+                Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, 0,
                 UserHandle.USER_CURRENT);
         mTrafficInHeaderView = Settings.System.getIntForUser(resolver,
                 Settings.System.NETWORK_TRAFFIC_VIEW_LOCATION, 0,
@@ -460,7 +459,7 @@ public class NetworkTraffic extends TextView {
                 }
             } else {
                 if (!iBytes && !oBytes) {
-                    intTrafficDrawable = R.drawable.stat_sys_network_traffic_updown;
+                    intTrafficDrawable = R.drawable.stat_sys_network_traffic_spacer;
                 } else if (!oBytes) {
                     intTrafficDrawable = R.drawable.stat_sys_network_traffic_up;
                 } else if (!iBytes) {
@@ -489,7 +488,7 @@ public class NetworkTraffic extends TextView {
                 ? (float)resources.getDimensionPixelSize(R.dimen.net_traffic_multi_text_size)
                 : (float)resources.getDimensionPixelSize(R.dimen.net_traffic_single_text_size));
         setTypeface(Typeface.create(txtFont, Typeface.BOLD));
-        setLineSpacing(0.80f, 0.80f);
+        setLineSpacing(0.75f, 0.75f);
     }
 
     protected void setSpacingAndFonts() {
