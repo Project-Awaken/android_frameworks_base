@@ -45,6 +45,7 @@ import android.text.format.Time;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.InputDevice;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
@@ -340,5 +341,11 @@ public class Utils {
         Canvas canvas = new Canvas(dest);
         canvas.drawBitmap(source, null, targetRect, null);
         return dest;
+    }
+
+    public static int getThemeAccentColor (final Context context) {
+        final TypedValue value = new TypedValue ();
+        context.getTheme ().resolveAttribute (android.R.attr.colorAccent, value, true);
+        return value.data;
     }
 }
