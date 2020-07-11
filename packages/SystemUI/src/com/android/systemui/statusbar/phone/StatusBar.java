@@ -325,8 +325,8 @@ public class StatusBar extends SystemUI implements DemoMode,
     private static final int BRIGHTNESS_CONTROL_LONG_PRESS_TIMEOUT = 750; // ms
     private static final int BRIGHTNESS_CONTROL_LINGER_THRESHOLD = 20;
 
-    public static final int FADE_KEYGUARD_START_DELAY = 100;
-    public static final int FADE_KEYGUARD_DURATION = 300;
+    public static final int FADE_KEYGUARD_START_DELAY = 10;
+    public static final int FADE_KEYGUARD_DURATION = 10;
     public static final int FADE_KEYGUARD_DURATION_PULSING = 96;
 
     /** If true, the system is in the half-boot-to-decryption-screen state.
