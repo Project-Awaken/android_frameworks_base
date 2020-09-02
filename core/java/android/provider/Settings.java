@@ -3643,6 +3643,15 @@ public final class Settings {
         }
 
         /**
+          * Swipe to screenshot
+          * @hide
+          */
+         public static final String FOD_GESTURE = "fod_gesture";
+ 
+         /** @hide */
+         public static final Validator FOD_GESTURE_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Convenience function to write a batch of configuration-related
          * settings from a {@link Configuration} object.
          *
@@ -5380,6 +5389,20 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ENABLE_CONDITIONS);
             PRIVATE_SETTINGS.add(ENABLE_SUGGESTIONS);
             PRIVATE_SETTINGS.add(VOLUME_PANEL_ON_LEFT);
+        }
+
+        /**
+         * These are all public system settings
+         *
+         * All settings in {@link SETTINGS_TO_BACKUP} array *must* have a non-null validator,
+         * otherwise they won't be restored.
+         *
+         * @hide
+         */
+        @UnsupportedAppUsage
+        public static final Map<String, Validator> VALIDATORS = new ArrayMap<>();
+        static {
+             VALIDATORS.put(FOD_GESTURE, FOD_GESTURE_VALIDATOR);
         }
 
         /**
