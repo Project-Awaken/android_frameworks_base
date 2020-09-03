@@ -866,6 +866,7 @@ public class PackageManagerService implements PackageSender, TestUtilityService 
     final PendingPackageBroadcasts mPendingBroadcasts;
 
     ArrayList<ComponentName> mDisabledComponentsList;
+    ArrayList<ComponentName> mForceEnabledComponentsList;
 
     static final int SEND_PENDING_BROADCAST = 1;
     static final int INIT_COPY = 5;
@@ -2106,8 +2107,10 @@ public class PackageManagerService implements PackageSender, TestUtilityService 
                     com.android.internal.R.array.config_globallyDisabledComponents), false);
 
             // Enable components marked for forced-enable at build-time
+            mForceEnabledComponentsList = new ArrayList<ComponentName>();
             enableComponents(mContext.getResources().getStringArray(
                     com.android.internal.R.array.config_forceEnabledComponents), true);
+            loadForceEnabledComponents();
 
             // If this is first boot after an OTA, and a normal boot, then
             // we need to clear code cache directories.
@@ -2281,6 +2284,15 @@ public class PackageManagerService implements PackageSender, TestUtilityService 
         mServiceStartWithDelay = SystemClock.uptimeMillis() + (60 * 1000L);
 
         Slog.i(TAG, "Fix for b/169414761 is applied");
+    }
+
+    private void loadForceEnabledComponents(){
+        String[] components = mContext.getResources().getStringArray(
+                    com.android.internal.R.array.config_forceEnabledComponents);
+        for (String name : components) {
+            ComponentName cn = ComponentName.unflattenFromString(name);
+            mForceEnabledComponentsList.add(cn);
+        }
     }
 
     private void enableComponents(String[] components, boolean enable) {
@@ -5653,6 +5665,14 @@ public class PackageManagerService implements PackageSender, TestUtilityService 
                         + componentName.flattenToString());
                 return;
             }
+
+            // Don't allow to control components forced enabled at build-time
+            if (mForceEnabledComponentsList.contains(componentName)) {
+                Slog.d(TAG, "Ignoring attempt to control forced enabled component "
+                        + componentName.flattenToString());
+                return;
+            }
+
             setEnabledSettings(List.of(new PackageManager.ComponentEnabledSetting(componentName, newState, flags)),
                     userId, null /* callingPackage */);
         }
