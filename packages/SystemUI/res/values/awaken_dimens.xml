@@ -131,5 +131,7 @@
     <!-- App Lock -->
     <dimen name="applock_icon_dimension">54dp</dimen>
 
+    <dimen name="volume_row_app_icon_padding">12dp</dimen>
+
 </resources>
 
