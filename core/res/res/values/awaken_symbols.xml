@@ -61,6 +61,9 @@
     <java-symbol type="integer" name="config_proximityCheckTimeout" />
     <java-symbol type="bool" name="config_proximityCheckOnWakeEnabledByDefault" />
 
+    <!-- Vendor platform signatures -->
+    <java-symbol type="array" name="config_vendorPlatformSignatures" />
+
     <!-- Whether to cleanup fingerprints upon connection to the daemon and when user switches -->
     <java-symbol type="bool" name="config_cleanupUnusedFingerprints" />
 </resources>
