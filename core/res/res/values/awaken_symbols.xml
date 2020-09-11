@@ -67,4 +67,7 @@
 
     <!-- Pocket Service -->
     <java-symbol type="string" name="config_pocketJudgeVendorSensorName" />
+
+    <!-- Vendor signatures -->
+    <java-symbol type="array" name="config_vendorPlatformSignatures" />
 </resources>
