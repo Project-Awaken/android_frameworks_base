@@ -43,6 +43,8 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.android.systemui.volume.SystemUIInterpolators;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -398,7 +400,7 @@ public class DessertCaseView extends FrameLayout {
                     squatter.animate().withLayer()
                             .scaleX(0.5f).scaleY(0.5f).alpha(0)
                             .setDuration(DURATION)
-                            .setInterpolator(new AccelerateInterpolator())
+                            .setInterpolator(new SystemUIInterpolators.LogAccelerateInterpolator(200, 0))
                             .setListener(new Animator.AnimatorListener() {
                                 public void onAnimationStart(Animator animator) { }
                                 public void onAnimationEnd(Animator animator) {

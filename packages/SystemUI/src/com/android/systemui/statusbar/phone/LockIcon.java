@@ -35,6 +35,7 @@ import com.android.internal.graphics.ColorUtils;
 import com.android.systemui.Interpolators;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.KeyguardAffordanceView;
+import com.android.systemui.volume.SystemUIInterpolators;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -121,7 +122,7 @@ public class LockIcon extends KeyguardAffordanceView {
                 setScaleX(0);
                 setScaleY(0);
                 animate()
-                        .setInterpolator(Interpolators.LINEAR_OUT_SLOW_IN)
+                        .setInterpolator(new SystemUIInterpolators.LogAccelerateInterpolator(200, 0))
                         .scaleX(1)
                         .scaleY(1)
                         .withLayer()

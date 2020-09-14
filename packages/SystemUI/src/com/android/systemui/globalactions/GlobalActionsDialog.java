@@ -142,6 +142,7 @@ import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.util.EmergencyDialerConstants;
 import com.android.systemui.util.RingerModeTracker;
 import com.android.systemui.util.leak.RotationUtils;
+import com.android.systemui.volume.SystemUIInterpolators;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -2635,7 +2636,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
             float xOffset = mGlobalActionsLayout.getAnimationOffsetX();
             ObjectAnimator alphaAnimator =
                     ObjectAnimator.ofFloat(mContainer, "alpha", 0f, 1f);
-            alphaAnimator.setInterpolator(Interpolators.LINEAR_OUT_SLOW_IN);
+            alphaAnimator.setInterpolator(new SystemUIInterpolators.LogAccelerateInterpolator(200, 0));
             alphaAnimator.setDuration(183);
             alphaAnimator.addUpdateListener((animation) -> {
                 float animatedValue = animation.getAnimatedFraction();
@@ -2647,7 +2648,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
 
             ObjectAnimator xAnimator =
                     ObjectAnimator.ofFloat(mContainer, "translationX", xOffset, 0f);
-            xAnimator.setInterpolator(Interpolators.LINEAR_OUT_SLOW_IN);
+            xAnimator.setInterpolator(new SystemUIInterpolators.LogAccelerateInterpolator(200, 0));
             xAnimator.setDuration(350);
 
             AnimatorSet animatorSet = new AnimatorSet();
@@ -2661,7 +2662,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                 mContainer.setTranslationX(0);
                 ObjectAnimator alphaAnimator =
                         ObjectAnimator.ofFloat(mContainer, "alpha", 1f, 0f);
-                alphaAnimator.setInterpolator(Interpolators.FAST_OUT_LINEAR_IN);
+                alphaAnimator.setInterpolator(new SystemUIInterpolators.LogDecelerateInterpolator(800f, 2.1f, 0));
                 alphaAnimator.setDuration(233);
                 alphaAnimator.addUpdateListener((animation) -> {
                     float animatedValue = 1f - animation.getAnimatedFraction();
@@ -2674,7 +2675,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                 float xOffset = mGlobalActionsLayout.getAnimationOffsetX();
                 ObjectAnimator xAnimator =
                         ObjectAnimator.ofFloat(mContainer, "translationX", 0f, xOffset);
-                xAnimator.setInterpolator(Interpolators.FAST_OUT_LINEAR_IN);
+                xAnimator.setInterpolator(new SystemUIInterpolators.LogDecelerateInterpolator(800f, 2.1f, 0));
                 xAnimator.setDuration(350);
 
                 AnimatorSet animatorSet = new AnimatorSet();
