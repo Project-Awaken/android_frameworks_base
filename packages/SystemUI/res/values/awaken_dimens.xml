@@ -118,4 +118,12 @@
 
     <!-- Margin on the right side of the center clock -->
     <dimen name="status_bar_center_clock_padding_end">0dp</dimen>
+
+    <!-- navigation -->
+    <dimen name="navigation_handle_radius">1.25dp</dimen>
+    <dimen name="navigation_home_handle_width">75dp</dimen>
+    <dimen name="navigation_edge_panel_height">20dp</dimen>
+    <!-- navigation end-->
+
 </resources>
+
