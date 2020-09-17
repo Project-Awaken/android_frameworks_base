@@ -526,7 +526,10 @@ public class KeyguardStatusView extends GridLayout implements
 
     private void UpdateFPIcon() {
 		FingerprintManager fingerprintManager = (FingerprintManager) mContext.getSystemService(Context.FINGERPRINT_SERVICE);
-		if (!fingerprintManager.isHardwareDetected()) { 
+	        if (fingerprintManager == null) {
+                        fpIcon.setVisibility(View.GONE);
+			Log.w ("FluidLSManager", "FP icon: FingerprintManager is null, falling back to Dont show icon");
+		} else if (!fingerprintManager.isHardwareDetected()) { 
 			fpIcon.setVisibility(View.GONE);
 			Log.w ("FluidLSManager", "FP icon: Fingerprint not detected, falling back to Dont show icon");
 		} else if (!fingerprintManager.hasEnrolledFingerprints()) { 
