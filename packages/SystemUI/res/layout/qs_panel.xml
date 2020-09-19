@@ -83,6 +83,8 @@
         <View
             android:layout_width="46dp"
             android:layout_height="3dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/qs_footer_drag_handle" />
     </FrameLayout>
 
