@@ -90,5 +90,6 @@ public class SystemSettings {
         Settings.System.VOLUME_BUTTON_MUSIC_CONTROL,
         Settings.System.USE_OLD_MOBILETYPE,
         Settings.System.QS_PANEL_BG_USE_NEW_TINT,
+        Settings.System.LOCKSCREEN_MEDIA_ART,
     };
 }
