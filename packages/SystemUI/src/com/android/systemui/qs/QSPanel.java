@@ -1019,6 +1019,10 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         }
     }
 
+    int getVisualTilePadding() {
+        return mVisualTilePadding;
+    }
+
     public void setContentMargins(int startMargin, int endMargin) {
         // Only some views actually want this content padding, others want to go all the way
         // to the edge like the brightness slider
@@ -1062,11 +1066,11 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     private void updateTileLayoutMargins() {
-        int marginEnd = mVisualMarginEnd;
         if (mUsingHorizontalLayout) {
-            marginEnd = 0;
+            mTileLayout.setSidePadding(0, 0);
+        } else {
+            mTileLayout.setSidePadding(mVisualMarginStart, mVisualMarginEnd);
         }
-        updateMargins((View) mTileLayout, mVisualMarginStart, marginEnd);
     }
 
     /**
@@ -1165,6 +1169,8 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         int getOffsetTop(TileRecord tile);
 
         boolean updateResources();
+
+        void setSidePadding(int paddingStart, int paddingEnd);
 
         void setListening(boolean listening);
 
