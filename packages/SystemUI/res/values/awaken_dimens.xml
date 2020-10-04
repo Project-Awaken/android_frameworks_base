@@ -30,4 +30,8 @@
 
     <!-- Width of the battery icon in the status bar when set to circle style. -->
     <dimen name="status_bar_battery_icon_circle_width">14.5dp</dimen>
+
+    <!-- Additional gesture navbar lengths -->
+    <dimen name="navigation_home_handle_width_medium">110dp</dimen>
+    <dimen name="navigation_home_handle_width_long">140dp</dimen>
 </resources>
