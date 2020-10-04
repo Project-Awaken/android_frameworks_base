@@ -16,6 +16,10 @@
     limitations under the License.
 -->
 <resources>
+    <!-- Additional gesture navbar lengths -->
+    <dimen name="navigation_home_handle_width_medium">130dp</dimen>
+    <dimen name="navigation_home_handle_width_long">160dp</dimen>
+
     <!-- Fps info text -->
     <dimen name="fps_info_text_padding">4dp</dimen>
 
