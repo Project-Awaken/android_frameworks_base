@@ -391,5 +391,6 @@ public class SecureSettingsValidators {
         VALIDATORS.put(Secure.QS_SHOW_AUTO_BRIGHTNESS_BUTTON, BOOLEAN_VALIDATOR);
         VALIDATORS.put(Secure.BERRY_BLACK_THEME, BOOLEAN_VALIDATOR);
         VALIDATORS.put(Secure.NAVIGATION_BAR_HINT, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(Secure.GESTURE_NAVBAR_LENGTH_MODE, new InclusiveIntegerRangeValidator(0, 2));
     }
 }

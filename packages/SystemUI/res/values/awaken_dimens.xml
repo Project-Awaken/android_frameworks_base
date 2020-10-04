@@ -16,6 +16,10 @@
     limitations under the License.
 -->
 <resources>
+    <!-- Additional gesture navbar lengths -->
+    <dimen name="navigation_home_handle_width_medium">130dp</dimen>
+    <dimen name="navigation_home_handle_width_long">160dp</dimen>
+
     <!-- QQS Brightness slider -->
     <dimen name="quick_qs_brightness_margin_top">24dp</dimen>
 </resources>
