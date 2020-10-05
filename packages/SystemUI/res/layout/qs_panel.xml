@@ -75,20 +75,4 @@
     <include android:id="@+id/qs_customize" layout="@layout/qs_customize_panel"
         android:visibility="gone" />
 
-    <FrameLayout
-        android:id="@+id/qs_drag_handle_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:elevation="4dp"
-        android:paddingBottom="6dp">
-        <View
-            android:layout_width="40dp"
-            android:layout_height="3dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/qs_footer_drag_handle" />
-    </FrameLayout>
-
-
 </com.android.systemui.qs.QSContainerImpl>
