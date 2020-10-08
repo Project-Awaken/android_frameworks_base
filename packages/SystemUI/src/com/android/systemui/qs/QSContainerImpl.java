@@ -70,6 +70,7 @@ public class QSContainerImpl extends FrameLayout {
 
     private int mSideMargins;
     private boolean mQsDisabled;
+
     private int mContentPaddingStart = -1;
     private int mContentPaddingEnd = -1;
     private boolean mAnimateBottomOnNextLayout;

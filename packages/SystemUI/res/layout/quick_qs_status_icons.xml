@@ -33,14 +33,34 @@
         android:layout_gravity="start|center_vertical"
         android:gravity="center_vertical"
         android:singleLine="true"
-        android:textAppearance="@style/TextAppearance.QS.Status"
+        android:textAppearance="@style/TextAppearance.QS.Date"
         systemui:datePattern="@string/abbrev_wday_month_day_no_year_alarm" />
 
-    <com.android.systemui.statusbar.phone.StatusIconContainer
-        android:id="@+id/statusIcons"
-        android:layout_width="0dp"
+    <android.widget.Space
+        android:id="@+id/space"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:paddingEnd="@dimen/signal_cluster_battery_padding" />
+        android:gravity="center_vertical|center_horizontal" />
 
+            <com.android.systemui.statusbar.AlphaOptimizedFrameLayout
+                android:id="@+id/settings_button_container"
+                android:layout_width="@dimen/qs_footer_action_button_size"
+                android:layout_height="@dimen/qs_footer_action_button_size"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <com.android.systemui.statusbar.phone.SettingsButton
+                    android:id="@+id/settings_button"
+                    style="@android:style/Widget.Material.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/qs_footer_icon_padding"
+                    android:background="@drawable/ripple_drawable"
+                    android:contentDescription="@string/accessibility_quick_settings_settings"
+                    android:src="@drawable/ic_settings"
+                    android:scaleType="centerInside"
+                    android:tint="?android:attr/colorForeground"/>
+            </com.android.systemui.statusbar.AlphaOptimizedFrameLayout>
 </LinearLayout>

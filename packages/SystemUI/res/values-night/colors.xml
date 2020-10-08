@@ -105,4 +105,16 @@
     <!-- Color of background circle of user avatars in quick settings user switcher -->
     <color name="qs_user_switcher_avatar_background">#3C4043</color>
 
+    <color name="qs_tile_background_color_disabled">#0fffffff</color>
+
+    <color name="volume_background_tint">#141414</color>
+
+    <color name="ringer_icon_normal">@android:color/white</color>
+    <color name="ringer_bcg_normal">@color/volume_background_tint</color>
+
+    <color name="ringer_icon_mute">@android:color/white</color>
+
+    <color name="divider_stroke_color">#434343</color>
+
+    <color name="status_bar_clock_color">@android:color/white</color>
 </resources>

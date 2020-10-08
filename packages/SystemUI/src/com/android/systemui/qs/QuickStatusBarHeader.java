@@ -68,6 +68,7 @@ import androidx.lifecycle.LifecycleRegistry;
 
 import com.android.internal.config.sysui.SystemUiDeviceConfigFlags;
 import com.android.systemui.Dependency;
+import com.android.systemui.statusbar.policy.DeviceProvisionedController;
 import com.android.settingslib.Utils;
 import com.android.systemui.BatteryMeterView;
 import com.android.systemui.Dependency;
@@ -97,6 +98,9 @@ import com.android.systemui.statusbar.policy.NextAlarmController;
 import com.android.systemui.statusbar.policy.ZenModeController;
 import com.android.systemui.util.RingerModeTracker;
 import com.android.systemui.tuner.TunerService;
+import com.android.systemui.statusbar.phone.SettingsButton;
+import com.android.internal.logging.MetricsLogger;
+import com.android.internal.logging.nano.MetricsProto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -149,6 +153,9 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private TouchAnimator mPrivacyChipAlphaAnimator;
     private DualToneHandler mDualToneHandler;
     private final CommandQueue mCommandQueue;
+    private SettingsButton mSettingsButton;
+    protected View mSettingsContainer;
+    private final DeviceProvisionedController mDeviceProvisionedController;
 
     private View mSystemIconsView;
     private View mQuickQsStatusIcons;
@@ -248,7 +255,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
             NextAlarmController nextAlarmController, ZenModeController zenModeController,
             StatusBarIconController statusBarIconController,
             ActivityStarter activityStarter, PrivacyItemController privacyItemController,
-            CommandQueue commandQueue, RingerModeTracker ringerModeTracker, BroadcastDispatcher broadcastDispatcher) {
+            CommandQueue commandQueue, RingerModeTracker ringerModeTracker, BroadcastDispatcher broadcastDispatcher, DeviceProvisionedController deviceProvisionedController) {
         super(context, attrs);
         mAlarmController = nextAlarmController;
         mZenController = zenModeController;
@@ -262,6 +269,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mContentResolver = context.getContentResolver();
         mSettingsObserver.observe();
         mBroadcastDispatcher = broadcastDispatcher;
+        mDeviceProvisionedController = deviceProvisionedController;
     }
 
     @Override
@@ -313,9 +321,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         float intensity = getColorIntensity(colorForeground);
         int fillColor = mDualToneHandler.getSingleColor(intensity);
 
-        // Set light text on the header icons because they will always be on a black background
-        applyDarkness(R.id.clock, tintArea, 0, DarkIconDispatcher.DEFAULT_ICON_TINT);
-
         // Set the correct tint for the status icons so they contrast
         mIconManager.setTint(fillColor);
         mNextAlarmIcon.setImageTintList(ColorStateList.valueOf(fillColor));
@@ -326,6 +331,9 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mDateView = findViewById(R.id.date);
         mDateView.setOnClickListener(this);
         mSpace = findViewById(R.id.space);
+        mSettingsButton = findViewById(R.id.settings_button);
+        mSettingsContainer = findViewById(R.id.settings_button_container);
+        mSettingsButton.setOnClickListener(this);
 
         // Tint for the battery icons are handled in setupHost()
         mBatteryRemainingIcon = findViewById(R.id.battery);
@@ -409,7 +417,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
 
         return isOriginalVisible != ringerVisible ||
                 !Objects.equals(originalRingerText, mRingerModeTextView.getText());
-    }
+	}
 
     private boolean updateAlarmStatus() {
         boolean isOriginalVisible = mNextAlarmTextView.getVisibility() == View.VISIBLE;
@@ -426,6 +434,10 @@ public class QuickStatusBarHeader extends RelativeLayout implements
 
         return isOriginalVisible != alarmVisible ||
                 !Objects.equals(originalAlarmText, mNextAlarmTextView.getText());
+	}
+
+    private void updateClickabilities() {
+        mSettingsButton.setClickable(mSettingsButton.getVisibility() == View.VISIBLE);
     }
 
     private void applyDarkness(int id, Rect tintArea, float intensity, int color) {
@@ -439,11 +451,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     protected void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         updateResources();
-
-        // Update color schemes in landscape to use wallpaperTextColor
-        boolean shouldUseWallpaperTextColor =
-                newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE;
-        mClockView.useWallpaperTextColor(shouldUseWallpaperTextColor);
     }
 
     @Override
@@ -784,6 +791,25 @@ public class QuickStatusBarHeader extends RelativeLayout implements
             Intent todayIntent = new Intent(Intent.ACTION_VIEW, builder.build());
             Dependency.get(ActivityStarter.class).postStartActivityDismissingKeyguard(todayIntent, 0);
         }
+        if (v == mSettingsButton) {
+            if (!mDeviceProvisionedController.isCurrentUserSetup()) {
+                // If user isn't setup just unlock the device and dump them back at SUW.
+                mActivityStarter.postQSRunnableDismissingKeyguard(() -> {
+                });
+                return;
+            }
+            MetricsLogger.action(mContext,
+                    mExpanded ? MetricsProto.MetricsEvent.ACTION_QS_EXPANDED_SETTINGS_LAUNCH
+                            : MetricsProto.MetricsEvent.ACTION_QS_COLLAPSED_SETTINGS_LAUNCH);
+                startSettingsActivity();
+	}
+    }
+
+    public void updateEverything() {
+        post(() -> {
+            updateClickabilities();
+            setClickable(false);
+        });
     }
 
     @Override
@@ -800,10 +826,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     @Override
     public void onConfigChanged(ZenModeConfig config) {
         updateStatusText();
-    }
-
-    public void updateEverything() {
-        post(() -> setClickable(!mExpanded));
     }
 
     public void setQSPanel(final QSPanel qsPanel) {
@@ -823,10 +845,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
                 android.R.attr.colorForeground);
         float intensity = getColorIntensity(colorForeground);
         int fillColor = mDualToneHandler.getSingleColor(intensity);
-
-        // Use SystemUI context to get battery meter colors, and let it use the default tint (white)
-        mBatteryMeterView.setColorsFromContext(mHost.getContext());
-        mBatteryMeterView.onDarkChanged(new Rect(), 0, DarkIconDispatcher.DEFAULT_ICON_TINT);
     }
 
     public void setCallback(Callback qsPanelCallback) {
@@ -871,6 +889,12 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         }
         updateClockPadding();
     }
+
+    private void startSettingsActivity() {
+        mActivityStarter.startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS),
+                true /* dismissShade */);
+    }
+
 
     public void setExpandedScrollAmount(int scrollY) {
         // The scrolling of the expanded qs has changed. Since the header text isn't part of it,
