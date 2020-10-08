@@ -67,7 +67,6 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.PowerManager;
-import android.os.Process;
 import android.os.RemoteException;
 import android.os.SystemProperties;
 import android.os.UserHandle;
@@ -196,7 +195,6 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
     static final String GLOBAL_ACTION_KEY_SCREENSHOT = "screenshot";
     private static final String GLOBAL_ACTION_KEY_REBOOT_RECOVERY = "reboot_recovery";
     private static final String GLOBAL_ACTION_KEY_REBOOT_BOOTLOADER = "reboot_bootloader";
-    private static final String GLOBAL_ACTION_KEY_REBOOT_SYSTEMUI = "reboot_systemui";
 
     public static final String PREFS_CONTROLS_SEEDING_COMPLETED = "SeedingCompleted";
     public static final String PREFS_CONTROLS_FILE = "controls_prefs";
@@ -670,9 +668,6 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
             } else if (advancedRebootEnabled(mContext) && GLOBAL_ACTION_KEY_REBOOT_BOOTLOADER.equals(actionKey)) {
                 RebootBootloaderAction a = new RebootBootloaderAction();
                 addIfShouldShowAction(items, a);
-            } else if (advancedRebootEnabled(mContext) && GLOBAL_ACTION_KEY_REBOOT_SYSTEMUI.equals(actionKey)) {
-                RebootSystemuiAction a= new RebootSystemuiAction();
-                addIfShouldShowAction(items, a);
             }
         }
         return items;
@@ -697,7 +692,6 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
         RestartAction restartAction = new RestartAction();
         RebootRecoveryAction rbtRecoveryAction = new RebootRecoveryAction();
         RebootBootloaderAction rbtBlAction = new RebootBootloaderAction();
-        RebootSystemuiAction rbtSystemuiAction = new RebootSystemuiAction();
 
         // make sure emergency affordance action is first, if needed
         if (mEmergencyAffordanceManager.needsEmergencyAffordance()) {
@@ -744,8 +738,6 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                 addIfShouldShowAction(tempActions, rbtRecoveryAction);
             } else if (advancedRebootEnabled(mContext) && GLOBAL_ACTION_KEY_REBOOT_BOOTLOADER.equals(actionKey)) {
                 addIfShouldShowAction(tempActions, rbtBlAction);
-            } else if (advancedRebootEnabled(mContext) && GLOBAL_ACTION_KEY_REBOOT_SYSTEMUI.equals(actionKey)) {
-                addIfShouldShowAction(tempActions, rbtSystemuiAction);
             } else if (GLOBAL_ACTION_KEY_SCREENSHOT.equals(actionKey)) {
                 addIfShouldShowAction(tempActions, new ScreenshotAction());
             } else if (GLOBAL_ACTION_KEY_LOGOUT.equals(actionKey)) {
@@ -773,14 +765,12 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
             if (advancedRebootEnabled(mContext)) {
                 tempActions.remove(rbtRecoveryAction);
                 tempActions.remove(rbtBlAction);
-                tempActions.remove(rbtSystemuiAction);
             }
             mPowerItems.add(shutdownAction);
             mPowerItems.add(restartAction);
             if (advancedRebootEnabled(mContext)) {
                 mPowerItems.add(rbtRecoveryAction);
                 mPowerItems.add(rbtBlAction);
-                mPowerItems.add(rbtSystemuiAction);
             }
             // add the PowerOptionsAction after Emergency, if present
             tempActions.add(powerOptionsIndex, new PowerOptionsAction());
@@ -1135,32 +1125,6 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
         @Override
         public void onPress() {
             mWindowManagerFuncs.reboot(false, PowerManager.REBOOT_BOOTLOADER);
-        }
-    }
-
-    private final class RebootSystemuiAction extends SinglePressAction {
-        private RebootSystemuiAction() {
-            super(com.android.systemui.R.drawable.ic_restart_systemui, com.android.systemui.R.string.global_action_reboot_systemui);
-        }
-
-        @Override
-        public boolean showDuringKeyguard() {
-            return true;
-        }
-
-        @Override
-        public boolean showDuringRestrictedKeyguard() {
-            return false;
-        }
-
-        @Override
-        public boolean showBeforeProvisioning() {
-            return true;
-        }
-
-        @Override
-        public void onPress() {
-            Process.killProcess(Process.myPid());
         }
     }
 
