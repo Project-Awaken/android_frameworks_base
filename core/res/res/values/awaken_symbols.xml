@@ -59,17 +59,6 @@
    <java-symbol type="string" name="config_lightFontFamily" />
    <java-symbol type="string" name="config_regularFontFamily" />
 
-
-  <!-- Power menu reboot -->
-  <java-symbol name="reboot_to_bootloader_title" type="string" />
-  <java-symbol name="reboot_to_bootloader_message" type="string" />
-  <java-symbol name="reboot_to_recovery_title" type="string" />
-  <java-symbol name="reboot_to_recovery_message" type="string" />
-  <java-symbol name="reboot_system_title" type="string" />
-  <java-symbol name="reboot_system_message" type="string" />
-  <java-symbol type="array" name="config_rebootActionsList" />
-  <java-symbol type="array" name="values_globalActionsList" />
-
    <!-- Device has OnePlus haptic motor -->
    <java-symbol type="bool" name="config_hasOnePlusHapticMotor" />
 
