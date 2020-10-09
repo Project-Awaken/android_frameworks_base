@@ -4985,6 +4985,12 @@ public final class Settings {
         public static final String ALWAYS_ON_DISPLAY_CONSTANTS_CUST = "always_on_display_constants_cust";
 
         /**
+         * Controls whether to show notification headers
+         * @hide
+         */
+        public static final String NOTIFICATION_HEADERS = "notification_headers";
+
+        /**
          * Use doubletap as doze pulse triggers
          * @hide
          */
