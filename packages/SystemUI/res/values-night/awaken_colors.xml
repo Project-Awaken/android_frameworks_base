@@ -19,4 +19,9 @@
 
     <color name="qs_tile_background_color_disabled">#1f1f1f</color>
 
+    <!-- Clear all notifications button -->
+    <color name="dismiss_all_background_color">#1a1a1a</color>
+    <color name="dismiss_all_background_color_ripple">#555555</color>
+    <color name="dismiss_all_icon_color">@android:color/white</color>
+
 </resources>
