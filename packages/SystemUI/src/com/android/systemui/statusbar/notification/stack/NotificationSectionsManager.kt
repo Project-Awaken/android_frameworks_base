@@ -156,20 +156,16 @@ class NotificationSectionsManager @Inject internal constructor(
             setHeaderText(R.string.notification_section_header_gentle)
             setOnHeaderClickListener { onGentleHeaderClick() }
             setOnClearAllClickListener { onClearGentleNotifsClick(it) }
-            setVisibility(View.GONE)
         }
         alertingHeaderView = reinflateView(
                 alertingHeaderView, layoutInflater, R.layout.status_bar_notification_section_header
         ).apply {
             setHeaderText(R.string.notification_section_header_alerting)
             setOnHeaderClickListener { onGentleHeaderClick() }
-            setVisibility(View.GONE)
         }
         peopleHubSubscription?.unsubscribe()
         peopleHubSubscription = null
-        peopleHeaderView = reinflateView(peopleHeaderView, layoutInflater, R.layout.people_strip).apply {
-            setVisibility(View.GONE)
-        }
+        peopleHeaderView = reinflateView(peopleHeaderView, layoutInflater, R.layout.people_strip)
         if (ENABLE_SNOOZED_CONVERSATION_HUB) {
             peopleHubSubscription = peopleHubViewAdapter.bindView(peopleHubViewBoundary)
         }
@@ -178,7 +174,6 @@ class NotificationSectionsManager @Inject internal constructor(
         ).apply {
             setHeaderText(R.string.notification_section_header_incoming)
             setOnHeaderClickListener { onGentleHeaderClick() }
-            setVisibility(View.GONE)
         }
         mediaControlsView =
                 reinflateView(mediaControlsView, layoutInflater, R.layout.keyguard_media_header)
