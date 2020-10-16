@@ -183,6 +183,9 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private PrivacyItemController mPrivacyItemController;
     private BroadcastDispatcher mBroadcastDispatcher;
 
+    // Data Usage
+    private View mDataUsageLayout;
+    private ImageView mDataUsageImage;
     private DataUsageView mDataUsageView;
 
     // Used for RingerModeTracker
@@ -292,6 +295,8 @@ public class QuickStatusBarHeader extends RelativeLayout implements
 
         mQuickQsBrightness = findViewById(R.id.quick_qs_brightness_bar);
         mDataUsageView = findViewById(R.id.data_sim_usage);
+        mDataUsageLayout = findViewById(R.id.daily_data_usage_layout);
+        mDataUsageImage = findViewById(R.id.daily_data_usage_icon);
         mBrightnessController = new BrightnessController(getContext(),
                 mQuickQsBrightness.findViewById(R.id.brightness_icon),
                 mQuickQsBrightness.findViewById(R.id.brightness_slider),
@@ -550,10 +555,15 @@ public class QuickStatusBarHeader extends RelativeLayout implements
      }
 
     private void updateDataUsageView() {
-        if (mDataUsageView.isDataUsageEnabled() != 0)
+        if (mDataUsageView.isDataUsageEnabled() != 0) {
+            mDataUsageLayout.setVisibility(View.VISIBLE);
+            mDataUsageImage.setVisibility(View.VISIBLE);
             mDataUsageView.setVisibility(View.VISIBLE);
-        else
+        } else {
             mDataUsageView.setVisibility(View.GONE);
+            mDataUsageImage.setVisibility(View.GONE);
+            mDataUsageLayout.setVisibility(View.GONE);
+        }
     }
 
     private void updateStatusIconAlphaAnimator() {
