@@ -23,6 +23,8 @@ import android.annotation.ColorInt;
 import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.content.Context;
+import android.database.ContentObserver;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
@@ -35,6 +37,7 @@ import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.UserHandle;
+import android.os.Looper;
 import android.provider.AlarmClock;
 import android.provider.CalendarContract;
 import android.os.Looper;
@@ -85,6 +88,7 @@ import com.android.systemui.privacy.PrivacyItem;
 import com.android.systemui.privacy.PrivacyItemController;
 import com.android.systemui.privacy.PrivacyItemControllerKt;
 import com.android.systemui.qs.QSDetail.Callback;
+import com.android.systemui.statusbar.info.DataUsageView;
 import com.android.systemui.qs.carrier.QSCarrierGroup;
 import com.android.systemui.settings.BrightnessController;
 import com.android.systemui.statusbar.CommandQueue;
@@ -179,6 +183,8 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private PrivacyItemController mPrivacyItemController;
     private BroadcastDispatcher mBroadcastDispatcher;
 
+    private DataUsageView mDataUsageView;
+
     // Used for RingerModeTracker
     private final LifecycleRegistry mLifecycle = new LifecycleRegistry(this);
 
@@ -196,6 +202,9 @@ public class QuickStatusBarHeader extends RelativeLayout implements
                     this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.STATUS_BAR_BATTERY_STYLE), false,
+                    this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.QS_DATAUSAGE), false,
                     this, UserHandle.USER_ALL);
             }
 
@@ -282,6 +291,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mIconManager = new TintedIconManager(iconContainer, mCommandQueue);
 
         mQuickQsBrightness = findViewById(R.id.quick_qs_brightness_bar);
+        mDataUsageView = findViewById(R.id.data_sim_usage);
         mBrightnessController = new BrightnessController(getContext(),
                 mQuickQsBrightness.findViewById(R.id.brightness_icon),
                 mQuickQsBrightness.findViewById(R.id.brightness_slider),
@@ -508,6 +518,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private void updateSettings() {
         updateQSBatteryMode();
         updateSBBatteryStyle();
+	updateDataUsageView();
      }
 
      private void updateQSBatteryMode() {
@@ -537,6 +548,13 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mBatteryRemainingIcon.updatePercentView();
         mBatteryRemainingIcon.updateVisibility();
      }
+
+    private void updateDataUsageView() {
+        if (mDataUsageView.isDataUsageEnabled())
+            mDataUsageView.setVisibility(View.VISIBLE);
+        else
+            mDataUsageView.setVisibility(View.GONE);
+    }
 
     private void updateStatusIconAlphaAnimator() {
         mStatusIconsAlphaAnimator = new TouchAnimator.Builder()
@@ -876,6 +894,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
             mHeaderTextContainerView.setAlpha(MathUtils.lerp(0.0f, mExpandedHeaderAlpha,
                     mKeyguardExpansionFraction));
             updateHeaderTextContainerAlphaAnimator();
+
         }
     }
 
