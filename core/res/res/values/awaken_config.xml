@@ -78,5 +78,5 @@
     <bool name="config_cleanupUnusedFingerprints">true</bool>
 
     <!-- Default value for Ambiant Pulse light color -->
-    <integer name="config_AmbiantPulseLightColor">0x3980FF</integer>
+    <integer name="config_ambientNotificationDefaultColor">0xFF3980FF</integer>
 </resources>
