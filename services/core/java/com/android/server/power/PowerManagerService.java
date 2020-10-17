@@ -1957,15 +1957,19 @@ public final class PowerManagerService extends SystemService
         }
 
         if (eventTime < mLastWakeTime
-                || !PowerManagerInternal.isInteractive(getWakefulnessLocked())
                 || !mSystemReady
                 || !mBootCompleted) {
             return false;
         }
 
         final int wakefulness = mDisplayGroupPowerStateMapper.getWakefulnessLocked(groupId);
-        if (!PowerManagerInternal.isInteractive(wakefulness)) {
-            return false;
+
+        // dont check current state
+        if ((flags & PowerManager.GO_TO_SLEEP_FLAG_FORCE) == 0) {
+            if (!PowerManagerInternal.isInteractive(getWakefulnessLocked()) ||
+                !PowerManagerInternal.isInteractive(wakefulness)) {
+                return false;
+            }
         }
 
         Trace.traceBegin(Trace.TRACE_TAG_POWER, "powerOffDisplay");
