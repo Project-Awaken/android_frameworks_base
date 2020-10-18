@@ -40,4 +40,11 @@
     <string name="gaming_mode_enabled_toast">Gaming mode turned on</string>
     <string name="gaming_mode_disabled_toast">Gaming mode turned off</string>
 
+    <string name="reboot_to_recovery_title" translatable="false">Recovery</string>
+    <string name="reboot_to_recovery_message" translatable="false">Rebooting to recovery</string>
+    <string name="reboot_to_bootloader_title" translatable="false">Bootloader</string>
+    <string name="reboot_to_bootloader_message" translatable="false">Rebooting to bootloader</string>
+    <string name="reboot_title">Reboot</string>
+    <string name="reboot_message">Rebooting system</string>
+
 </resources>
