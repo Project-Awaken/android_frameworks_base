@@ -47,7 +47,7 @@ import com.android.keyguard.KeyguardUpdateMonitorCallback;
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
 import com.android.systemui.tuner.TunerService;
-import com.android.internal.util.aosip.FileUtils;
+
 import vendor.lineage.biometrics.fingerprint.inscreen.V1_0.IFingerprintInscreen;
 import vendor.lineage.biometrics.fingerprint.inscreen.V1_0.IFingerprintInscreenCallback;
 
@@ -155,6 +155,11 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
             } else {
                 hide();
             }
+        }
+
+        @Override
+        public void onStartedGoingToSleep(int why) {
+            hide();
         }
 
         @Override
