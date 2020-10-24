@@ -783,13 +783,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         }
     }
 
-    public void updateEverything() {
-        post(() -> {
-            updateClickabilities();
-            setClickable(false);
-        });
-    }
-
     @Override
     public void onNextAlarmChanged(AlarmManager.AlarmClockInfo nextAlarm) {
         mNextAlarm = nextAlarm;
