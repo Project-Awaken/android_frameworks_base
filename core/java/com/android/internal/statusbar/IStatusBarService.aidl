@@ -167,4 +167,6 @@ interface IStatusBarService
      * Awaken extensions
      */
     void toggleCameraFlash();
+
+    void screenPinningStateChanged(boolean enabled);
 }

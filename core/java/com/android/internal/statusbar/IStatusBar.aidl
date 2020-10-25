@@ -293,4 +293,7 @@ oneway interface IStatusBar
      * Awaken extensions
      */
     void toggleCameraFlash();
+
+    void screenPinningStateChanged(boolean enabled);
+    void leftInLandscapeChanged(boolean isLeft);
 }
