@@ -253,6 +253,12 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="TextAppearance.QS.Battery">
+        <item name="android:fontFamily">@*android:string/config_bodyFontFamily</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
     <style name="TextAppearance.AppOpsDialog.Item">
         <item name="android:textSize">@dimen/ongoing_appops_dialog_item_size</item>
         <item name="android:fontFamily">@*android:string/config_bodyFontFamily</item>

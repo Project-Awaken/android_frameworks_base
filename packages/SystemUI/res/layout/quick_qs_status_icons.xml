@@ -36,4 +36,18 @@
         android:textAppearance="@style/TextAppearance.QS.Date"
         systemui:datePattern="@string/abbrev_wday_month_day_no_year_alarm" />
 
+    <android.widget.Space
+        android:id="@+id/space"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical|center_horizontal" />
+
+    <com.android.systemui.BatteryMeterView
+        android:id="@+id/batteryRemainingIcon"
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        systemui:textAppearance="@style/TextAppearance.QS.Battery"
+        android:paddingEnd="2dp" />
+
 </LinearLayout>
