@@ -96,20 +96,9 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        android:paddingEnd="8dp"
+        android:paddingEnd="2dp"
         android:singleLine="false"
         android:lineSpacingMultiplier="1.2" />
-
-    <com.android.systemui.BatteryMeterView
-        android:id="@+id/battery"
-        android:layout_toEndOf="@+id/networkTraffic"
-        android:layout_height="match_parent"
-        android:layout_width="wrap_content"
-        android:gravity="center_vertical|end"
-        android:singleLine="true"
-        android:textAppearance="@style/TextAppearance.StatusBar.Clock"
-        android:paddingStart="@dimen/status_bar_left_clock_starting_padding"
-        android:paddingEnd="@dimen/status_bar_left_clock_starting_padding" />
 
             </RelativeLayout>
         </LinearLayout>
