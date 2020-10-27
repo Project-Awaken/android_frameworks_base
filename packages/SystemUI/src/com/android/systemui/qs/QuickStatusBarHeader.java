@@ -98,7 +98,6 @@ import com.android.systemui.statusbar.policy.NextAlarmController;
 import com.android.systemui.statusbar.policy.ZenModeController;
 import com.android.systemui.util.RingerModeTracker;
 import com.android.systemui.tuner.TunerService;
-import com.android.systemui.statusbar.phone.SettingsButton;
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto;
 
@@ -153,8 +152,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private TouchAnimator mPrivacyChipAlphaAnimator;
     private DualToneHandler mDualToneHandler;
     private final CommandQueue mCommandQueue;
-    private SettingsButton mSettingsButton;
-    protected View mSettingsContainer;
     private final DeviceProvisionedController mDeviceProvisionedController;
 
     private View mSystemIconsView;
@@ -331,9 +328,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mDateView = findViewById(R.id.date);
         mDateView.setOnClickListener(this);
         mSpace = findViewById(R.id.space);
-        mSettingsButton = findViewById(R.id.settings_button);
-        mSettingsContainer = findViewById(R.id.settings_button_container);
-        mSettingsButton.setOnClickListener(this);
 
         // Tint for the battery icons are handled in setupHost()
         mBatteryRemainingIcon = findViewById(R.id.battery);
@@ -435,10 +429,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         return isOriginalVisible != alarmVisible ||
                 !Objects.equals(originalAlarmText, mNextAlarmTextView.getText());
 	}
-
-    private void updateClickabilities() {
-        mSettingsButton.setClickable(mSettingsButton.getVisibility() == View.VISIBLE);
-    }
 
     private void applyDarkness(int id, Rect tintArea, float intensity, int color) {
         View v = findViewById(id);
@@ -791,18 +781,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
             Intent todayIntent = new Intent(Intent.ACTION_VIEW, builder.build());
             Dependency.get(ActivityStarter.class).postStartActivityDismissingKeyguard(todayIntent, 0);
         }
-        if (v == mSettingsButton) {
-            if (!mDeviceProvisionedController.isCurrentUserSetup()) {
-                // If user isn't setup just unlock the device and dump them back at SUW.
-                mActivityStarter.postQSRunnableDismissingKeyguard(() -> {
-                });
-                return;
-            }
-            MetricsLogger.action(mContext,
-                    mExpanded ? MetricsProto.MetricsEvent.ACTION_QS_EXPANDED_SETTINGS_LAUNCH
-                            : MetricsProto.MetricsEvent.ACTION_QS_COLLAPSED_SETTINGS_LAUNCH);
-                startSettingsActivity();
-	}
     }
 
     public void updateEverything() {
@@ -826,6 +804,10 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     @Override
     public void onConfigChanged(ZenModeConfig config) {
         updateStatusText();
+    }
+
+    public void updateEverything() {
+        post(() -> setClickable(!mExpanded));
     }
 
     public void setQSPanel(final QSPanel qsPanel) {
