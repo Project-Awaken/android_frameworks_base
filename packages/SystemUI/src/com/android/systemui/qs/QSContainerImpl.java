@@ -36,6 +36,8 @@ import androidx.dynamicanimation.animation.SpringForce;
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
 import com.android.systemui.tuner.TunerService;
+import com.android.systemui.Dependency;
+import com.android.systemui.omni.OmniSettingsService;
 import com.android.systemui.qs.customize.QSCustomizer;
 import com.android.systemui.util.animation.PhysicsAnimator;
 
@@ -43,8 +45,9 @@ import com.android.systemui.util.animation.PhysicsAnimator;
  * Wrapper view with background which contains {@link QSPanel} and {@link BaseStatusBarHeader}
  */
 public class QSContainerImpl extends FrameLayout implements
-        TunerService.Tunable {
+        TunerService.Tunable, OmniSettingsService.OmniSettingsObserver {
 
+    public static final String QS_SHOW_DRAG_HANDLE = "qs_show_drag_handle";
     private static final String QS_PANEL_BG_ALPHA =
             "system:" + Settings.System.QS_PANEL_BG_ALPHA;
     private static final String QS_SB_BG_ALPHA =
@@ -142,12 +145,14 @@ public class QSContainerImpl extends FrameLayout implements
         final TunerService tunerService = Dependency.get(TunerService.class);
         tunerService.addTunable(this, QS_PANEL_BG_ALPHA);
         tunerService.addTunable(this, QS_SB_BG_ALPHA);
+        Dependency.get(OmniSettingsService.class).addIntObserver(this, QS_SHOW_DRAG_HANDLE);
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         Dependency.get(TunerService.class).removeTunable(this);
+        Dependency.get(OmniSettingsService.class).removeObserver(this);
     }
 
     @Override
@@ -369,5 +374,16 @@ public class QSContainerImpl extends FrameLayout implements
     private void updateStatusbarVisibility() {
 
         updateAlpha();
+    }
+
+    private void setHideDragHandle(boolean hide) {
+        mDragHandle.setVisibility(hide ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
+    public void onIntSettingChanged(String key, Integer newValue) {
+        if (QS_SHOW_DRAG_HANDLE.equals(key)) {
+            setHideDragHandle(newValue != null && newValue == 0);
+        }
     }
 }
