@@ -120,4 +120,11 @@
          config to 7. -->
     <integer name="config_deviceHardwareKeys">0</integer>
 
+    <string-array translatable="false" name="custom_config_globalActionsList">
+        <item>emergency</item>
+        <item>power</item>
+        <item>restart</item>
+        <item>logout</item>
+    </string-array>
+
 </resources>
