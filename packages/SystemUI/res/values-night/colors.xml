@@ -117,4 +117,8 @@
     <color name="divider_stroke_color">#434343</color>
 
     <color name="status_bar_clock_color">@android:color/white</color>
+
+    <!-- controls -->
+    <color name="control_default_background">#19ffffff</color> <!-- 10% white -->
+
 </resources>
