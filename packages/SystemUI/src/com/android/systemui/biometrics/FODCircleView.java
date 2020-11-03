@@ -18,7 +18,6 @@ package com.android.systemui.biometrics;
 
 import android.app.admin.DevicePolicyManager;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -28,9 +27,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.PowerManager;
 import android.os.RemoteException;
-import android.os.SystemClock;
 import android.provider.Settings;
 import android.view.Display;
 import android.view.Gravity;
@@ -46,7 +43,7 @@ import com.android.keyguard.KeyguardUpdateMonitor;
 import com.android.keyguard.KeyguardUpdateMonitorCallback;
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
-import com.android.systemui.tuner.TunerService;
+
 import vendor.lineage.biometrics.fingerprint.inscreen.V1_0.IFingerprintInscreen;
 import vendor.lineage.biometrics.fingerprint.inscreen.V1_0.IFingerprintInscreenCallback;
 
@@ -54,10 +51,7 @@ import java.util.NoSuchElementException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class FODCircleView extends ImageView implements TunerService.Tunable {
-    private static final String DOZE_INTENT = "com.android.systemui.doze.pulse";
-    private final String FOD_GESTURE = "system:" + Settings.System.FOD_GESTURE;
-
+public class FODCircleView extends ImageView {
     private final int mPositionX;
     private final int mPositionY;
     private final int mSize;
@@ -82,15 +76,6 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
     private boolean mIsDreaming;
     private boolean mIsCircleShowing;
 
-    private boolean mDozeEnabled;
-    private boolean mFodGestureEnable;
-    private boolean mPressPending;
-    private boolean mScreenTurnedOn;
-
-    private Context mContext;
-    private PowerManager mPowerManager;
-    private PowerManager.WakeLock mWakeLock;
-
     private Handler mHandler;
 
     private final ImageView mPressedView;
@@ -102,26 +87,12 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
             new IFingerprintInscreenCallback.Stub() {
         @Override
         public void onFingerDown() {
-            if (mFodGestureEnable && !mScreenTurnedOn) {
-                if (mDozeEnabled) {
-                    mHandler.post(() -> mContext.sendBroadcast(new Intent(DOZE_INTENT)));
-                } else {
-                    mWakeLock.acquire(3000);
-                    mHandler.post(() -> mPowerManager.wakeUp(SystemClock.uptimeMillis(),
-                        PowerManager.WAKE_REASON_GESTURE, FODCircleView.class.getSimpleName()));
-                }
-                mPressPending = true;
-            } else {
-                mHandler.post(() -> showCircle());
-            }
+            mHandler.post(() -> showCircle());
         }
 
         @Override
         public void onFingerUp() {
             mHandler.post(() -> hideCircle());
-            if (mPressPending) {
-                mPressPending = false;
-            }
         }
     };
 
@@ -157,38 +128,20 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
         }
 
         @Override
-        public void onStartedGoingToSleep(int why) {
+        public void onScreenTurnedOff() {
             hide();
         }
 
         @Override
-        public void onScreenTurnedOff() {
-            mScreenTurnedOn = false;
-            if (!mFodGestureEnable) {
-                hide();
-            } else {
-                hideCircle();
-            }
-        }
-
-        @Override
         public void onScreenTurnedOn() {
-            if (mUpdateMonitor.isFingerprintDetectionRunning() && !mFodGestureEnable) {
+            if (mUpdateMonitor.isFingerprintDetectionRunning()) {
                 show();
             }
-
-            if (mPressPending) {
-                mHandler.post(() -> showCircle());
-                mPressPending = false;
-            }
-            mScreenTurnedOn = true;
         }
     };
 
     public FODCircleView(Context context) {
         super(context);
-
-        mContext = context;
 
         setScaleType(ScaleType.CENTER);
 
@@ -215,10 +168,6 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
         mColorBackground = res.getColor(R.color.config_fodColorBackground);
         mPaintFingerprintBackground.setColor(mColorBackground);
         mPaintFingerprintBackground.setAntiAlias(true);
-
-        mPowerManager = context.getSystemService(PowerManager.class);
-        mWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
-                 FODCircleView.class.getSimpleName());
 
         mWindowManager = context.getSystemService(WindowManager.class);
 
@@ -253,8 +202,8 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
                 super.onDraw(canvas);
             }
         };
-
         mPressedView.setImageResource(R.drawable.fod_icon_pressed);
+
         mWindowManager.addView(this, mParams);
 
         updatePosition();
@@ -264,17 +213,6 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
 
         mUpdateMonitor = Dependency.get(KeyguardUpdateMonitor.class);
         mUpdateMonitor.registerCallback(mMonitorCallback);
-        Dependency.get(TunerService.class).addTunable(this, FOD_GESTURE,
-                Settings.Secure.DOZE_ENABLED);
-    }
-
-    @Override
-    public void onTuningChanged(String key, String newValue) {
-        if (key.equals(FOD_GESTURE)) {
-            mFodGestureEnable = TunerService.parseIntegerSwitch(newValue, false);
-        } else {
-            mDozeEnabled = TunerService.parseIntegerSwitch(newValue, true);
-        }
     }
 
     @Override
@@ -388,7 +326,7 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
     }
 
     public void show() {
-        if (!mUpdateMonitor.isScreenOn() && !mFodGestureEnable) {
+        if (!mUpdateMonitor.isScreenOn()) {
             // Keyguard is shown just after screen turning off
             return;
         }
