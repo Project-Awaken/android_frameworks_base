@@ -21,6 +21,9 @@
         <item>@string/face_unlock_disabled_idle</item>
     </string-array>
 
+    <!-- Default value for Horizon light color (Blue) -->
+    <integer name="config_AmbientPulseLightColor">0x3980FF</integer>
+
     <!-- Defines custom OEM sensor for pocket detection. -->
     <string name="config_pocketJudgeVendorSensorName"></string>
 
