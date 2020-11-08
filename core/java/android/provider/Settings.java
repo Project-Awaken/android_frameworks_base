@@ -4946,6 +4946,12 @@ public final class Settings {
          */
         public static final String OMNI_QS_LAYOUT_COLUMNS = "qs_layout_columns";
 
+        /** Whether to pulse ambient on new music tracks
+         *
+         * @hide
+         */
+        public static final String PULSE_ON_NEW_TRACKS = "pulse_on_new_tracks";
+
         /**
          * Whether to display qs tile titles in the qs panel
          * @hide

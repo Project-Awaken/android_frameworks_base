@@ -291,6 +291,9 @@
 
     <protected-broadcast android:name="com.android.systemui.doze.pulse" />
 
+    <!-- Ambient Music -->
+    <protected-broadcast android:name="com.android.systemui.doze.pulse" />
+
     <application
         android:name=".SystemUIApplication"
         android:persistent="true"

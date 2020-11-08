@@ -53,7 +53,8 @@ public class AmbientDisplayConfiguration {
                 || wakeDisplayGestureEnabled(user)
                 || pickupGestureEnabled(user)
                 || tapGestureEnabled(user)
-                || doubleTapGestureEnabled(user);
+                || doubleTapGestureEnabled(user)
+                || isAmbientTickerEnabled(user);
     }
 
     /** {@hide} */
@@ -236,6 +237,12 @@ public class AmbientDisplayConfiguration {
     public boolean alwaysOnEnabledSetting(int user) {
         boolean alwaysOnEnabled = boolSetting(Settings.Secure.DOZE_ALWAYS_ON, user, mAlwaysOnByDefault ? 1 : 0);
         return alwaysOnEnabled && alwaysOnAvailable() && !accessibilityInversionEnabled(user);
+    }
+
+    /** {@hide} */
+    public boolean isAmbientTickerEnabled(int user) {
+        return Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.PULSE_ON_NEW_TRACKS, 1, user) != 0;
     }
 
     /** {@hide} */
