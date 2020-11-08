@@ -5299,6 +5299,12 @@ public final class Settings {
          */
         public static final String INCREASING_RING_START_VOLUME = "increasing_ring_start_vol";
 
+        /** Whether to pulse ambient on new music tracks
+         *
+         * @hide
+         */
+        public static final String PULSE_ON_NEW_TRACKS = "pulse_on_new_tracks";
+
         /**
          * Ramp up time (seconds) for increasing ring
          * @hide
