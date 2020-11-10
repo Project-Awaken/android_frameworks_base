@@ -72,6 +72,7 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
     private final int mSize;
     private final int mDreamingMaxOffset;
     private final int mNavigationBarSize;
+    private final boolean mDeviceFlickersGoingToSleep;
     private final boolean mShouldBoostBrightness;
     private final Paint mPaintFingerprintBackground = new Paint();
     private final WindowManager.LayoutParams mParams = new WindowManager.LayoutParams();
@@ -253,10 +254,17 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
         @Override
         public void onStartedGoingToSleep(int why) {
             mScreenTurnedOn = false;
-            if (!mFodGestureEnable) {
+            if (mDeviceFlickersGoingToSleep || !mFodGestureEnable) {
                 hide();
             } else {
                 hideCircle();
+            }
+        }
+
+        @Override
+        public void onScreenTurnedOff() {
+            if (!mDeviceFlickersGoingToSleep) {
+                hide();
             }
         }
 
@@ -316,6 +324,8 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
         mPowerManager = context.getSystemService(PowerManager.class);
         mWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
                  FODCircleView.class.getSimpleName());
+        mDeviceFlickersGoingToSleep = mContext.getResources().getBoolean(
+                com.android.internal.R.bool.config_inDisplayFingerprintFlickersGoingToSleep);
 
         mWindowManager = context.getSystemService(WindowManager.class);
 
