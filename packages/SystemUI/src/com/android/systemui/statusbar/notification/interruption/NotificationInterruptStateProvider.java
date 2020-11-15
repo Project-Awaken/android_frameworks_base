@@ -185,4 +185,7 @@ public interface NotificationInterruptStateProvider {
      * Remove a component that can suppress visual interruptions.
      */
     void removeSuppressor(NotificationInterruptSuppressor suppressor);
+
+    void setHeadsUpStoplist();
+    void setHeadsUpBlacklist();
 }
