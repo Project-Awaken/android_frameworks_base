@@ -89,5 +89,6 @@ public class SystemSettings {
         Settings.System.NOTIFICATION_LIGHT_PULSE,
         Settings.System.NAVIGATION_BAR_INVERSE,
         Settings.System.NAVBAR_LAYOUT_VIEWS,
+        Settings.System.KEYGAURD_MEDIA_ART,
     };
 }
