@@ -99,7 +99,7 @@
     <string name="screenrecord_longer_timeout_switch_label">Bigger file size limit\nLimit recording size to 15GiB</string>
 
     <!-- DataSwitch Tile -->
-    <string name="qs_data_switch_label">Switch data card</string>
+    <string name="qs_data_switch_label">Switch data card to</string>
     <string name="qs_data_switch_toast_0">Currently no SIM card is inserted</string>
     <string name="qs_data_switch_toast_1">Currently only one SIM card is inserted</string>
     <string name="qs_data_switch_changed_1">Switch data card to SIM 1.</string>
