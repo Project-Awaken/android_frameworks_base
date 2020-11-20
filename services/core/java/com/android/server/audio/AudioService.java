@@ -4318,6 +4318,8 @@ public class AudioService extends IAudioService.Stub
         setRingerMode(ringerMode, caller, false /*external*/);
     }
 
+    private static Toast mSilenceToast;
+
     public void silenceRingerModeInternal(String reason) {
         VibrationEffect effect = null;
         int ringerMode = AudioManager.RINGER_MODE_SILENT;
@@ -4365,7 +4367,9 @@ public class AudioService extends IAudioService.Stub
         setRingerModeInternal(ringerMode, reason);
         if (ringerMode == AudioManager.RINGER_MODE_NORMAL)
             playSoundEffect(AudioManager.FX_KEYPRESS_STANDARD);
-        Toast.makeText(mContext, toastText, Toast.LENGTH_SHORT).show();
+        if (mSilenceToast != null) mSilenceToast.cancel();
+        mSilenceToast = Toast.makeText(mContext, toastText, Toast.LENGTH_SHORT);
+        mSilenceToast.show();
     }
 
     private boolean maybeVibrate(VibrationEffect effect, String reason) {
