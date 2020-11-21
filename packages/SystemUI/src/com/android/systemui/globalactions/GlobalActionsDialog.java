@@ -1165,6 +1165,8 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
 
     @VisibleForTesting
     class ScreenshotAction extends SinglePressAction implements LongPressAction {
+        final String KEY_SYSTEM_NAV_2BUTTONS = "system_nav_2buttons";
+
         public ScreenshotAction() {
             super(R.drawable.ic_screenshot, R.string.global_action_screenshot);
         }
