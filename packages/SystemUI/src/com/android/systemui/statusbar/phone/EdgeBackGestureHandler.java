@@ -770,7 +770,7 @@ public class EdgeBackGestureHandler extends CurrentUserTracker implements Displa
                 ActionUtils.switchScreenOff(mContext);
                 break;
             case 8: // Screenshot
-                ActionUtils.takeScreenshot(true);
+                Utils.takeScreenshot(true);
                 break;
             case 9: // Notification panel
                 ActionUtils.toggleNotifications();
