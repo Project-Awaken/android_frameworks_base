@@ -46,6 +46,7 @@ import android.hardware.fingerprint.FingerprintManager;
 
 import androidx.core.graphics.ColorUtils;
 
+import com.android.internal.util.custom.FodUtils;
 import com.android.internal.widget.LockPatternUtils;
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
@@ -77,6 +78,7 @@ public class KeyguardStatusView extends GridLayout implements
     private Handler mHandler;
     private ImageView fpIcon;
 
+    private boolean mHasFod;
     private boolean mPulsing;
     private float mDarkAmount = 0;
     private int mTextColor;
@@ -199,7 +201,7 @@ public class KeyguardStatusView extends GridLayout implements
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-	fpIcon = findViewById(R.id.fingerprint_view_icon);
+	    fpIcon = findViewById(R.id.fingerprint_view_icon);
         mStatusViewContainer = findViewById(R.id.status_view_container);
         mLogoutView = findViewById(R.id.logout);
         mNotificationIcons = findViewById(R.id.clock_notification_icon_container);
@@ -223,7 +225,7 @@ public class KeyguardStatusView extends GridLayout implements
         setEnableMarquee(shouldMarquee);
         refreshFormat();
         updateOwnerInfo();
-	UpdateFPIcon();
+	    UpdateFPIcon();
         updateLogoutView();
         updateDark();
 
@@ -525,6 +527,8 @@ public class KeyguardStatusView extends GridLayout implements
     }
 
     private void UpdateFPIcon() {
+        mHasFod = FodUtils.hasFodSupport(mContext);
+
 		FingerprintManager fingerprintManager = (FingerprintManager) mContext.getSystemService(Context.FINGERPRINT_SERVICE);
 	        if (fingerprintManager == null) {
                         fpIcon.setVisibility(View.GONE);
@@ -535,6 +539,9 @@ public class KeyguardStatusView extends GridLayout implements
 		} else if (!fingerprintManager.hasEnrolledFingerprints()) { 
 			fpIcon.setVisibility(View.GONE);
 			Log.i ("FluidLSManager", "FP icon: fpcounter=0, Dont show icon");
+		} else if (mHasFod) { 
+			fpIcon.setVisibility(View.GONE);
+			Log.i ("FluidLSManager", "FP icon: Device uses FOD, don't show icon");
 		} else if (fingerprintManager.hasEnrolledFingerprints()) { 
 			fpIcon.setVisibility(View.VISIBLE);
 			Log.i ("FluidLSManager", "FP icon: fpcounter=1, Show icon");
