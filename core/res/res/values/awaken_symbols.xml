@@ -114,4 +114,7 @@
 
   <java-symbol type="array" name="custom_config_globalActionsList" />
 
+  <!-- Default fod pressed icon -->
+  <java-symbol type="integer" name="config_fod_pressed_color" />
+
 </resources>
