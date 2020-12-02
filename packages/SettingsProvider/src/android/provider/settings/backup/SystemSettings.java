@@ -97,5 +97,8 @@ public class SystemSettings {
         Settings.System.ENABLE_SUGGESTIONS,
         Settings.System.RINGTONE_VIBRATION_PATTERN,
         Settings.System.THEMING_SETTINGS_DASHBOARD_ICONS,
+        Settings.System.VIBRATE_ON_CONNECT,
+        Settings.System.VIBRATE_ON_CALLWAITING,
+        Settings.System.VIBRATE_ON_DISCONNECT,
     };
 }
