@@ -5836,7 +5836,8 @@ public class Notification implements Parcelable
             if (isColorized(p)) {
                 color = getPrimaryTextColor(p);
             } else {
-                color = resolveContrastColor(p);
+                color = mContext.getResources().getBoolean(R.bool.config_allowNotificationIconTextTinting) ? 
+                    resolveContrastColor(p) : mContext.getColor(R.color.system_notification_accent_color);
             }
             if (colorable) {
                 contentView.setDrawableTint(R.id.icon, false, color,
@@ -5857,7 +5858,7 @@ public class Notification implements Parcelable
             if (largeIcon != null && isLegacy()
                     && getColorUtil().isGrayscaleIcon(mContext, largeIcon)) {
                 // resolve color will fall back to the default when legacy
-                contentView.setDrawableTint(R.id.icon, false, resolveContrastColor(p),
+                contentView.setDrawableTint(R.id.icon, false, resolveIconContrastColor(p),
                         PorterDuff.Mode.SRC_ATOP);
             }
         }
@@ -5868,8 +5869,21 @@ public class Notification implements Parcelable
             }
         }
 
+        int resolveIconContrastColor(StandardTemplateParams p) {
+            if (!mContext.getResources().getBoolean(R.bool.config_allowNotificationIconTextTinting)) {
+                return mContext.getColor(R.color.notification_icon_default_color);
+            } else {
+                return resolveContrastColor(p);
+            }
+        }
+
         int resolveContrastColor(StandardTemplateParams p) {
             int rawColor = getRawColor(p);
+
+            if (!mContext.getResources().getBoolean(R.bool.config_allowNotificationIconTextTinting)) {
+                return mContext.getColor(R.color.notification_text_default_color);
+            }
+
             if (mCachedContrastColorIsFor == rawColor && mCachedContrastColor != COLOR_INVALID) {
                 return mCachedContrastColor;
             }
