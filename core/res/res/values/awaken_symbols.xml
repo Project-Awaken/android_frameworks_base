@@ -120,4 +120,7 @@
   <!-- NightLight FOD -->
   <java-symbol type="bool" name="disable_fod_night_light"/>
 
+  <!-- Whether device supports variable refresh rate -->
+  <java-symbol type="bool" name="config_hasVariableRefreshRate" />
+
 </resources>
