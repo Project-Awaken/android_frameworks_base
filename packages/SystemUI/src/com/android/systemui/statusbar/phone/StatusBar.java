@@ -4174,13 +4174,6 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
     };
 
-    @Override
-    public void setBlockedGesturalNavigation(boolean blocked) {
-        if (getNavigationBarView() != null) {
-            getNavigationBarView().setBlockedGesturalNavigation(blocked);
-        }
-    }
-
     public void updateQSDataUsageInfo() { 
         DataUsageView.updateUsage();
     }

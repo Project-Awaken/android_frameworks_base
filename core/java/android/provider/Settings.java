@@ -5435,11 +5435,6 @@ public final class Settings {
         public static final String FOD_ANIM = "fod_anim";
 
         /**
-         * Whether to take partial screenshot with volume down + power click.
-         */
-        public static final String CLICK_PARTIAL_SCREENSHOT = "click_partial_screenshot";
-
-        /**
          * Screen off fod
          * @hide
          */
