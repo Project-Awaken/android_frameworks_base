@@ -35,6 +35,7 @@ LOCAL_REQUIRED_MODULES := \
 	AccentColorFlatPinkOverlay \
 	AccentColorIndigoOverlay \
 	AccentColorLightPurpleOverlay \
+	AccentColorMidnightPurpleOverlay \
 	AccentColorPinkOverlay \
 	AccentColorRedOverlay \
 	AccentColorTealOverlay \
