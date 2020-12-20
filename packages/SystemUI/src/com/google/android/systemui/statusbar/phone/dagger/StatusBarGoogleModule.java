@@ -105,6 +105,7 @@ import com.android.systemui.statusbar.phone.StatusBar;
 
 import com.google.android.systemui.LiveWallpaperScrimController;
 import com.google.android.systemui.statusbar.phone.StatusBarGoogle;
+import com.google.android.systemui.statusbar.phone.WallpaperNotifier;
 
 import java.util.Optional;
 import java.util.concurrent.Executor;
@@ -122,6 +123,7 @@ public interface StatusBarGoogleModule {
     @Provides
     @Singleton
     static StatusBar provideStatusBar(
+            WallpaperNotifier wallpaperNotifier,
             Context context,
             NotificationsController notificationsController,
             LightBarController lightBarController,
@@ -202,6 +204,7 @@ public interface StatusBarGoogleModule {
             StatusBarTouchableRegionManager statusBarTouchableRegionManager,
             TaskHelper taskHelper) {
         return new StatusBarGoogle(
+                wallpaperNotifier,
                 context,
                 notificationsController,
                 lightBarController,

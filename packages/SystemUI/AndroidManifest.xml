@@ -310,6 +310,11 @@
 
     <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />
 
+    <!-- Live wallpapers -->
+    <protected-broadcast android:name="com.breel.wallpapers.NOTIFICATION_RECEIVED"/>
+    <permission android:name="com.breel.wallpapers.notifications"/>
+    <uses-permission android:name="com.breel.wallpapers.notifications"/>
+
     <application
         android:name=".SystemUIApplication"
         android:persistent="true"

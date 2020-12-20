@@ -99,7 +99,11 @@ import javax.inject.Inject;
 
 public class StatusBarGoogle extends StatusBar {
 
+    @Inject
+    public WallpaperNotifier mWallpaperNotifier;
+
     public StatusBarGoogle(
+            WallpaperNotifier wallpaperNotifier,
             Context context,
             NotificationsController notificationsController,
             LightBarController lightBarController,
@@ -255,11 +259,13 @@ public class StatusBarGoogle extends StatusBar {
                 dismissCallbackRegistry,
                 notificationShadeDepthControllerLazy,
                 statusBarTouchableRegionManager);
+        mWallpaperNotifier = wallpaperNotifier;
     }
 
     @Override
     public void start() {
         super.start();
+        mWallpaperNotifier.attach();
     }
 
     @Override
