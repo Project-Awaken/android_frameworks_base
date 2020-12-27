@@ -5152,12 +5152,6 @@ public final class Settings {
         public static final String ENABLE_SUGGESTIONS = "enable_suggestions";
 
         /**
-         * Enable and disable Lockscreen visualizer
-         * @hide
-         */
-        public static final String LOCKSCREEN_VISUALIZER_ENABLED = "lockscreen_visualizer_enabled";
-
-        /**
          * Whether user is allowed to pull down quick settings on secure keyguard.
          * @hide
          */
