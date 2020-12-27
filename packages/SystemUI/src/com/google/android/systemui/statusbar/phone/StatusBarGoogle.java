@@ -45,6 +45,7 @@ import com.android.systemui.statusbar.PulseExpansionHandler;
 import com.android.systemui.statusbar.SuperStatusBarViewFactory;
 import com.android.systemui.statusbar.SysuiStatusBarStateController;
 import com.android.systemui.statusbar.VibratorHelper;
+import com.android.systemui.statusbar.policy.TaskHelper;
 import com.android.systemui.statusbar.phone.dagger.StatusBarComponent;
 import com.android.systemui.statusbar.notification.DynamicPrivacyController;
 import com.android.systemui.statusbar.notification.NotificationWakeUpCoordinator;
@@ -70,6 +71,7 @@ import com.android.systemui.statusbar.phone.LockscreenWallpaper;
 import com.android.systemui.statusbar.phone.NotificationGroupManager;
 import com.android.systemui.statusbar.phone.NotificationShadeWindowController;
 import com.android.systemui.statusbar.phone.PhoneStatusBarPolicy;
+import com.android.systemui.statusbar.phone.ScrimController;
 import com.android.systemui.statusbar.phone.ShadeController;
 import com.android.systemui.statusbar.phone.StatusBar;
 import com.android.systemui.statusbar.phone.StatusBarIconController;
@@ -149,7 +151,7 @@ public class StatusBarGoogle extends StatusBar {
             NotificationShadeWindowController notificationShadeWindowController,
             LockscreenLockIconController lockscreenLockIconController,
             DozeParameters dozeParameters,
-            LiveWallpaperScrimController liveWallpaperScrimController,
+            ScrimController scrimController,
             @Nullable KeyguardLiftController keyguardLiftController,
             Lazy<LockscreenWallpaper> lockscreenWallpaperLazy,
             Lazy<BiometricUnlockController> biometricUnlockControllerLazy,
@@ -181,7 +183,8 @@ public class StatusBarGoogle extends StatusBar {
             KeyguardIndicationController keyguardIndicationController,
             DismissCallbackRegistry dismissCallbackRegistry,
             Lazy<NotificationShadeDepthController> notificationShadeDepthControllerLazy,
-            StatusBarTouchableRegionManager statusBarTouchableRegionManager) {
+            StatusBarTouchableRegionManager statusBarTouchableRegionManager,
+            TaskHelper taskHelper) {
         super(context,
                 notificationsController,
                 lightBarController,
@@ -227,7 +230,7 @@ public class StatusBarGoogle extends StatusBar {
                 notificationShadeWindowController,
                 lockscreenLockIconController,
                 dozeParameters,
-                liveWallpaperScrimController,
+                scrimController,
                 keyguardLiftController,
                 lockscreenWallpaperLazy,
                 biometricUnlockControllerLazy,
@@ -258,7 +261,8 @@ public class StatusBarGoogle extends StatusBar {
                 keyguardIndicationController,
                 dismissCallbackRegistry,
                 notificationShadeDepthControllerLazy,
-                statusBarTouchableRegionManager);
+                statusBarTouchableRegionManager,
+                taskHelper);
         mWallpaperNotifier = wallpaperNotifier;
     }
 
