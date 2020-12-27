@@ -5204,12 +5204,6 @@ public final class Settings {
          public static final String NETWORK_TRAFFIC_VIEW_LOCATION = "network_traffic_view_location";
 
         /**
-         * media artwork wallpaper blur level on lockscreen
-         * @hide
-         */
-        public static final String LOCKSCREEN_MEDIA_BLUR = "lockscreen_media_blur";
-
-        /**
          * Which Vibration Pattern to use
          * 0: dzzz-dzzz
          * 1: dzzz-da
@@ -5805,7 +5799,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_PANEL_BG_USE_NEW_TINT);
             PRIVATE_SETTINGS.add(SCREENSHOT_SOUND);
             PRIVATE_SETTINGS.add(FORCE_FULLSCREEN_CUTOUT_APPS);
-            PRIVATE_SETTINGS.add(LOCKSCREEN_MEDIA_ART);
             PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE);
             PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_COLUMNS);
             PRIVATE_SETTINGS.add(OMNI_QS_TILE_TITLE_VISIBILITY);

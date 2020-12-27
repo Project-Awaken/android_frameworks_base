@@ -4206,9 +4206,6 @@ public class StatusBar extends SystemUI implements DemoMode,
                     Settings.System.QS_PANEL_BG_USE_NEW_TINT),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.LOCKSCREEN_MEDIA_BLUR),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_CHARGING_ANIMATION_STYLE),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -4227,9 +4224,6 @@ public class StatusBar extends SystemUI implements DemoMode,
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.QS_PANEL_BG_USE_NEW_TINT))) {
                 mQSPanel.getHost().reloadAllTiles();
             } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.LOCKSCREEN_MEDIA_BLUR))) {
-                setLockScreenMediaBlurLevel();
-            } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_CHARGING_ANIMATION_STYLE))) {
                 updateChargingAnimation();
             } else if (uri.equals(Settings.System.getUriFor(
@@ -4244,7 +4238,6 @@ public class StatusBar extends SystemUI implements DemoMode,
 
         public void update() {
             setOldMobileType();
-            setLockScreenMediaBlurLevel();
             updateChargingAnimation();
             setFpToDismissNotifications();
         }
@@ -4255,12 +4248,6 @@ public class StatusBar extends SystemUI implements DemoMode,
                 Settings.System.USE_OLD_MOBILETYPE, 0,
                 UserHandle.USER_CURRENT) != 0;
         TelephonyIcons.updateIcons(USE_OLD_MOBILETYPE);
-    }
-
-    private void setLockScreenMediaBlurLevel() {
-        if (mMediaManager != null) {
-            mMediaManager.setLockScreenMediaBlurLevel();
-        }
     }
 
     private void setPulseOnNewTracks() {
