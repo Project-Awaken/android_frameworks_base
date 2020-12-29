@@ -144,10 +144,13 @@
   <!-- Whether to use old mobile type icons as default -->
   <java-symbol type="bool" name="config_useOldMobileIcons" />
 
-   <!-- Path to fast charging status file to detect whether an oem fast charger is active -->
-   <java-symbol type="string" name="config_oemFastChargerStatusPath" />
+  <!-- Path to fast charging status file to detect whether an oem fast charger is active -->
+  <java-symbol type="string" name="config_oemFastChargerStatusPath" />
 
-   <!-- Expected value from fast charging status file -->
-   <java-symbol type="string" name="config_oemFastChargerStatusValue" />
+  <!-- Expected value from fast charging status file -->
+  <java-symbol type="string" name="config_oemFastChargerStatusValue" />
+
+  <!-- Whether device has turbo power charging support -->
+  <java-symbol type="bool" name="config_hasTurboPowerCharger" />
 
 </resources>
