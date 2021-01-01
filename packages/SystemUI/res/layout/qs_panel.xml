@@ -33,6 +33,8 @@
         android:id="@+id/quick_settings_status_bar_background"
         android:layout_width="match_parent"
         android:layout_height="@*android:dimen/quick_qs_offset_height"
+        android:layout_marginStart="@dimen/notification_side_paddings"
+        android:layout_marginEnd="@dimen/notification_side_paddings"
         android:clipToPadding="false"
         android:clipChildren="false"
         android:background="@drawable/qs_background_bg" />
