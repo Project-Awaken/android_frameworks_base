@@ -2108,23 +2108,19 @@ public abstract class ConnectionService extends Service {
 
     private void answerVideo(String callId, int videoState) {
         Log.i(this, "answerVideo %s", callId);
-        doAnswer(callId, videoState);
-    }
-
-    private void answer(String callId) {
-        Log.i(this, "answer %s", callId);
-        doAnswer(callId, VideoProfile.STATE_AUDIO_ONLY);
-    }
-
-    /**
-     * Access is public because protected access is not allowed.
-     * @hide
-     */
-    public void doAnswer(String callId, int videoState) {
         if (mConnectionById.containsKey(callId)) {
             findConnectionForAction(callId, "answer").onAnswer(videoState);
         } else {
             findConferenceForAction(callId, "answer").onAnswer(videoState);
+        }
+    }
+
+    private void answer(String callId) {
+        Log.i(this, "answer %s", callId);
+        if (mConnectionById.containsKey(callId)) {
+            findConnectionForAction(callId, "answer").onAnswer();
+        } else {
+            findConferenceForAction(callId, "answer").onAnswer();
         }
     }
 

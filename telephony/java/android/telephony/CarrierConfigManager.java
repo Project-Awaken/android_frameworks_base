@@ -668,14 +668,6 @@ public class CarrierConfigManager {
     public static final String KEY_VILTE_DATA_IS_METERED_BOOL = "vilte_data_is_metered_bool";
 
     /**
-     * Flag indicating whether we should reset UT capability or not for IMS deregistration
-     * and for IMS feature state not ready
-     * @hide
-     */
-    public static final String KEY_IGNORE_RESET_UT_CAPABILITY_BOOL =
-            "ignore_reset_ut_capability_bool";
-
-    /**
      * Flag specifying whether WFC over IMS should be available for carrier: independent of
      * carrier provisioning. If false: hard disabled. If true: then depends on carrier
      * provisioning, availability etc.
@@ -701,18 +693,6 @@ public class CarrierConfigManager {
      */
     public static final String KEY_CARRIER_WFC_SUPPORTS_WIFI_ONLY_BOOL =
             "carrier_wfc_supports_wifi_only_bool";
-
-    /**
-     * Flag specifying whether WFC over IMS supports the "ims preferred" option.  If false, the wifi
-     * calling settings will not include an option for "ims preferred".  If true, the wifi calling
-     * settings will include an option for "ims preferred"
-     * <p>
-     * By default, it is assumed that WFC does not support "ims preferred".
-     * @hide
-     */
-    public static final String KEY_CARRIER_WFC_SUPPORTS_IMS_PREFERRED_BOOL =
-            "carrier_wfc_supports_ims_preferred_bool";
-
 
     /**
      * Default mode for WFC over IMS on home network:
@@ -1761,12 +1741,6 @@ public class CarrierConfigManager {
      */
     public static final String KEY_CARRIER_SETTINGS_ACTIVITY_COMPONENT_NAME_STRING =
             "carrier_settings_activity_component_name_string";
-
-    /**
-     * Flag specifying whether CDMA call waiting and call forwarding are enabled
-     * @hide
-     */
-    public static final String KEY_CDMA_CW_CF_ENABLED_BOOL = "cdma_cw_cf_enabled_bool";
 
     // These variables are used by the MMS service and exposed through another API,
     // SmsManager. The variable names and string values are copied from there.
@@ -3507,22 +3481,6 @@ public class CarrierConfigManager {
     public static final String ENABLE_EAP_METHOD_PREFIX_BOOL = "enable_eap_method_prefix_bool";
 
     /**
-     * Title text to be used in the emergency notification displayed when VoWifi is available
-     *
-     * @hide
-     */
-    public static final String KEY_EMERGENCY_NOTIFICATION_TITLE_STRING =
-            "emergency_notification_title_string";
-
-    /**
-     * Summary text to be used in the emergency notification displayed when VoWifi is available
-     *
-     * @hide
-     */
-    public static final String KEY_EMERGENCY_NOTIFICATION_SUMMARY_STRING =
-            "emergency_notification_summary_string";
-
-    /**
      * GPS configs. See the GNSS HAL documentation for more details.
      */
     public static final class Gps {
@@ -3897,16 +3855,6 @@ public class CarrierConfigManager {
     public static final String KEY_MISSED_INCOMING_CALL_SMS_ORIGINATOR_STRING_ARRAY =
             "missed_incoming_call_sms_originator_string_array";
 
-     /**
-     * Flag indicating whether carrier supports multianchor conference.
-     * In multianchor conference, a participant of a conference can add
-     * other participants to the call using merge button thereby resulting
-     * in a conference with multi anchors.
-     * @hide
-     */
-    public static final String KEY_CARRIER_SUPPORTS_MULTIANCHOR_CONFERENCE =
-            "carrier_supports_multianchor_conference";
-
 
     /**
      * String array of Apn Type configurations.
@@ -3964,14 +3912,6 @@ public class CarrierConfigManager {
     public static final String KEY_USE_LOWER_MTU_VALUE_IF_BOTH_RECEIVED =
             "use_lower_mtu_value_if_both_received";
 
-    /**
-     * Determines the default RTT mode.
-     *
-     * @hide
-     */
-    public static final String KEY_DEFAULT_RTT_MODE_INT =
-            "default_rtt_mode_int";
-
     /** The default value for every variable. */
     private final static PersistableBundle sDefaults;
 
@@ -4004,10 +3944,8 @@ public class CarrierConfigManager {
         sDefaults.putBoolean(KEY_CONFIG_TELEPHONY_USE_OWN_NUMBER_FOR_VOICEMAIL_BOOL, false);
         sDefaults.putBoolean(KEY_IGNORE_DATA_ENABLED_CHANGED_FOR_VIDEO_CALLS, true);
         sDefaults.putBoolean(KEY_VILTE_DATA_IS_METERED_BOOL, true);
-        sDefaults.putBoolean(KEY_IGNORE_RESET_UT_CAPABILITY_BOOL, false);
         sDefaults.putBoolean(KEY_CARRIER_WFC_IMS_AVAILABLE_BOOL, false);
         sDefaults.putBoolean(KEY_CARRIER_WFC_SUPPORTS_WIFI_ONLY_BOOL, false);
-        sDefaults.putBoolean(KEY_CARRIER_WFC_SUPPORTS_IMS_PREFERRED_BOOL, false);
         sDefaults.putBoolean(KEY_CARRIER_DEFAULT_WFC_IMS_ENABLED_BOOL, false);
         sDefaults.putBoolean(KEY_CARRIER_DEFAULT_WFC_IMS_ROAMING_ENABLED_BOOL, false);
         sDefaults.putBoolean(KEY_CARRIER_PROMOTE_WFC_ON_CALL_FAIL_BOOL, false);
@@ -4124,8 +4062,6 @@ public class CarrierConfigManager {
                 new String[]{""});
         sDefaults.putStringArray(KEY_CARRIER_WLAN_DISALLOWED_APN_TYPES_STRING_ARRAY,
                 new String[]{""});
-        sDefaults.putBoolean(KEY_CDMA_CW_CF_ENABLED_BOOL, false);
-
         sDefaults.putIntArray(KEY_ONLY_SINGLE_DC_ALLOWED_INT_ARRAY,
                 new int[]{
                     4, /* IS95A */
@@ -4515,10 +4451,6 @@ public class CarrierConfigManager {
         sDefaults.putBoolean(KEY_DISABLE_DUN_APN_WHILE_ROAMING_WITH_PRESET_APN_BOOL, false);
         sDefaults.putString(KEY_DEFAULT_PREFERRED_APN_NAME_STRING, "");
         sDefaults.putBoolean(KEY_USE_LOWER_MTU_VALUE_IF_BOTH_RECEIVED, false);
-        sDefaults.putString(KEY_EMERGENCY_NOTIFICATION_SUMMARY_STRING, "");
-        sDefaults.putString(KEY_EMERGENCY_NOTIFICATION_TITLE_STRING, "");
-        sDefaults.putBoolean(KEY_CARRIER_SUPPORTS_MULTIANCHOR_CONFERENCE, false);
-        sDefaults.putInt(KEY_DEFAULT_RTT_MODE_INT, 0);
     }
 
     /**
