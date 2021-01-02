@@ -161,7 +161,7 @@ public final class ClockManager {
         addBuiltinClock(() -> new DotClockController(res, layoutInflater, colorExtractor, context));
         addBuiltinClock(() -> new SneekyClockController(res, layoutInflater, colorExtractor, context));
         addBuiltinClock(() -> new TypeClockController(res, layoutInflater, colorExtractor, context));
-        addBuiltinClock(() -> new TypeClockAltController(res, layoutInflater, colorExtractor));
+        addBuiltinClock(() -> new TypeClockAltController(res, layoutInflater, colorExtractor, context));
         addBuiltinClock(() -> new DividedLinesClockController(res, layoutInflater, colorExtractor));
         addBuiltinClock(() -> new SfunyClockController(res, layoutInflater, colorExtractor, context));
         addBuiltinClock(() -> new MNMLBoxClockController(res, layoutInflater, colorExtractor));

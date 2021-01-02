@@ -175,7 +175,7 @@ public class TypeClockController implements ClockPlugin {
 
     @Override
     public void setTextColor(int color) {
-        if(Utils.useLockscreenClockAccentColor(mContext)) {
+        if(Utils.useLockscreenCustomClockAccentColor(mContext)) {
             mTypeClock.setTextColor(mContext.getResources().getColor(R.color.lockscreen_clock_accent_color));
             mLockClock.setTextColor(mContext.getResources().getColor(R.color.lockscreen_clock_accent_color));
         } else {
@@ -190,7 +190,7 @@ public class TypeClockController implements ClockPlugin {
             return;
         }
         final int color = colorPalette[Math.max(0, colorPalette.length - 5)];
-        if(Utils.useLockscreenClockAccentColor(mContext)) {
+        if(Utils.useLockscreenCustomClockAccentColor(mContext)) {
             mTypeClock.setClockColor(mContext.getResources().getColor(R.color.lockscreen_clock_accent_color));
         } else {
             mTypeClock.setClockColor(color);

@@ -183,7 +183,7 @@ public class DotClockController implements ClockPlugin {
     private void updateColor() {
         final int primary = mPalette.getPrimaryColor();
         final int secondary = mPalette.getSecondaryColor();
-        if(Utils.useLockscreenClockAccentColor(mContext)) {
+        if(Utils.useLockscreenCustomClockAccentColor(mContext)) {
             mLockClock.setTextColor(mContext.getResources().getColor(R.color.lockscreen_clock_accent_color));
         } else {
             mLockClock.setTextColor(secondary);
@@ -213,6 +213,6 @@ public class DotClockController implements ClockPlugin {
 
     @Override
     public boolean shouldShowStatusArea() {
-        return true;
+        return false;
     }
 }

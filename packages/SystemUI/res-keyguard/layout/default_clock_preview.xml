@@ -10,10 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/date"
+        android:textSize="74sp"
         android:letterSpacing="0.03"
         android:gravity="center_horizontal"
-        android:format12Hour="@string/keyguard_widget_12_hours_format"
-        android:format24Hour="@string/keyguard_widget_24_hours_format"
         />
 
     <TextClock
