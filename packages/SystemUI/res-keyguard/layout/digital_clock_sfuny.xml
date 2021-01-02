@@ -17,24 +17,24 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:paddingRight="4dp"
+            android:paddingRight="6dp"
             android:format12Hour="hh"
             android:format24Hour="kk"
             style="@style/widget_big"
             android:textColor="?attr/wallpaperTextColor"
-            android:textSize="108sp" />
+            android:textSize="104sp" />
 
         <TextClock
             android:id="@+id/clockMinute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingLeft="4dp"
+            android:paddingLeft="6dp"
             android:format12Hour="mm"
             android:format24Hour="mm"
             style="@style/widget_big"
             android:textColor="?attr/wallpaperTextColor"
-            android:textSize="56sp" />
+            android:textSize="86sp" />
 
     </LinearLayout>
 </com.android.keyguard.clock.ClockLayout>
