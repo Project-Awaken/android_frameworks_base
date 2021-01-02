@@ -25,11 +25,14 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextClock;
+import android.provider.Settings;
+import android.content.Context;
 
 import com.android.internal.colorextraction.ColorExtractor;
 import com.android.systemui.R;
 import com.android.systemui.colorextraction.SysuiColorExtractor;
 import com.android.systemui.plugins.ClockPlugin;
+import com.android.internal.util.awaken.Utils;
 
 import java.util.TimeZone;
 
@@ -72,6 +75,8 @@ public class SfunyClockController implements ClockPlugin {
     private TextClock mHourClock;
     private TextClock mMinuteClock;
 
+    private Context mContext;
+
     /**
      * Create a DefaultClockController instance.
      *
@@ -80,10 +85,11 @@ public class SfunyClockController implements ClockPlugin {
      * @param colorExtractor Extracts accent color from wallpaper.
      */
     public SfunyClockController(Resources res, LayoutInflater inflater,
-            SysuiColorExtractor colorExtractor) {
+            SysuiColorExtractor colorExtractor, Context context) {
         mResources = res;
         mLayoutInflater = inflater;
         mColorExtractor = colorExtractor;
+        mContext = context;
     }
 
     private void createViews() {
@@ -158,8 +164,13 @@ public class SfunyClockController implements ClockPlugin {
 
     @Override
     public void setTextColor(int color) {
-        mHourClock.setTextColor(color);
-        mMinuteClock.setTextColor(color);
+        if(Utils.useLockscreenClockAccentColor(mContext)) {
+            mLockClock.setTextColor(mContext.getResources().getColor(R.color.lockscreen_clock_accent_color));
+            mAnalogClock.setClockColors(primary, mContext.getResources().getColor(R.color.lockscreen_clock_accent_color));
+        } else {
+            mHourClock.setTextColor(color);
+            mMinuteClock.setTextColor(color);
+        }
     }
 
     @Override

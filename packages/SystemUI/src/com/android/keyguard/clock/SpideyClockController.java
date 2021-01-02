@@ -21,11 +21,14 @@ import android.graphics.Paint.Style;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextClock;
+import android.provider.Settings;
+import android.content.Context;
 
 import com.android.internal.colorextraction.ColorExtractor;
 import com.android.systemui.R;
 import com.android.systemui.colorextraction.SysuiColorExtractor;
 import com.android.systemui.plugins.ClockPlugin;
+import com.android.internal.util.awaken.Utils;
 
 import java.util.TimeZone;
 
@@ -71,6 +74,8 @@ public class SpideyClockController implements ClockPlugin {
     private View mView;
     private TextClock mLockClock;
 
+    private Context mContext;
+
     /**
      * Helper to extract colors from wallpaper palette for clock face.
      */
@@ -84,10 +89,11 @@ public class SpideyClockController implements ClockPlugin {
      * @param colorExtractor Extracts accent color from wallpaper.
      */
     public SpideyClockController(Resources res, LayoutInflater inflater,
-            SysuiColorExtractor colorExtractor) {
+            SysuiColorExtractor colorExtractor, Context context) {
         mResources = res;
         mLayoutInflater = inflater;
         mColorExtractor = colorExtractor;
+        mContext = context;
         mClockPosition = new SmallClockPosition(res);
     }
 
@@ -177,7 +183,11 @@ public class SpideyClockController implements ClockPlugin {
     private void updateColor() {
         final int primary = mPalette.getPrimaryColor();
         final int secondary = mPalette.getSecondaryColor();
-        mLockClock.setTextColor(secondary);
+        if(Utils.useLockscreenClockAccentColor(mContext)) {
+            mLockClock.setTextColor(mContext.getResources().getColor(R.color.lockscreen_clock_accent_color));
+        } else {
+            mLockClock.setTextColor(secondary);
+        }
         //mSpideyClock.setClockColors(primary, secondary);
     }
 

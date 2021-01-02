@@ -5339,6 +5339,12 @@ public final class Settings {
          */
         public static final String AOD_NOTIFICATION_PULSE_TIMEOUT = "ambient_notification_light_timeout";
 
+        /**
+         * Whether to use accent lock clock colors
+         * @hide
+         */
+        public static final String LOCKSCREEN_ACCENT_COLOR = "lockscreen_accent_color";
+
          /**
          * Whether to use accent color for pulse
          * @hide

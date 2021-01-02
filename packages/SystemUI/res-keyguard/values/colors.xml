@@ -21,4 +21,7 @@
   <color name="bubbleMinuteHandColor">#F5C983</color>
   <!-- Accent color for Typographic clock. -->
   <color name="typeClockAccentColor">#F5C983</color>
+
+  <color name="lockscreen_clock_accent_color">@*android:color/accent_device_default</color>
+  <color name="lockscreen_clock_white_color">@*android:color/white</color>
 </resources>
