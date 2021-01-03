@@ -75,9 +75,9 @@ LOCAL_REQUIRED_MODULES := \
     DisplayCutoutEmulationHoleOverlay \
 	DisplayCutoutEmulationTallOverlay \
 	DisplayCutoutEmulationWaterfallOverlay \
+	FontNotoSerifSourceOverlay \
 	IconPackCircularAndroidOverlay \
-	IconPackCircularPixelLauncherOverlay \
-	IconPackCircularPixelThemePickerOverlay \
+	IconPackCircularLauncherOverlay \
 	IconPackCircularSettingsOverlay \
 	IconPackCircularSystemUIOverlay \
 	IconPackCircularThemePickerOverlay \
@@ -102,10 +102,10 @@ LOCAL_REQUIRED_MODULES := \
 	IconPackFilledSystemUIOverlay \
 	IconPackFilledThemePickerOverlay \
 	IconPackRoundedAndroidOverlay \
-	IconPackRoundedPixelLauncherOverlay \
-	IconPackRoundedPixelThemePickerOverlay \
+	IconPackRoundedLauncherOverlay \
 	IconPackRoundedSettingsOverlay \
 	IconPackRoundedSystemUIOverlay \
+	IconPackRoundedThemePickerOverlay \
         IconShapeHeartOverlay \
 	IconShapePebbleOverlay \
 	IconShapeLeafOverlay \
