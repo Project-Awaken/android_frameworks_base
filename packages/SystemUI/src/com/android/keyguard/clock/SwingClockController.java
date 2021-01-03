@@ -183,7 +183,7 @@ public class SwingClockController implements ClockPlugin {
     @Override
     public void onTimeTick() {
         mView.onTimeChanged();
-        mClock.refresh();
+        mClock.refreshTime();
     }
 
     @Override
