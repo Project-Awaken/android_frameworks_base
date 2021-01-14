@@ -9988,6 +9988,12 @@ public final class Settings {
         public static final String VOLUME_LINK_NOTIFICATION = "volume_link_notification";
 
         /**
+         * Whether to show QS brightness slider on bottom
+         * @hide
+         */
+        public static final String QS_BRIGHTNESS_POSITION_BOTTOM = "qs_brightness_position_bottom";
+
+        /**
          * Whether to vibrate when quick settings tile is pressed.
          * @hide
          */
