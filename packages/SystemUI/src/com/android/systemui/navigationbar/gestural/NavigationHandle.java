@@ -70,7 +70,6 @@ public class NavigationHandle extends View implements ButtonInterface {
             };
 
     private KeyguardUpdateMonitor mUpdateMonitor;
-
     private KeyguardUpdateMonitorCallback mMonitorCallback = new KeyguardUpdateMonitorCallback() {
         @Override
         public void onDreamingStateChanged(boolean dreaming) {
@@ -121,7 +120,6 @@ public class NavigationHandle extends View implements ButtonInterface {
         setFocusable(false);
 
         mUpdateMonitor = Dependency.get(KeyguardUpdateMonitor.class);
-        mUpdateMonitor.registerCallback(mMonitorCallback);
     }
 
     @Override
@@ -225,5 +223,17 @@ public class NavigationHandle extends View implements ButtonInterface {
 
     private float getPulseAnimationProgress() {
         return mPulseAnimationProgress;
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        mUpdateMonitor.registerCallback(mMonitorCallback);
+        super.onAttachedToWindow();
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        mUpdateMonitor.removeCallback(mMonitorCallback);
+        super.onDetachedFromWindow();
     }
 }
