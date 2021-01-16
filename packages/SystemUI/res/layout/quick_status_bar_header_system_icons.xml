@@ -74,10 +74,13 @@
 
     <include layout="@layout/ongoing_privacy_chip" />
 
-    <com.android.systemui.statusbar.phone.StatusIconContainer
-        android:id="@+id/statusIcons"
-        android:layout_width="wrap_content"
+    <com.android.systemui.BatteryMeterView
+        android:id="@+id/battery"
         android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:gravity="center_vertical|end"
+        android:singleLine="true"
+        android:textAppearance="@style/TextAppearance.StatusBar.Clock"
         android:paddingStart="@dimen/status_bar_left_clock_starting_padding"
         android:paddingEnd="@dimen/status_bar_left_clock_starting_padding" />
 

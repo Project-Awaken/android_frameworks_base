@@ -178,6 +178,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private Space mSpace;
     private BatteryMeterView mBatteryRemainingIcon;
     private RingerModeTracker mRingerModeTracker;
+    private BatteryMeterView mBatteryMeterView;
     private BroadcastDispatcher mBroadcastDispatcher;
 
     private boolean mAllIndicatorsEnabled;
@@ -304,6 +305,12 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         iconContainer.setShouldRestrictIcons(false);
         mIconManager = new TintedIconManager(iconContainer, mCommandQueue);
 
+        mBatteryMeterView = findViewById(R.id.battery);
+        mBatteryMeterView.setForceShowPercent(true);
+        mBatteryMeterView.setIgnoreTunerUpdates(true);
+        mBatteryMeterView.setOnClickListener(this);
+        mBatteryMeterView.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
+
         mQuickQsBrightness = findViewById(R.id.quick_qs_brightness_bar);
         mDataUsageView = findViewById(R.id.data_sim_usage);
         mDataUsageLayout = findViewById(R.id.daily_data_usage_layout);
@@ -349,7 +356,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mSpace = findViewById(R.id.space);
 
         // Tint for the battery icons are handled in setupHost()
-        mBatteryRemainingIcon = findViewById(R.id.batteryRemainingIcon);
+        mBatteryRemainingIcon = findViewById(R.id.battery);
         // Don't need to worry about tuner settings for this icon
         mBatteryRemainingIcon.setIgnoreTunerUpdates(true);
         mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ON);
@@ -819,6 +826,9 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         } else if (v == mRingerContainer && mRingerContainer.isVisibleToUser()) {
             mActivityStarter.postStartActivityDismissingKeyguard(new Intent(
                     Settings.ACTION_SOUND_SETTINGS), 0);
+        } else if (v == mBatteryMeterView) {
+            Dependency.get(ActivityStarter.class).postStartActivityDismissingKeyguard(new Intent(
+                    Intent.ACTION_POWER_USAGE_SUMMARY),0);
         } else if (v == mDateView) {
             Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
             builder.appendPath("time");
