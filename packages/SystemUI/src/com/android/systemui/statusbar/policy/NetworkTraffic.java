@@ -48,7 +48,7 @@ public class NetworkTraffic extends TextView {
     private static final String symbol = "/s";
 
     protected boolean mIsEnabled;
-    private boolean mAttached;
+    protected boolean mAttached;
     private long totalRxBytes;
     private long totalTxBytes;
     private long lastUpdateTime;
@@ -225,8 +225,6 @@ public class NetworkTraffic extends TextView {
             mAttached = true;
             IntentFilter filter = new IntentFilter();
             filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-            filter.addAction(Intent.ACTION_SCREEN_OFF);
-            filter.addAction(Intent.ACTION_SCREEN_ON);
             mContext.registerReceiver(mIntentReceiver, filter, null, getHandler());
         }
         update();
@@ -235,6 +233,7 @@ public class NetworkTraffic extends TextView {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        clearHandlerCallbacks();
         if (mAttached) {
             mContext.unregisterReceiver(mIntentReceiver);
             mAttached = false;
@@ -287,7 +286,7 @@ public class NetworkTraffic extends TextView {
             String action = intent.getAction();
             if (action == null) return;
             if (action.equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
-                clearHandlerCallbacks();
+                update();
             }
         }
     };
