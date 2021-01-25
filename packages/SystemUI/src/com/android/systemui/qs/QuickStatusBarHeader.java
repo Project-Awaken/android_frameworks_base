@@ -368,9 +368,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
                 StatusBarIconController.ICON_BLACKLIST,
                 QS_SHOW_AUTO_BRIGHTNESS, QS_SHOW_BRIGHTNESS_SLIDER);
         updateSettings();
-
-        Dependency.get(TunerService.class).addTunable(this,
-                StatusBarIconController.ICON_BLACKLIST);
     }
 
     public QuickQSPanel getHeaderQsPanel() {
@@ -947,8 +944,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
 
     @Override
     public void onTuningChanged(String key, String newValue) {
-        mClockView.setClockVisibleByUser(!StatusBarIconController.getIconBlacklist(
-                mContext, newValue).contains("clock"));
         if (QS_SHOW_BRIGHTNESS_SLIDER.equals(key)) {
             mIsQuickQsBrightnessEnabled = TunerService.parseInteger(newValue, 0) > 1;
             updateResources();

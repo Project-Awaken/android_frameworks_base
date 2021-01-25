@@ -5099,17 +5099,6 @@ public final class Settings {
         public static final String AICP_LOCKSCREEN_WEATHER_STYLE = "lockscreen_weather_style";
 
         /**
-         * Whether to show the clock in the right or left position or show it in the center
-         * 0: show the clock in the right position (LTR)
-         * 1: show the clock in the center
-         * 2: show the clock in the left position (LTR)
-         * default: 0
-         *
-         * @hide
-         */
-        public static final String STATUS_BAR_CLOCK = "status_bar_clock";
-
-        /**
          * Whether to control brightness from status bar
          *
          * @hide
@@ -5121,17 +5110,6 @@ public final class Settings {
          * @hide
          */
         public static final String QS_SB_BG_ALPHA = "qs_sb_bg_alpha";
-
-        /**
-         * Display style of AM/PM next to clock in status bar
-         * 0: Normal display (Eclair stock)
-         * 1: Small display (Froyo stock)
-         * 2: No display (Gingerbread/ICS stock)
-         * default: 2
-         *
-         * @hide
-         */
-        public static final String STATUS_BAR_AM_PM = "status_bar_am_pm";
 
         /**
          * Disable dashboard conditions in settings
