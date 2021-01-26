@@ -26,16 +26,6 @@
     android:focusable="true"
     android:theme="@style/QSHeaderTheme">
 
-    <com.android.systemui.statusbar.policy.DateView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start|center_vertical"
-        android:gravity="center_vertical"
-        android:singleLine="true"
-        android:textAppearance="@style/TextAppearance.QS.Date"
-        systemui:datePattern="@string/abbrev_wday_month_day_no_year_alarm" />
-
         <LinearLayout
             android:id="@+id/daily_data_usage_layout"
             android:layout_height="match_parent"
