@@ -59,18 +59,6 @@
                 systemui:datePattern="@string/abbrev_wday_month_day_no_year_alarm" />
         </RelativeLayout>
 
-    <com.android.systemui.statusbar.policy.NetworkTraffic
-        android:id="@+id/networkTraffic"
-        android:paddingEnd="@dimen/status_bar_left_clock_end_padding"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="2dp"
-        android:singleLine="false"
-        android:lineSpacingMultiplier="1.2"
-        systemui:showDark="false"
-        android:gravity="right|center_vertical"/>
-
         <LinearLayout
             android:layout_width="0dip"
             android:layout_height="wrap_content"
@@ -85,6 +73,17 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
                 android:layout_gravity="end">
+
+    <com.android.systemui.statusbar.policy.NetworkTraffic
+        android:id="@+id/networkTraffic"
+        android:paddingTop="@dimen/status_bar_padding_top"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:singleLine="false"
+        android:lineSpacingMultiplier="1.2"
+        systemui:showDark="false" />
 
     <include layout="@layout/ongoing_privacy_chip" />
         </RelativeLayout>
