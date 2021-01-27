@@ -65,25 +65,13 @@
             android:layout_weight="1"
             android:layout_gravity="center_vertical|end"
             android:gravity="end|center_vertical"
-            android:orientation="vertical"
-            android:theme="@style/QQSHeaderTheme" >
+            android:orientation="vertical" >
 
         <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
                 android:layout_gravity="end">
-
-    <com.android.systemui.statusbar.policy.NetworkTraffic
-        android:id="@+id/networkTraffic"
-        android:paddingTop="@dimen/status_bar_padding_top"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="2dp"
-        android:singleLine="false"
-        android:lineSpacingMultiplier="1.2"
-        systemui:showDark="false" />
 
     <include layout="@layout/ongoing_privacy_chip" />
         </RelativeLayout>
@@ -94,8 +82,20 @@
                 android:paddingTop="4dp"
                 android:gravity="end">
 
+    <com.android.systemui.statusbar.policy.NetworkTraffic
+        android:id="@+id/networkTraffic"
+        android:paddingTop="@dimen/status_bar_padding_top"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textAppearance="@style/TextAppearance.StatusBar.Clock"
+        android:gravity="center_vertical"
+        android:paddingEnd="8dp"
+        android:singleLine="false"
+        android:lineSpacingMultiplier="1.2" />
+
     <com.android.systemui.BatteryMeterView
         android:id="@+id/battery"
+        android:layout_toEndOf="@+id/networkTraffic"
         android:layout_height="match_parent"
         android:layout_width="wrap_content"
         android:gravity="center_vertical|end"
