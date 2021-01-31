@@ -64,6 +64,7 @@
         android:layout_toEndOf="@+id/space"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:paddingEnd="2dp"/>
+        android:paddingEnd="2dp"
+        android:gravity="center_vertical|end" />
 
 </LinearLayout>
