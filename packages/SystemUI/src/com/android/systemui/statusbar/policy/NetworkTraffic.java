@@ -285,7 +285,7 @@ public class NetworkTraffic extends TextView {
         final Resources resources = getResources();
         txtImgPadding = resources.getDimensionPixelSize(R.dimen.net_traffic_txt_img_padding);
         txtFont = getResources().getString(com.android.internal.R.string.config_headlineFontFamilyMedium);
-        mTintColor = resources.getColor(android.R.color.white);
+        mTintColor = resources.getColor(R.color.status_bar_clock_color);
         Handler mHandler = new Handler();
         mConnectivityManager =
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
