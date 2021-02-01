@@ -154,9 +154,6 @@
     <!-- Whether or not we should show vendor mismatch message -->
     <bool name="config_show_vendor_mismatch_message">true</bool>
 
-    <!-- Whether to use old mobile type icons as default -->
-    <bool name="config_useOldMobileIcons">false</bool>
-
     <!-- Path to fast charging status file to detect whether an oem fast charger is active -->
     <string name="config_oemFastChargerStatusPath" translatable="false"></string>
 
