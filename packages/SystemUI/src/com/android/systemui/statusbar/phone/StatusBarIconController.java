@@ -24,7 +24,6 @@ import static com.android.systemui.statusbar.phone.StatusBarIconHolder.TYPE_WIFI
 
 import android.content.Context;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.ArraySet;
 import android.view.Gravity;
@@ -205,7 +204,7 @@ public interface StatusBarIconController {
     /**
      * Turns info from StatusBarIconController into ImageViews in a ViewGroup.
      */
-    public static class IconManager implements DemoMode, TunerService.Tunable {
+    public static class IconManager implements DemoMode {
         protected final ViewGroup mGroup;
         protected final Context mContext;
         protected final int mIconSize;
@@ -216,11 +215,6 @@ public interface StatusBarIconController {
         protected boolean mDemoable = true;
         private boolean mIsInDemoMode;
         protected DemoStatusIcons mDemoStatusIcons;
-
-        private boolean mOldStyleType;
-
-        private static final String USE_OLD_MOBILETYPE =
-            "system:" + Settings.System.USE_OLD_MOBILETYPE;
 
         public IconManager(ViewGroup group, CommandQueue commandQueue) {
             mGroup = group;
@@ -235,8 +229,6 @@ public interface StatusBarIconController {
                 // In case we miss the first onAttachedToWindow event
                 tracker.onViewAttachedToWindow(mGroup);
             }
-
-            Dependency.get(TunerService.class).addTunable(this, USE_OLD_MOBILETYPE);
         }
 
         public boolean isDemoable() {
@@ -455,19 +447,6 @@ public interface StatusBarIconController {
             return new DemoStatusIcons((LinearLayout) mGroup, mIconSize);
         }
 
-        @Override
-        public void onTuningChanged(String key, String newValue) {
-            switch (key) {
-                case USE_OLD_MOBILETYPE:
-                    mOldStyleType =
-                        TunerService.parseIntegerSwitch(newValue, false);
-                    updateOldStyleMobileDataIcons();
-                    break;
-                default:
-                    break;
-            }
-        }
-
         public void onPanelExpanded(boolean isExpanded) {
             for (int i = 0; i < mGroup.getChildCount(); i++) {
                 if (mGroup.getChildAt(i) instanceof NetworkTrafficSB) {
@@ -480,15 +459,6 @@ public interface StatusBarIconController {
             for (int i = 0; i < mGroup.getChildCount(); i++) {
                 if (mGroup.getChildAt(i) instanceof NetworkTrafficSB) {
                     ((NetworkTrafficSB)mGroup.getChildAt(i)).setKeyguardShowing(showing);
-                }
-            }
-        }
-
-        private void updateOldStyleMobileDataIcons() {
-            for (int i = 0; i < mGroup.getChildCount(); i++) {
-                View child = mGroup.getChildAt(i);
-                if (child instanceof StatusBarMobileView) {
-                    ((StatusBarMobileView) child).updateDisplayType(mOldStyleType);
                 }
             }
         }
