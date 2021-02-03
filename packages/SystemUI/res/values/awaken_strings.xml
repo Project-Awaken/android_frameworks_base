@@ -270,4 +270,7 @@
     <!-- Name of the volte/vowifi status bar icon. -->
     <string name="status_bar_ims">VoLTE/VoWiFi</string>
 
+    <!-- Scrolling Screenshot string -->
+    <string name="scrollss">Scroll</string>
+
 </resources>
