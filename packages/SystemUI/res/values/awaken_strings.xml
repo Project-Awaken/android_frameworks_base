@@ -245,4 +245,7 @@
     <string name="lockscreen_default">Default</string>
     <string name="lockscreen_hidden">None</string>
 
+    <!-- Scrolling Screenshot string -->
+    <string name="scrollss">Scroll</string>
+
 </resources>
