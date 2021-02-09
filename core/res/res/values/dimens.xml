@@ -42,7 +42,7 @@
     <!-- Height of area above QQS where battery/time go -->
     <dimen name="quick_qs_offset_height">88dp</dimen>
     <!-- Total height of QQS (quick_qs_offset_height + 128) -->
-    <dimen name="quick_qs_total_height">215dp</dimen>
+    <dimen name="quick_qs_total_height">150dp</dimen>
     <!-- Total height of QQS with two rows to fit media player (quick_qs_offset_height + 176) -->
     <dimen name="quick_qs_total_height_with_media">263dp</dimen>
     <!-- Height of the bottom navigation / system bar. -->
