@@ -78,5 +78,6 @@
         <permission name="android.permission.RECORD_AUDIO" />
         <permission name="lineageos.permission.HARDWARE_ABSTRACTION_ACCESS" />
         <permission name="lineageos.permission.MANAGE_LIVEDISPLAY" />
+        <permission name="android.permission.WRITE_APN_SETTINGS" />
     </privapp-permissions>
 </permissions>
