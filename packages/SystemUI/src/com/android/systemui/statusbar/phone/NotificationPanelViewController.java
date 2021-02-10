@@ -3060,6 +3060,8 @@ public class NotificationPanelViewController extends PanelViewController {
                 Settings.System.NOTIFICATION_PULSE_COLOR_AUTOMATIC, 0, UserHandle.USER_CURRENT) != 0;
         int repeats = Settings.System.getIntForUser(resolver,
                 Settings.System.AMBIENT_LIGHT_REPEAT_COUNT, 0, UserHandle.USER_CURRENT);
+        boolean pulseForAll = Settings.System.getIntForUser(resolver,
+                Settings.System.AMBIENT_LIGHT_PULSE_FOR_ALL, 0, UserHandle.USER_CURRENT) == 1;
         if (animatePulse) {
             mAnimateNextPositionUpdate = true;
         }
@@ -3090,7 +3092,7 @@ public class NotificationPanelViewController extends PanelViewController {
                 }
             }
             if (mPulsing) {
-                if (pulseReasonNotification) {
+                if (pulseReasonNotification || pulseForAll) {
                     if (activeNotif) {
                         // show the bars if we have to
                         if (pulseLights) {
