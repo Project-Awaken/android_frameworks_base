@@ -51,7 +51,7 @@
         android:clipChildren="false"
         android:clipToPadding="false"
         android:focusable="true"
-        android:paddingBottom="2dp"
+        android:paddingBottom="0dp"
         android:importantForAccessibility="yes" />
 
     <!-- Quick QS brightness bar -->
@@ -60,7 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_below="@id/quick_qs_panel"
-        android:layout_marginBottom="7dp"
+        android:layout_marginBottom="4dp"
         android:visibility="gone" />
 
     <TextView
