@@ -317,11 +317,11 @@ public class NetworkTraffic extends TextView {
     }
 
     protected RelativeSizeSpan getSpeedRelativeSizeSpan() {
-        return new RelativeSizeSpan(0.70f);
+        return new RelativeSizeSpan(0.80f);
     }
 
     protected RelativeSizeSpan getUnitRelativeSizeSpan() {
-        return new RelativeSizeSpan(0.65f);
+        return new RelativeSizeSpan(0.75f);
     }
 
     private Runnable mRunnable = new Runnable() {
@@ -488,7 +488,7 @@ public class NetworkTraffic extends TextView {
                 ? (float)resources.getDimensionPixelSize(R.dimen.net_traffic_multi_text_size)
                 : (float)resources.getDimensionPixelSize(R.dimen.net_traffic_single_text_size));
         setTypeface(Typeface.create(txtFont, Typeface.BOLD));
-        setLineSpacing(0.75f, 0.75f);
+        setLineSpacing(0.80f, 0.80f);
     }
 
     protected void setSpacingAndFonts() {

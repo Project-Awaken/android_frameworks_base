@@ -82,8 +82,16 @@
                 android:paddingTop="4dp"
                 android:gravity="end">
 
+    <com.android.systemui.statusbar.phone.StatusIconContainer
+        android:id="@+id/statusIcons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingEnd="8dp" />
+
     <com.android.systemui.statusbar.policy.NetworkTraffic
         android:id="@+id/networkTraffic"
+        android:layout_toEndOf="@+id/statusIcons"
         android:paddingTop="@dimen/status_bar_padding_top"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
