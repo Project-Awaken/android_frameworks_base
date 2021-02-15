@@ -323,7 +323,7 @@ public class QSContainerImpl extends FrameLayout implements
     private void setBackgroundGradientVisibility(Configuration newConfig) {
         if (newConfig.orientation == ORIENTATION_LANDSCAPE) {
             mBackgroundGradient.setVisibility(View.INVISIBLE);
-            mStatusBarBackground.setVisibility(View.INVISIBLE);
+            mStatusBarBackground.setVisibility(View.VISIBLE);
         } else {
             mBackgroundGradient.setVisibility(mQsDisabled ? View.INVISIBLE : View.VISIBLE);
             mStatusBarBackground.setVisibility(View.VISIBLE);
