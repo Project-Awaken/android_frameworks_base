@@ -209,7 +209,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
                     .getUriFor(Settings.System.STATUS_BAR_BATTERY_STYLE), false,
                     this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System
-                    .getUriFor(Settings.System.QS_DATAUSAGE), false,
+                    .getUriFor(Settings.System.QS_DATAUSAGE), true,
                     this, UserHandle.USER_ALL);
             }
 
