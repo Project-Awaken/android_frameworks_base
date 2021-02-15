@@ -14,6 +14,7 @@ import android.text.format.Formatter;
 import android.text.format.Formatter.BytesResult;
 import android.widget.TextView;
 import android.provider.Settings;
+import android.view.Gravity;
 import android.view.View;
 
 import com.android.internal.util.awaken.Utils;
