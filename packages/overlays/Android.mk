@@ -42,11 +42,6 @@ LOCAL_REQUIRED_MODULES := \
 	AccentColorAppleRedOverlay \
 	AccentColorAppleTealOverlay \
 	AccentColorAppleYellowOverlay \
-	DisplayCutoutEmulationCornerOverlay \
-	DisplayCutoutEmulationDoubleOverlay \
-    DisplayCutoutEmulationHoleOverlay \
-	DisplayCutoutEmulationTallOverlay \
-	DisplayCutoutEmulationWaterfallOverlay \
 	FontManropeOverlay \
 	IconPackCircularAndroidOverlay \
 	IconPackCircularLauncherOverlay \
