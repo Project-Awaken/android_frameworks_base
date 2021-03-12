@@ -289,7 +289,6 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
     private boolean mLockIconPressed;
     private int mActiveMobileDataSubscription = SubscriptionManager.INVALID_SUBSCRIPTION_ID;
     private final Executor mBackgroundExecutor;
-    private final boolean mFaceAuthOnlyOnSecurityView;
     private boolean mPocketJudgeAllowFP;
 
     /**
@@ -1598,8 +1597,6 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
         mSubscriptionManager = SubscriptionManager.from(context);
         mDeviceProvisioned = isDeviceProvisionedInSettingsDb();
         mStrongAuthTracker = new StrongAuthTracker(context, this::notifyStrongAuthStateChanged);
-        mFaceAuthOnlyOnSecurityView = mContext.getResources().getBoolean(
-                R.bool.config_faceAuthOnlyOnSecurityView);
         mBackgroundExecutor = backgroundExecutor;
         mBroadcastDispatcher = broadcastDispatcher;
         mRingerModeTracker = ringerModeTracker;
@@ -1715,7 +1712,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
                         handleKeyguardGoingAway((boolean) msg.obj);
                         break;
                     case MSG_POCKET_STATE_CHANGED:
-                        updateBiometricListeningState();
+                        updateFingerprintListeningState();
                         break;
                     default:
                         super.handleMessage(msg);
@@ -1971,7 +1968,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
         BiometricAuthenticated face = mUserFaceAuthenticated.get(getCurrentUser());
         return mAssistantVisible && mKeyguardOccluded
                 && !(face != null && face.mAuthenticated)
-                && !mUserHasTrust.get(getCurrentUser(), false);
+                && !mUserHasTrust.get(getCurrentUser(), false) && !mIsDeviceInPocket;
     }
 
     private boolean shouldListenForFingerprint() {
@@ -2009,13 +2006,12 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
         }
         final boolean statusBarShadeLocked =
                 mStatusBarStateController.getState() == StatusBarState.SHADE_LOCKED;
-        boolean awakeKeyguard = mKeyguardIsVisible && mDeviceInteractive && !mGoingToSleep
+        final boolean awakeKeyguard = mKeyguardIsVisible && mDeviceInteractive && !mGoingToSleep
                 && !statusBarShadeLocked;
         final int user = getCurrentUser();
         final int strongAuth = mStrongAuthTracker.getStrongAuthForUser(user);
-        final boolean isLockOutOrLockDown =
-                containsFlag(strongAuth, STRONG_AUTH_REQUIRED_AFTER_LOCKOUT)
-                        || containsFlag(strongAuth, STRONG_AUTH_REQUIRED_AFTER_DPM_LOCK_NOW)
+        final boolean isLockDown =
+                containsFlag(strongAuth, STRONG_AUTH_REQUIRED_AFTER_DPM_LOCK_NOW)
                         || containsFlag(strongAuth, STRONG_AUTH_REQUIRED_AFTER_USER_LOCKDOWN);
         final boolean isEncryptedOrTimedOut =
                 containsFlag(strongAuth, STRONG_AUTH_REQUIRED_AFTER_BOOT)
@@ -2029,14 +2025,9 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
         boolean becauseCannotSkipBouncer = !getUserCanSkipBouncer(user) || canBypass;
 
         // Scan even when encrypted or timeout to show a preemptive bouncer when bypassing.
-        // Lockout/lockdown modes shouldn't scan, since they are more explicit.
+        // Lock-down mode shouldn't scan, since it is more explicit.
         boolean strongAuthAllowsScanning = (!isEncryptedOrTimedOut || canBypass && !mBouncer)
-                && !isLockOutOrLockDown;
-
-        boolean unlockPossible = true;
-        if ((!mBouncer || !awakeKeyguard) && mFaceAuthOnlyOnSecurityView){
-            unlockPossible = false;
-        }
+                && !isLockDown;
 
         // Only listen if this KeyguardUpdateMonitor belongs to the primary user. There is an
         // instance of KeyguardUpdateMonitor for each user but KeyguardUpdateMonitor is user-aware.
@@ -2046,8 +2037,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
                 && !mSwitchingUser && !isFaceDisabled(user) && becauseCannotSkipBouncer
                 && !mKeyguardGoingAway && mFaceSettingEnabledForUser.get(user) && !mLockIconPressed
                 && strongAuthAllowsScanning && mIsPrimaryUser
-                && !mSecureCameraLaunched && !mIsDeviceInPocket
-                && unlockPossible;
+                && !mSecureCameraLaunched;
 
         // Aggregate relevant fields for debug logging.
         if (DEBUG_FACE || DEBUG_SPEW) {

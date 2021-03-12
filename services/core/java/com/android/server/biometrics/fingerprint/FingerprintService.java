@@ -723,8 +723,7 @@ public class FingerprintService extends BiometricServiceBase {
                         authenticated = true;
                     }
                 }
-
-                final Fingerprint fp = new Fingerprint("", groupId, fingerId, deviceId);
+                Fingerprint fp = new Fingerprint("", groupId, fingerId, deviceId);
                 FingerprintService.super.handleAuthenticated(authenticated, fp, token);
                 if (mHasFod && fp.getBiometricId() != 0) {
                     try {
@@ -892,6 +891,7 @@ public class FingerprintService extends BiometricServiceBase {
         mAlarmManager = context.getSystemService(AlarmManager.class);
         context.registerReceiver(mLockoutReceiver, new IntentFilter(getLockoutResetIntent()),
                 getLockoutBroadcastPermission(), null /* handler */);
+
         PackageManager packageManager = context.getPackageManager();
         mHasFod = FodUtils.hasFodSupport(context);
         mLockPatternUtils = new LockPatternUtils(context);
