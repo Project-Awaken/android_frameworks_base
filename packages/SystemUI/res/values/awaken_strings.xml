@@ -262,9 +262,6 @@
     <!-- Name of the volte/vowifi status bar icon. -->
     <string name="status_bar_ims">VoLTE/VoWiFi</string>
 
-    <!-- Scrolling Screenshot string -->
-    <string name="scrollss">Scroll</string>
-
     <!-- Reader mode QS tile -->
     <string name="quick_settings_reading_mode">Reading mode</string>
     <string name="accessibility_quick_settings_reading_mode_on">Reading mode on.</string>
