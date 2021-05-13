@@ -400,6 +400,9 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
     // PowerManager.BRIGHTNESS_INVALID_FLOAT when there's no temporary adjustment set.
     private float mTemporaryAutoBrightnessAdjustment;
 
+    // Wether auto brightness is applied one shot when screen is turned on
+    private boolean mAutoBrightnessOneShot;
+
     // Animators.
     private ObjectAnimator mColorFadeOnAnimator;
     private ObjectAnimator mColorFadeOffAnimator;
@@ -436,6 +439,7 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
         mContext = context;
         mBrightnessSynchronizer = new BrightnessSynchronizer(context);
         mDisplayDevice = displayDevice;
+        mAutoBrightnessOneShot = getAutoBrightnessOneShotSetting();
 
         PowerManager pm =  context.getSystemService(PowerManager.class);
         DisplayDeviceConfig displayDeviceConfig = mDisplayDevice.getDisplayDeviceConfig();
@@ -794,6 +798,9 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
         mContext.getContentResolver().registerContentObserver(
                 Settings.System.getUriFor(Settings.System.SCREEN_AUTO_BRIGHTNESS_ADJ),
                 false /*notifyForDescendants*/, mSettingsObserver, UserHandle.USER_ALL);
+        mContext.getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(Settings.System.AUTO_BRIGHTNESS_ONE_SHOT),
+                false /*notifyForDescendants*/, mSettingsObserver, UserHandle.USER_ALL);
     }
 
     private final Animator.AnimatorListener mAnimatorListener = new Animator.AnimatorListener() {
@@ -1013,6 +1020,7 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
             brightnessAdjustmentFlags = BrightnessReason.ADJUSTMENT_AUTO;
             mAppliedTemporaryAutoBrightnessAdjustment = false;
         }
+
         // Apply brightness boost.
         // We do this here after deciding whether auto-brightness is enabled so that we don't
         // disable the light sensor during this temporary state.  That way when boost ends we will
@@ -1038,7 +1046,8 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
                     mBrightnessConfiguration,
                     mLastUserSetScreenBrightness,
                     userSetBrightnessChanged, autoBrightnessAdjustment,
-                    autoBrightnessAdjustmentChanged, mPowerRequest.policy);
+                    autoBrightnessAdjustmentChanged, mPowerRequest.policy,
+                    mAutoBrightnessOneShot);
         }
 
         if (mBrightnessTracker != null) {
@@ -1768,7 +1777,14 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
         // We don't bother with a pending variable for VR screen brightness since we just
         // immediately adapt to it.
         mScreenBrightnessForVr = getScreenBrightnessForVrSetting();
+        mAutoBrightnessOneShot = getAutoBrightnessOneShotSetting();
         sendUpdatePowerState();
+    }
+
+    private boolean getAutoBrightnessOneShotSetting() {
+        return Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.AUTO_BRIGHTNESS_ONE_SHOT,
+                0, UserHandle.USER_CURRENT) == 1 ? true : false;
     }
 
     private float getAutoBrightnessAdjustmentSetting() {
