@@ -88,7 +88,7 @@ public class DataUsageView extends TextView {
 
     public int isDataUsageEnabled() {
         return Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.QS_DATAUSAGE, 0);
+                Settings.System.QS_DATAUSAGE, 1);
     }
 
     public static void updateUsage() {
