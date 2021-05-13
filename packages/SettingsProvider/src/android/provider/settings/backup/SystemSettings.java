@@ -102,5 +102,6 @@ public class SystemSettings {
         Settings.System.KEYGAURD_MEDIA_ART,
         Settings.System.LOCKSCREEN_BATTERY_INFO,
         Settings.System.LOCKSCREEN_SMALL_CLOCK,
+        Settings.System.AUTO_BRIGHTNESS_ONE_SHOT,
     };
 }
