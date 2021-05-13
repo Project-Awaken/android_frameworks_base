@@ -296,6 +296,7 @@
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
 
+    <protected-broadcast android:name="com.android.systemui.action.PLUGIN_CHANGED" />
     <protected-broadcast android:name="com.android.systemui.doze.pulse" />
 
     <!-- Ambient Music -->
