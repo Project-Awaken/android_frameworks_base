@@ -97,4 +97,7 @@
         android:title="@string/status_bar_volte"
         sysui:defValue="false" />
 
+    <com.android.systemui.tuner.StatusBarSwitch
+        android:key="location"
+        android:title="@string/status_bar_location" />
 </PreferenceScreen>
