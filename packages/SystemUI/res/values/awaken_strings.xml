@@ -248,9 +248,6 @@
     <string name="lockscreen_default">Default</string>
     <string name="lockscreen_hidden">None</string>
 
-    <!-- Scrolling Screenshot string -->
-    <string name="scrollss">Scroll</string>
-
     <!-- Biometric Dialog - Use Face -->
     <string name="biometric_dialog_button_use_face">Use Face</string>
 

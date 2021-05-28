@@ -184,10 +184,6 @@ public final class AudioAttributes implements Parcelable {
      */
     public final static int USAGE_ASSISTANT = 16;
     /**
-     * Usage value to use when stitchimage returns 9528 for some reason
-     */
-    public final static int USAGE_STITCH = 9528;
-    /**
      * @hide
      * Usage value to use for assistant voice interaction with remote caller on Cell and VoIP calls.
      */
@@ -776,9 +772,6 @@ public final class AudioAttributes implements Parcelable {
                 case USAGE_VIRTUAL_SOURCE:
                 case USAGE_ASSISTANT:
                     mUsage = usage;
-                    break;
-                case USAGE_STITCH:
-                    mUsage = USAGE_UNKNOWN;
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid usage " + usage);
