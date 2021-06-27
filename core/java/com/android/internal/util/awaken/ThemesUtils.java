@@ -51,6 +51,7 @@ public class ThemesUtils {
         "com.bootleggers.qstile.neonlike", // 15
         "com.bootleggers.qstile.oos", // 16
         "com.bootleggers.qstile.triangles", // 17
+        "com.android.system.switch.android_s", // 18
     };
 
     public static final String[] STATUSBAR_HEIGHT = {
