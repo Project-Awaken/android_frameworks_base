@@ -192,6 +192,8 @@ import com.android.server.statusbar.StatusBarManagerService;
 import com.android.server.utils.PriorityDump;
 import com.android.server.wm.WindowManagerInternal;
 
+import com.android.internal.awaken.hardware.LineageHardwareManager;
+
 import java.io.FileDescriptor;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -364,6 +366,8 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
     private PendingIntent mImeSwitchPendingIntent;
     private boolean mShowOngoingImeSwitcherForPhones;
     private boolean mNotificationShown;
+
+    private LineageHardwareManager mLineageHardware;
 
     static class SessionState {
         final ClientState client;
@@ -1066,6 +1070,12 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                     Settings.Secure.SHOW_IME_WITH_HARD_KEYBOARD), false, this, userId);
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.ACCESSIBILITY_SOFT_KEYBOARD_MODE), false, this, userId);
+            if (mLineageHardware.isSupported(
+                    LineageHardwareManager.FEATURE_HIGH_TOUCH_POLLING_RATE)) {
+                resolver.registerContentObserver(Settings.System.getUriFor(
+                        Settings.System.HIGH_TOUCH_POLLING_RATE_ENABLE),
+                        false, this, userId);
+            }
             mRegistered = true;
         }
 
@@ -1074,6 +1084,8 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                     Settings.Secure.SHOW_IME_WITH_HARD_KEYBOARD);
             final Uri accessibilityRequestingNoImeUri = Settings.Secure.getUriFor(
                     Settings.Secure.ACCESSIBILITY_SOFT_KEYBOARD_MODE);
+            final Uri highTouchPollingRateUri = Settings.System.getUriFor(
+                    Settings.System.HIGH_TOUCH_POLLING_RATE_ENABLE);
             synchronized (mMethodMap) {
                 if (showImeUri.equals(uri)) {
                     mMenuController.updateKeyboardFromSettingsLocked();
@@ -1094,6 +1106,8 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                                 InputMethodManager.SHOW_IMPLICIT, null,
                                 SoftInputShowHideReason.SHOW_SETTINGS_ON_CHANGE);
                     }
+                } else if (highTouchPollingRateUri.equals(uri)) {
+                    updateTouchPollingRate();
                 } else {
                     boolean enabledChanged = false;
                     String newEnabled = mSettings.getEnabledInputMethodsStr();
@@ -1721,6 +1735,8 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                     mContext.getBasePackageName());
         }
 
+        updateTouchPollingRate();
+
         if (DEBUG) Slog.d(TAG, "Switching user stage 3/3. newUserId=" + newUserId
                 + " selectedIme=" + mSettings.getSelectedInputMethod());
 
@@ -1770,6 +1786,12 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                 final int currentUserId = mSettings.getCurrentUserId();
                 mSettings.switchCurrentUser(currentUserId,
                         !mUserManagerInternal.isUserUnlockingOrUnlocked(currentUserId));
+
+                // Must happen before registerContentObserverLocked
+                mLineageHardware = LineageHardwareManager.getInstance(mContext);
+
+                updateTouchPollingRate();
+
                 mKeyguardManager = mContext.getSystemService(KeyguardManager.class);
                 mNotificationManager = mContext.getSystemService(NotificationManager.class);
                 mStatusBar = statusBar;
@@ -2977,6 +2999,15 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
         // the same enabled IMEs list.
         mSwitchingController.resetCircularListLocked(mContext);
 
+    }
+
+    private void updateTouchPollingRate() {
+        if (!mLineageHardware.isSupported(LineageHardwareManager.FEATURE_HIGH_TOUCH_POLLING_RATE)) {
+            return;
+        }
+        final boolean enabled = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.HIGH_TOUCH_POLLING_RATE_ENABLE, 0) == 1;
+        mLineageHardware.set(LineageHardwareManager.FEATURE_HIGH_TOUCH_POLLING_RATE, enabled);
     }
 
     /* package */ void setInputMethodLocked(String id, int subtypeId) {

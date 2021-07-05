@@ -5917,6 +5917,13 @@ public final class Settings {
         public static final String STATUS_BAR_CLOCK_AUTO_HIDE_SDURATION = "status_bar_clock_auto_hide_sduration";
 
         /**
+         * Whether the HighTouchPollingRate is activated or not.
+         * 0 = off, 1 = on
+         * @hide
+         */
+        public static final String HIGH_TOUCH_POLLING_RATE_ENABLE = "high_touch_polling_rate_enable";
+
+        /**
          * These are all public system settings
          *
          * @hide
@@ -6051,6 +6058,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_AUTO_HIDE);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_AUTO_HIDE_HDURATION);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_AUTO_HIDE_SDURATION);
+            PRIVATE_SETTINGS.add(HIGH_TOUCH_POLLING_RATE_ENABLE);
         }
 
         /**
