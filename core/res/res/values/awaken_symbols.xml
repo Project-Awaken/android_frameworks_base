@@ -48,6 +48,9 @@
     <!-- Device model (Build.MODEL) to spoof for netflix, if not empty -->
     <java-symbol type="string" name="config_netflixSpoofModel" />
 
+    <!-- For dynamic default font styles -->
+    <java-symbol type="string" name="config_bodyFontFamily" />
+
     <!-- Package Manager -->
     <java-symbol type="array" name="config_deviceDisabledComponents" />
     <java-symbol type="array" name="config_globallyDisabledComponents" />
