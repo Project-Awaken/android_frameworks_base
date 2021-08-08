@@ -20,6 +20,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
+    android:paddingBottom="5dp"
     android:gravity="center_horizontal"
     style="@style/widget_big"
     android:textSize="40dp"
