@@ -209,4 +209,7 @@
     <!-- App Lock -->
     <java-symbol type="string" name="lockscreen_pattern_instructions" />
 
+    <!-- Wheter device supports an gaming mode profiles -->
+    <java-symbol type="bool" name="config_gamingmode_performance" />
+
 </resources>
