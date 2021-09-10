@@ -6135,6 +6135,11 @@ public final class Settings {
         public static final String GAMING_MODE_USE_GAME_DRIVER = "gaming_mode_use_game_driver";
 
         /**
+          * @hide
+          */
+        public static final String GAMING_MODE_USE_OVERLAY_MENU = "gaming_mode_use_overlay_menu";
+
+        /**
          * Wether auto brightness is applied one shot when screen is turned on
          */
         public static final String AUTO_BRIGHTNESS_ONE_SHOT = "auto_brightness_one_shot";
