@@ -41,6 +41,7 @@ import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.FalsingManager;
 import com.android.systemui.plugins.qs.QSTile.BooleanState;
 import com.android.systemui.plugins.statusbar.StatusBarStateController;
+import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.logging.QSLogger;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
@@ -61,6 +62,9 @@ public class UsbTetherTile extends QSTileImpl<BooleanState> {
 
     private final TetheringManager mTetheringManager;
 
+    private final ActivityStarter mActivityStarter;
+    private final KeyguardStateController mKeyguard;
+
     private boolean mListening;
 
     private boolean mUsbConnected = false;
@@ -75,11 +79,22 @@ public class UsbTetherTile extends QSTileImpl<BooleanState> {
             MetricsLogger metricsLogger,
             StatusBarStateController statusBarStateController,
             ActivityStarter activityStarter,
-            QSLogger qsLogger
+            QSLogger qsLogger,
+            KeyguardStateController keyguardStateController
     ) {
         super(host, backgroundLooper, mainHandler, falsingManager, metricsLogger,
                 statusBarStateController, activityStarter, qsLogger);
         mTetheringManager = mContext.getSystemService(TetheringManager.class);
+
+        mActivityStarter = activityStarter;
+        mKeyguard = keyguardStateController;
+        final KeyguardStateController.Callback callback = new KeyguardStateController.Callback() {
+            @Override
+            public void onKeyguardShowingChanged() {
+                refreshState();
+            }
+        };
+        mKeyguard.observe(this, callback);
     }
 
     public BooleanState newTileState() {
@@ -101,11 +116,22 @@ public class UsbTetherTile extends QSTileImpl<BooleanState> {
         }
     }
 
-    @Override
-    protected void handleClick(@Nullable View view) {
+    private void handleClickInner(@Nullable View view) {
         if (mUsbConnected) {
             mTetheringManager.setUsbTethering(!mUsbTetherEnabled);
         }
+    }
+
+    @Override
+    protected void handleClick(@Nullable View view) {
+        if (mKeyguard.isMethodSecure() && mKeyguard.isShowing()) {
+            mActivityStarter.postQSRunnableDismissingKeyguard(() -> {
+                mHost.openPanels();
+                handleClickInner(view);
+            });
+            return;
+        }
+        handleClickInner(view);
     }
 
     @Override
