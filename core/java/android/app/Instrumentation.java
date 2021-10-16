@@ -58,6 +58,7 @@ import android.view.WindowManagerGlobal;
 import com.android.internal.content.ReferrerIntent;
 
 import com.android.internal.util.custom.PixelPropsUtils;
+import com.android.internal.gmscompat.GmsHooks;
 
 import java.io.File;
 import java.lang.annotation.Retention;
@@ -1195,6 +1196,7 @@ public class Instrumentation {
         String packageName = app.getPackageName();
         PixelPropsUtils.setProps(packageName);
         PixelPropsUtils.setProps(app.getPackageName());
+        GmsHooks.initApplicationBeforeOnCreate(app);
         return app;
     }
     
@@ -1215,6 +1217,7 @@ public class Instrumentation {
         String packageName = app.getPackageName();
         PixelPropsUtils.setProps(packageName);
         PixelPropsUtils.setProps(app.getPackageName());
+        GmsHooks.initApplicationBeforeOnCreate(app);
         return app;
     }
 
