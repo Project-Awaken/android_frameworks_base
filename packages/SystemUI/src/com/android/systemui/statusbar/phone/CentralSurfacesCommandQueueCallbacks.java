@@ -60,6 +60,7 @@ import com.android.systemui.shade.ShadeViewController;
 import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.disableflags.DisableFlagsLogger;
 import com.android.systemui.statusbar.notification.stack.NotificationStackScrollLayoutController;
+import com.android.systemui.statusbar.policy.FlashlightController;
 import com.android.systemui.statusbar.policy.DeviceProvisionedController;
 import com.android.systemui.statusbar.policy.HeadsUpManager;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
@@ -95,6 +96,7 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
     private final StatusBarHideIconsForBouncerManager mStatusBarHideIconsForBouncerManager;
     private final PowerManager mPowerManager;
     private final Optional<Vibrator> mVibratorOptional;
+    private final FlashlightController mFlashlightController;
     private final DisableFlagsLogger mDisableFlagsLogger;
     private final int mDisplayId;
     private final UserTracker mUserTracker;
@@ -134,6 +136,7 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
             StatusBarHideIconsForBouncerManager statusBarHideIconsForBouncerManager,
             PowerManager powerManager,
             Optional<Vibrator> vibratorOptional,
+            FlashlightController flashlightController,
             DisableFlagsLogger disableFlagsLogger,
             @DisplayId int displayId,
             Lazy<CameraLauncher> cameraLauncherLazy,
@@ -161,6 +164,7 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
         mStatusBarHideIconsForBouncerManager = statusBarHideIconsForBouncerManager;
         mPowerManager = powerManager;
         mVibratorOptional = vibratorOptional;
+        mFlashlightController = flashlightController;
         mDisableFlagsLogger = disableFlagsLogger;
         mDisplayId = displayId;
         mCameraLauncherLazy = cameraLauncherLazy;
@@ -489,6 +493,13 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
             mShadeController.animateCollapseShade();
         } else {
             mShadeController.animateExpandShade();
+        }
+    }
+
+    @Override
+    public void toggleCameraFlash() {
+        if (mFlashlightController.isAvailable()) {
+            mFlashlightController.setFlashlight(!mFlashlightController.isEnabled());
         }
     }
 
