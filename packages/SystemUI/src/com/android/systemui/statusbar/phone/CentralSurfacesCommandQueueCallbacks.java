@@ -65,6 +65,7 @@ import com.android.systemui.statusbar.DisableFlagsLogger;
 import com.android.systemui.statusbar.VibratorHelper;
 import com.android.systemui.statusbar.notification.stack.NotificationStackScrollLayoutController;
 import com.android.systemui.statusbar.phone.dagger.CentralSurfacesComponent;
+import com.android.systemui.statusbar.policy.FlashlightController;
 import com.android.systemui.statusbar.policy.DeviceProvisionedController;
 import com.android.systemui.statusbar.policy.HeadsUpManager;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
@@ -99,6 +100,7 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
     private final PowerManager mPowerManager;
     private final VibratorHelper mVibratorHelper;
     private final Optional<Vibrator> mVibratorOptional;
+    private final FlashlightController mFlashlightController;
     private final DisableFlagsLogger mDisableFlagsLogger;
     private final int mDisplayId;
     private final UserTracker mUserTracker;
@@ -136,6 +138,7 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
             PowerManager powerManager,
             VibratorHelper vibratorHelper,
             Optional<Vibrator> vibratorOptional,
+            FlashlightController flashlightController,
             DisableFlagsLogger disableFlagsLogger,
             @DisplayId int displayId,
             SystemBarAttributesListener systemBarAttributesListener,
@@ -163,6 +166,7 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
         mPowerManager = powerManager;
         mVibratorHelper = vibratorHelper;
         mVibratorOptional = vibratorOptional;
+        mFlashlightController = flashlightController;
         mDisableFlagsLogger = disableFlagsLogger;
         mDisplayId = displayId;
         mCameraLauncherLazy = cameraLauncherLazy;
@@ -560,6 +564,13 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
             mShadeController.animateCollapseShade();
         } else {
             animateExpandNotificationsPanel();
+        }
+    }
+
+    @Override
+    public void toggleCameraFlash() {
+        if (mFlashlightController.isAvailable()) {
+            mFlashlightController.setFlashlight(!mFlashlightController.isEnabled());
         }
     }
 
