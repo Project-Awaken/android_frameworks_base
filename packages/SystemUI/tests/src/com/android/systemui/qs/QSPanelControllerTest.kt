@@ -67,7 +67,7 @@ class QSPanelControllerTest : SysuiTestCase() {
         MockitoAnnotations.initMocks(this)
 
         whenever(brightnessSliderFactory.create(any(), any())).thenReturn(brightnessSlider)
-        whenever(brightnessControllerFactory.create(any())).thenReturn(brightnessController)
+        whenever(brightnessControllerFactory.create(any(), any())).thenReturn(brightnessController)
         setShouldUseSplitShade(false)
         whenever(qsPanel.resources).thenReturn(testableResources.resources)
         whenever(qsPanel.getOrCreateTileLayout()).thenReturn(pagedTileLayout)

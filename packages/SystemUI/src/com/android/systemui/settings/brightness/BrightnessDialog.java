@@ -19,6 +19,7 @@ package com.android.systemui.settings.brightness;
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static android.view.WindowManagerPolicyConstants.EXTRA_FROM_BRIGHTNESS_KEY;
+import static com.android.systemui.qs.QSPanel.QS_SHOW_AUTO_BRIGHTNESS_BUTTON;
 
 import android.app.Activity;
 import android.graphics.Rect;
@@ -31,21 +32,25 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
+import com.android.systemui.Dependency;
 import com.android.systemui.R;
 import com.android.systemui.dagger.qualifiers.Main;
 import com.android.systemui.statusbar.policy.AccessibilityManagerWrapper;
 import com.android.systemui.util.concurrency.DelayableExecutor;
+import com.android.systemui.tuner.TunerService;
+import com.android.systemui.tuner.TunerService.Tunable;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
 /** A dialog that provides controls for adjusting the screen brightness. */
-public class BrightnessDialog extends Activity {
+public class BrightnessDialog extends Activity implements Tunable {
 
     @VisibleForTesting
     static final int DIALOG_TIMEOUT_MILLIS = 3000;
@@ -56,6 +61,9 @@ public class BrightnessDialog extends Activity {
     private final DelayableExecutor mMainExecutor;
     private final AccessibilityManagerWrapper mAccessibilityMgr;
     private Runnable mCancelTimeoutRunnable;
+
+    private ImageView mAutoBrightnessIcon;
+    private boolean mShowAutoBrightnessButton;
 
     @Inject
     public BrightnessDialog(
@@ -112,7 +120,12 @@ public class BrightnessDialog extends Activity {
         controller.init();
         frame.addView(controller.getRootView(), MATCH_PARENT, WRAP_CONTENT);
 
-        mBrightnessController = mBrightnessControllerFactory.create(controller);
+        mAutoBrightnessIcon = controller.getIconView();
+        mShowAutoBrightnessButton = Dependency.get(TunerService.class).getValue(
+                QS_SHOW_AUTO_BRIGHTNESS_BUTTON, 1) == 1;
+        mAutoBrightnessIcon.setVisibility(!mShowAutoBrightnessButton
+                ? View.GONE : View.VISIBLE);
+        mBrightnessController = mBrightnessControllerFactory.create(mAutoBrightnessIcon, controller);
     }
 
     @Override
@@ -120,6 +133,7 @@ public class BrightnessDialog extends Activity {
         super.onStart();
         mBrightnessController.registerCallbacks();
         MetricsLogger.visible(this, MetricsEvent.BRIGHTNESS_DIALOG);
+        Dependency.get(TunerService.class).addTunable(this, QS_SHOW_AUTO_BRIGHTNESS_BUTTON);
     }
 
     @Override
@@ -141,6 +155,7 @@ public class BrightnessDialog extends Activity {
         super.onStop();
         MetricsLogger.hidden(this, MetricsEvent.BRIGHTNESS_DIALOG);
         mBrightnessController.unregisterCallbacks();
+        Dependency.get(TunerService.class).removeTunable(this);
     }
 
     @Override
@@ -168,5 +183,17 @@ public class BrightnessDialog extends Activity {
         final int timeout = mAccessibilityMgr.getRecommendedTimeoutMillis(DIALOG_TIMEOUT_MILLIS,
                 AccessibilityManager.FLAG_CONTENT_CONTROLS);
         mCancelTimeoutRunnable = mMainExecutor.executeDelayed(this::finish, timeout);
+    }
+
+    @Override
+    public void onTuningChanged(String key, String newValue) {
+        if (QS_SHOW_AUTO_BRIGHTNESS_BUTTON.equals(key)) {
+            if (mAutoBrightnessIcon != null) {
+                mShowAutoBrightnessButton = (newValue == null
+                        || Integer.parseInt(newValue) == 0) ? false : true;
+                mAutoBrightnessIcon.setVisibility(!mShowAutoBrightnessButton
+                        ? View.GONE : View.VISIBLE);
+            }
+        }
     }
 }
