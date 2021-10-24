@@ -40,4 +40,7 @@
 
     <!-- Margin on the right side of the center clock -->
     <dimen name="status_bar_center_clock_padding_end">0dp</dimen>
+
+    <!-- QQS Brightness slider -->
+    <dimen name="quick_qs_brightness_margin_top">24dp</dimen>
 </resources>
