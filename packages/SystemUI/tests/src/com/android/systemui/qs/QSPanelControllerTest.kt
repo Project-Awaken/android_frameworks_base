@@ -62,7 +62,7 @@ class QSPanelControllerTest : SysuiTestCase() {
         MockitoAnnotations.initMocks(this)
 
         whenever(brightnessSliderFactory.create(any(), any())).thenReturn(brightnessSlider)
-        whenever(brightnessControllerFactory.create(any())).thenReturn(brightnessController)
+        whenever(brightnessControllerFactory.create(any(), any())).thenReturn(brightnessController)
         whenever(qsPanel.resources).thenReturn(mContext.orCreateTestableResources.resources)
         whenever(statusBarKeyguardViewManager.isBouncerInTransit()).thenReturn(false)
         whenever(qsPanel.setListening(anyBoolean())).then {
