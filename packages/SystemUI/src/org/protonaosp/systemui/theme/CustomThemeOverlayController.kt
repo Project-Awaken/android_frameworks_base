@@ -76,9 +76,9 @@ class CustomThemeOverlayController @Inject constructor(
     private val secureSettings: SecureSettings,
     wallpaperManager: WallpaperManager,
     userManager: UserManager,
+    dumpManager: DumpManager,
     deviceProvisionedController: DeviceProvisionedController,
     userTracker: UserTracker,
-    dumpManager: DumpManager,
     featureFlags: FeatureFlags,
     wakefulnessLifecycle: WakefulnessLifecycle,
 ) : ThemeOverlayController(
@@ -91,9 +91,9 @@ class CustomThemeOverlayController @Inject constructor(
     secureSettings,
     wallpaperManager,
     userManager,
+    dumpManager,
     deviceProvisionedController,
     userTracker,
-    dumpManager,
     featureFlags,
     wakefulnessLifecycle,
 ) {
