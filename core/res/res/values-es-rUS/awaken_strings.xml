@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2020 Project-Awaken
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="aerr_copy">Copiar la URL del registro de fallos</string>
+    <string name="url_copy_success">URL copiada correctamente</string>
+    <string name="url_copy_failed">Ocurrió un error al cargar el registro en Memochō</string>
+
+    
+    <string name="permlab_fakePackageSignature">Simulación de firma de paquete</string>
+
+    
+    <string name="permdesc_fakePackageSignature">Permite que la aplicación simule ser una aplicación diferente. Las aplicaciones malintencionadas pueden utilizar esto para acceder a datos de aplicaciones privadas. Los usos legítimos incluyen un emulador que pretende ser lo que emula. ¡Concede este permiso solo con precaución!</string>
+
+    
+    <string name="permgrouplab_fake_package_signature">Simulación de firma de paquete</string>
+
+    
+    <string name="permgroupdesc_fake_package_signature">permitir falsificar la firma del paquete</string>
+
+    
+    <string name="permgrouprequest_fake_package_signature">Permitir
+        &lt;b><xliff:g id="app_name" example="Gmail">%1$s</xliff:g>&lt;/b> simular firma de paquete?</string>
+
+    
+    <string name="system_error_vendorprint">Su imagen de vendor no coincide con system. Por favor instale el vendor <xliff:g id="string">%s</xliff:g> para su dispositivo</string>
+
+    
+    <string name="reboot_to_bootloader_title">Reiniciar en bootloader</string>
+    <string name="reboot_to_bootloader_message">Reiniciando en bootloader\u2026</string>
+    <string name="reboot_to_recovery_title">Reiniciar en recovery</string>
+    <string name="reboot_to_recovery_message">Reiniciando en recovery\u2026</string>
+    <string name="reboot_system_title">Reiniciar el sistema</string>
+    <string name="reboot_system_message">Reiniciando el sistema\u2026</string>
+</resources>
