@@ -5415,6 +5415,11 @@ public final class Settings {
         public static final String VIBRATE_ON_DISCONNECT = "vibrate_on_disconnect";
 
         /**
+         * @hide
+         */
+        public static final String WFD_LEGACY_VIDEO_MODE = "wfd_legacy_video_mode";
+
+        /**
          * Whether to display 4G icon instead LTE
          * @hide
          */
