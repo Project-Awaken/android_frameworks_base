@@ -10570,6 +10570,12 @@ public final class Settings {
                 "device_state_rotation_lock";
 
         /**
+         * @hide
+         */
+        @Readable
+        public static final String SHOW_COMBINED_STATUS_BAR_SIGNAL_ICONS = "show_combined_status_bar_signal_icons";
+
+        /**
          * These entries are considered common between the personal and the managed profile,
          * since the managed profile doesn't get to change them.
          */

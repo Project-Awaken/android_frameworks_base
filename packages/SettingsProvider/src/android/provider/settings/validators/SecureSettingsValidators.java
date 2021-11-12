@@ -318,5 +318,6 @@ public class SecureSettingsValidators {
             return true;
         });
         VALIDATORS.put(Secure.VOLUME_LINK_NOTIFICATION, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(Secure.SHOW_COMBINED_STATUS_BAR_SIGNAL_ICONS, BOOLEAN_VALIDATOR);
     }
 }
