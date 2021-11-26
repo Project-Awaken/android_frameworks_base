@@ -244,5 +244,8 @@ public class SecureSettings {
         Settings.Secure.SEARCH_PRESS_HOLD_NAV_HANDLE_ENABLED,
         Settings.Secure.SEARCH_LONG_PRESS_HOME_ENABLED,
         Settings.Secure.TETHERING_ALLOW_VPN_UPSTREAMS,
+        Settings.Secure.QS_SHOW_BRIGHTNESS,
+        Settings.Secure.QS_BRIGHTNESS_POSITION_BOTTOM,
+        Settings.Secure.QS_SHOW_AUTO_BRIGHTNESS_BUTTON,
     };
 }
