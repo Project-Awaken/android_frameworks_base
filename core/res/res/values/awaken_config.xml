@@ -73,4 +73,7 @@
      <bool name="config_proximityCheckOnWake">false</bool>
      <integer name="config_proximityCheckTimeout">250</integer>
      <bool name="config_proximityCheckOnWakeEnabledByDefault">false</bool>
+
+    <!-- Whether to cleanup fingerprints upon connection to the daemon and when user switches -->
+    <bool name="config_cleanupUnusedFingerprints">true</bool>
 </resources>
