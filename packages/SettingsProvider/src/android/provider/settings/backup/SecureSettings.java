@@ -259,5 +259,8 @@ public class SecureSettings {
         Settings.Secure.EVEN_DIMMER_ACTIVATED,
         Settings.Secure.EVEN_DIMMER_MIN_NITS,
         Settings.Secure.TETHERING_ALLOW_VPN_UPSTREAMS,
+        Settings.Secure.QS_SHOW_BRIGHTNESS,
+        Settings.Secure.QS_BRIGHTNESS_POSITION_BOTTOM,
+        Settings.Secure.QS_SHOW_AUTO_BRIGHTNESS_BUTTON,
     };
 }
