@@ -20,11 +20,17 @@ import static com.android.systemui.util.Utils.useQsMediaPlayer;
 
 import android.annotation.NonNull;
 import android.annotation.Nullable;
+import android.database.ContentObserver;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.ArrayMap;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -40,25 +46,19 @@ import androidx.annotation.VisibleForTesting;
 
 import com.android.internal.logging.UiEventLogger;
 import com.android.internal.widget.RemeasuringLinearLayout;
-import com.android.systemui.Dependency;
 import com.android.systemui.R;
 import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.qs.logging.QSLogger;
 import com.android.systemui.settings.brightness.BrightnessSliderController;
-import com.android.systemui.tuner.TunerService;
-import com.android.systemui.tuner.TunerService.Tunable;
 
 import java.lang.Runnable;
 import java.util.ArrayList;
 import java.util.List;
 
 /** View that represents the quick settings tile panel (when expanded/pulled down). **/
-public class QSPanel extends LinearLayout implements Tunable {
+public class QSPanel extends LinearLayout {
 
-    public static final String QS_SHOW_BRIGHTNESS = "qs_show_brightness";
     public static final String QS_SHOW_HEADER = "qs_show_header";
-    public static final String QS_BRIGHTNESS_POSITION_BOTTOM = "qs_brightness_position_bottom";
-    public static final String QS_SHOW_AUTO_BRIGHTNESS_BUTTON = "qs_show_auto_brightness_button";
 
     private static final String TAG = "QSPanel";
 
@@ -79,7 +79,6 @@ public class QSPanel extends LinearLayout implements Tunable {
     protected BrightnessSliderController mToggleSliderController;
 
     protected ImageView mAutoBrightnessIcon;
-    protected boolean mShowAutoBrightnessButton;
     protected Runnable mBrightnessRunnable;
 
     protected boolean mTop;
@@ -120,6 +119,71 @@ public class QSPanel extends LinearLayout implements Tunable {
      * false. It influences available accessibility actions.
      */
     private boolean mCanCollapse = true;
+
+    private final CustomSettingsObserver mCustomSettingsObserver = new CustomSettingsObserver();
+    private class CustomSettingsObserver extends ContentObserver {
+        CustomSettingsObserver() {
+            super(new Handler(Looper.getMainLooper()));
+        }
+
+        void observe() {
+            mContext.getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
+                    Settings.Secure.QS_SHOW_BRIGHTNESS),
+                    false, this, UserHandle.USER_ALL);
+            mContext.getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
+                    Settings.Secure.QS_BRIGHTNESS_POSITION_BOTTOM),
+                    false, this, UserHandle.USER_ALL);
+            mContext.getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
+                    Settings.Secure.QS_SHOW_AUTO_BRIGHTNESS_BUTTON),
+                    false, this, UserHandle.USER_ALL);
+        }
+
+        void stop() {
+            mContext.getContentResolver().unregisterContentObserver(this);
+        }
+
+        void update() {
+            updateShowBrightness();
+            updateBrightnessPosition();
+            updateShowBrightnessIcon();
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            switch (uri.getLastPathSegment()) {
+                case Settings.Secure.QS_SHOW_BRIGHTNESS:
+                    updateShowBrightness();
+                    break;
+                case Settings.Secure.QS_BRIGHTNESS_POSITION_BOTTOM:
+                    updateBrightnessPosition();
+                    break;
+                case Settings.Secure.QS_SHOW_AUTO_BRIGHTNESS_BUTTON:
+                    updateShowBrightnessIcon();
+                    break;
+            }
+        }
+
+        private void updateShowBrightness() {
+            if (mBrightnessView == null) return;
+            boolean show = Settings.Secure.getInt(mContext.getContentResolver(),
+                    Settings.Secure.QS_SHOW_BRIGHTNESS, 1) == 1;
+            mBrightnessView.setVisibility(show ? View.VISIBLE : View.GONE);
+        }
+
+        private void updateBrightnessPosition() {
+            boolean bottom = Settings.Secure.getInt(mContext.getContentResolver(),
+                    Settings.Secure.QS_BRIGHTNESS_POSITION_BOTTOM, 0) == 1;
+            setBrightnessPosition(bottom);
+        }
+
+        private void updateShowBrightnessIcon() {
+            if (mAutoBrightnessIcon == null) return;
+            boolean showIcon = Settings.Secure.getInt(mContext.getContentResolver(),
+                    Settings.Secure.QS_SHOW_AUTO_BRIGHTNESS_BUTTON, 1) == 1;
+            mAutoBrightnessIcon.setVisibility(
+                    showIcon ? View.VISIBLE : View.GONE);
+        }
+    }
 
     public QSPanel(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -197,7 +261,7 @@ public class QSPanel extends LinearLayout implements Tunable {
         mAutoBrightnessIcon = view.findViewById(R.id.brightness_icon);
         setBrightnessViewMargin(true);
         mMovableContentStartIndex++;
-
+        mCustomSettingsObserver.update();
     }
 
     public void setBrightnessViewMargin(boolean top) {
@@ -241,6 +305,19 @@ public class QSPanel extends LinearLayout implements Tunable {
             return;
         }
         updateViewPositions();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        mCustomSettingsObserver.observe();
+        mCustomSettingsObserver.update();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        mCustomSettingsObserver.stop();
+        super.onDetachedFromWindow();
     }
 
     @Override
@@ -335,37 +412,9 @@ public class QSPanel extends LinearLayout implements Tunable {
         return TAG;
     }
 
-    @Override
-    public void onTuningChanged(String key, String newValue) {
-        if (QS_SHOW_BRIGHTNESS.equals(key) && mBrightnessView != null) {
-            updateViewVisibilityForTuningValue(mBrightnessView, newValue);
-        }
-        if (QS_BRIGHTNESS_POSITION_BOTTOM.equals(key)) {
-            mTop = newValue == null || Integer.parseInt(newValue) == 0;
-            removeView(mBrightnessView);
-            addView(mBrightnessView, mTop ? 0 : 1);
-            setBrightnessViewMargin(mTop);
-            if (mBrightnessRunnable != null) {
-                mBrightnessRunnable.run();
-            }
-        }
-
-        if (QS_SHOW_AUTO_BRIGHTNESS_BUTTON.equals(key)) {
-            mShowAutoBrightnessButton = newValue == null
-                    || Integer.parseInt(newValue) == 1;
-            mAutoBrightnessIcon.setVisibility(
-                    mShowAutoBrightnessButton ? View.VISIBLE : View.GONE);
-        }
-    }
-
     public void setBrightnessRunnable(Runnable runnable) {
         mBrightnessRunnable = runnable;
     }
-
-    private void updateViewVisibilityForTuningValue(View view, @Nullable String newValue) {
-        view.setVisibility(TunerService.parseIntegerSwitch(newValue, true) ? VISIBLE : GONE);
-    }
-
 
     @Nullable
     View getBrightnessView() {
@@ -444,6 +493,15 @@ public class QSPanel extends LinearLayout implements Tunable {
         }
     }
 
+    private void setBrightnessPosition(boolean bottom) {
+        mTop = !bottom;
+        if (mBrightnessView == null) return;
+        removeView(mBrightnessView);
+        addView(mBrightnessView, mTop ? 0 : 1);
+        setBrightnessViewMargin(mTop);
+        if (mBrightnessRunnable != null) mBrightnessRunnable.run();
+    }
+
     /**
      * @return true if the margin bottom of the media view should be on the media host or false
      *         if they should be on the HorizontalLinearLayout. Returning {@code false} is useful
@@ -473,13 +531,13 @@ public class QSPanel extends LinearLayout implements Tunable {
         index++;
 
         if (mBrightnessView != null) {
-            boolean bottom = Dependency.get(TunerService.class).getValue(
-                    QS_BRIGHTNESS_POSITION_BOTTOM, 0) == 1;
+            boolean bottom = Settings.Secure.getInt(mContext.getContentResolver(),
+                    Settings.Secure.QS_BRIGHTNESS_POSITION_BOTTOM, 0) == 1;
             if (!mUsingHorizontalLayout) {
                 switchToParent(mBrightnessView, parent, bottom ? index : 0);
                 index++;
             } else {
-                onTuningChanged(QS_BRIGHTNESS_POSITION_BOTTOM, bottom ? "1" : "0");
+                setBrightnessPosition(bottom);
             }
         }
 
