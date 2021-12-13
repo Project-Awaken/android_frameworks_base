@@ -194,5 +194,8 @@ public class SecureSettings {
         Settings.Secure.LOCKSCREEN_USE_DOUBLE_LINE_CLOCK,
         Settings.Secure.SHOW_COMBINED_STATUS_BAR_SIGNAL_ICONS,
         Settings.Secure.GESTURE_NAVBAR_LENGTH_MODE,
+        Settings.Secure.QS_SHOW_BRIGHTNESS,
+        Settings.Secure.QS_BRIGHTNESS_POSITION_BOTTOM,
+        Settings.Secure.QS_SHOW_AUTO_BRIGHTNESS_BUTTON,
     };
 }
