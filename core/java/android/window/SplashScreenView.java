@@ -84,7 +84,7 @@ import java.util.function.Consumer;
  */
 public final class SplashScreenView extends FrameLayout {
     private static final String TAG = SplashScreenView.class.getSimpleName();
-    private static final boolean DEBUG = Build.IS_DEBUGGABLE;
+    private static final boolean DEBUG = Build.IS_ENG;
 
     private static final int LIGHT_BARS_MASK =
             WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS

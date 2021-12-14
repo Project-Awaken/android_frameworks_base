@@ -92,7 +92,7 @@ public class WindowTokenClient extends IWindowToken.Stub {
         }
         mContextRef = new WeakReference<>(context);
         mConfiguration.setTo(context.getResources().getConfiguration());
-        mShouldDumpConfigForIme = Build.IS_DEBUGGABLE
+        mShouldDumpConfigForIme = Build.IS_ENG
                 && context instanceof AbstractInputMethodService;
     }
 
