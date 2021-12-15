@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright (c) 2009, The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Caffeine QS Tile -->
+    <string name="quick_settings_caffeine_label">Caffeina</string>
+    <string name="quick_settings_caffeine_label_off">Off</string>
+    <string name="accessibility_quick_settings_caffeine_off">Caffeina off</string>
+    <string name="accessibility_quick_settings_caffeine_on">Caffeina on</string>
+
+    <!-- Ambient display QS tile -->
+    <string name="quick_settings_ambient_display_label">Display ambient</string>
+    <string name="accessibility_quick_settings_ambient_display_off">Display ambient off.</string>
+    <string name="accessibility_quick_settings_ambient_display_on">Display ambient on.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Display ambient spento.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Display ambient acceso.</string>
+
+    <!-- USB tethering QS tile -->
+    <string name="quick_settings_usb_tether_label">Tethering USB</string>
+
+    <!-- Heads Up QS Tile -->
+    <string name="quick_settings_heads_up_label">Heads up</string>
+    <string name="accessibility_quick_settings_heads_up_off">Heads up off.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Heads up on.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Heads up spente.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Heads up accese.</string>
+
+    <!-- Power Menu -->
+    <string name="global_action_reboot">Riavvia</string>
+    <string name="global_action_reboot_more">Riavvia\u2026</string>
+    <string name="global_action_reboot_sub">Sistema</string>
+    <string name="global_action_reboot_recovery">Recovery</string>
+    <string name="global_action_reboot_bootloader">Bootloader</string>
+    <string name="global_action_reboot_systemui">UI Sistema</string>
+    <string name="global_action_settings">Impostazioni</string>
+
+    <!-- Label for UI element which allows deleting the screenshot [CHAR LIMIT=30] -->
+    <string name="screenshot_delete_label">Elimina</string>
+
+    <!-- Content description indicating that tapping the element will allow deleting the screenshot [CHAR LIMIT=NONE] -->
+    <string name="screenshot_delete_description">Elimina screenshot</string>
+
+    <!-- Screenshot QS tile -->
+    <string name="quick_settings_screenshot_label">Screenshot</string>
+    <string name="quick_settings_region_screenshot_label">Screenshot parziale</string>
+
+     <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">Sincronizzazione</string>
+    <string name="accessibility_quick_settings_sync_off">Sincronizzazione off</string>
+    <string name="accessibility_quick_settings_sync_on">Sincronizzazione on</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Sincronizzazione spenta</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Sincronizzazione accesa</string>
+
+    <!-- Sound QS Tile -->
+    <string name="quick_settings_sound_label">Suono</string>
+    <string name="quick_settings_sound_ring">Suona</string>
+    <string name="quick_settings_sound_vibrate">Vibra</string>
+    <string name="quick_settings_sound_dnd">Non disturbare</string>
+
+    <!-- Statusbar tuner -->
+    <string name="statusbar_items_title">Icone della barra di stato</string>
+
+    <!-- Name of the VPN status bar icon. -->
+    <string name="status_bar_vpn">VPN</string>
+
+    <!-- Compass QS Tile -->
+    <string name="quick_settings_compass_label">Bussola</string>
+    <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+    <string name="quick_settings_compass_init">Inizializzo\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Bussola off</string>
+    <string name="accessibility_quick_settings_compass_on">Bussola on</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Bussola spenta</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Bussola acces</string>
+    <string name="quick_settings_compass_N">N</string>
+    <string name="quick_settings_compass_NE">NE</string>
+    <string name="quick_settings_compass_E">E</string>
+    <string name="quick_settings_compass_SE">SE</string>
+    <string name="quick_settings_compass_S">S</string>
+    <string name="quick_settings_compass_SW">SW</string>
+    <string name="quick_settings_compass_W">W</string>
+    <string name="quick_settings_compass_NW">NW</string>
+
+    <!-- Screen record -->
+    <string name="screenrecord_stopdot_label">Mostra un punto per arrestare\nLongpress to move it</string>
+    <string name="screenrecord_lowquality_label">Qualità minore per risparmiare spazio di archiviazione</string>
+    <string name="screenrecord_longer_timeout_switch_label">Limita la dimensione massima\nLimita la dimensione della registrazione a 15GiB</string>
+
+    <!-- DataSwitch Tile -->
+    <string name="qs_data_switch_label">Cambia SIM per i dati</string>
+    <string name="qs_data_switch_toast_0">Nessuna sim inserita</string>
+    <string name="qs_data_switch_toast_1">Al momento è inserita una sola SIM</string>
+    <string name="qs_data_switch_changed_1">Uso la SIM 1 per i dati</string>
+    <string name="qs_data_switch_changed_2">Using SIM 2 per i dati</string>
+
+    <!-- CPUInfo tile -->
+    <string name="quick_settings_cpuinfo_label">Informazioni CPU</string>
+    <string name="accessibility_quick_settings_cpuinfo_off">Informazioni CPU off</string>
+    <string name="accessibility_quick_settings_cpuinfo_on">Informazioni CPU on</string>
+    <string name="accessibility_quick_settings_cpuinfo_changed_off">Informazioni CPU spente</string>
+    <string name="accessibility_quick_settings_cpuinfo_changed_on">Informazioni CPU attive</string>
+
+    <!-- FPS Info tile -->
+    <string name="quick_settings_fpsinfo_label">Informazioni FPS</string>
+    <string name="accessibility_quick_settings_fpsinfo_off">Informazioni FPS spente</string>
+    <string name="accessibility_quick_settings_fpsinfo_on">Informazioni FPS attive</string>
+
+    <!-- VPN QS tile -->
+    <string name="quick_settings_vpn_label">VPN</string>
+    <string name="quick_settings_vpn_connect_dialog_title">Connetti a\u2026</string>
+    <string name="vpn_credentials_hint">Inserisci le tue credenziali per connetterti a <xliff:g id="name">%s</xliff:g></string>
+    <string name="vpn_credentials_username">Username</string>
+    <string name="vpn_credentials_password">Password</string>
+    <string name="vpn_credentials_dialog_connect">Connetti</string>
+
+    <!-- Poweroff/Reboot/Recovery QS tile -->
+    <string name="quick_settings_poweroff_label">Spegnimento</string>
+    <string name="quick_settings_reboot_label">Riavvia</string>
+    <string name="quick_settings_reboot_recovery_label">Recovery</string>
+
+    <!-- Mono QS Tile -->
+    <string name="quick_settings_monotoggle_tile">Modalità audio</string>
+    <string name="quick_settings_monotoggle_tile_mono">Audio mono</string>
+    <string name="quick_settings_monotoggle_tile_stereo">Audio stereo</string>
+</resources>
