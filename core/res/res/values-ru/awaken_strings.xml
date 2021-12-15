@@ -43,4 +43,16 @@
     <string name="reboot_to_recovery_message">Перезагрузка в рекавери\u2026</string>
     <string name="reboot_system_title">Перезапуск системы</string>
     <string name="reboot_system_message">Перезапуск системы\u2026</string>
+     
+    <!-- Cycle through ringer modes -->
+    <string name="volume_dialog_ringer_guidance_normal">Для звонков и уведомлений включен звуковой сигнал</string>
+
+    <!-- Pocket Lock -->
+    <string name="pocket_lock_message_long_press">Нажмите и удерживайте кнопку питания для разблокировки</string>
+
+    <!-- Pocket View -->
+    <string name="pocket_view_title">Карманный режим включен</string>
+    <string name="pocket_view_title_cancel">Чтобы активировать ваш телефон:</string>
+    <string name="pocket_view_top_tag_cancel">Не закрывайте синюю часть Вашего телефона и удалите любые загрязнения или пыль на этой синей части.</string>
+    <string name="pocket_view_top_tag_cancel2">Длительно удерживайте кнопку питания для принудительного выхода из карманного режима.</string>
 </resources>
