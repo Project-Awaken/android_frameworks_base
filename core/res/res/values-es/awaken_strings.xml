@@ -45,4 +45,13 @@
     <string name="reboot_to_recovery_message">Reiniciando en recovery\u2026</string>
     <string name="reboot_system_title">Reiniciar el sistema</string>
     <string name="reboot_system_message">Reiniciando el sistema\u2026</string>
+
+    <string name="volume_dialog_ringer_guidance_normal">Las llamadas y notificaciones sonarán</string>
+
+    <string name="pocket_lock_message_long_press">Pulsar y mantener botón de encendido para desbloquear</string>
+
+    <string name="pocket_view_title">Modo bolsillo encendido</string>
+    <string name="pocket_view_title_cancel">Para usar tu teléfono:</string>
+    <string name="pocket_view_top_tag_cancel">Comprueba que el área azul esté limpia y limpia cualquier suciedad o polvo.</string>
+    <string name="pocket_view_top_tag_cancel2">Pulsación larga del botón de encendido para abandonar el modo bolsillo.</string>
 </resources>
