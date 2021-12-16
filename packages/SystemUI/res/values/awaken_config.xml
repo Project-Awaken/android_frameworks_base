@@ -64,4 +64,7 @@
     <!-- StatusBar burn-in protection -->
     <bool name="config_disableStatusBarBurnInProtection">false</bool>
     <integer name="config_shift_interval">60</integer>
+
+    <!-- SystemUI Google -->
+    <bool name="flag_smartspace">true</bool>
 </resources>
