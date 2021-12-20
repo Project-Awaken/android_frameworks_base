@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2020 Project-Awaken
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+          http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Button that copies the url to the log of a crashed application -->
+    <string name="aerr_copy">Скопіювати URL журналу помилок</string>
+    <string name="url_copy_success">URL успішно скопійований</string>
+    <string name="url_copy_failed">Сталася помилка при завантаженні журналу в Memochō</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_fakePackageSignature">Підміна підпису програм</string>
+
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_fakePackageSignature">Дозволяє застосунку видавати себе за інший застосунок. Шкідливі застосунки можуть використовувати це для доступу до даних приватного застосунку. Законне використання включає емулятор, що вдає, що він імітує. Надайте цей дозвіл лише з обережністю!</string>
+
+    <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permgrouplab_fake_package_signature">Підміна підпису застосунків</string>
+
+    <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permgroupdesc_fake_package_signature">Дозволити підпису підпису</string>
+
+    <!-- Message shown to the user when the apps requests permission from this group. If ever possible this should stay below 80 characters (assuming the parameters takes 20 characters). Don't abbreviate until the message reaches 120 characters though. [CHAR LIMIT=120] -->
+    <string name="permgrouprequest_fake_package_signature">Дозволити
+        &lt;b><xliff:g id="app_name" example="Gmail">%1$s</xliff:g>&lt;/b> Підмінити підпис пакету?</string>
+
+    <!-- Vendor mismatch fingerprint warning [CHAR LIMIT=NONE] -->
+    <string name="system_error_vendorprint">Ваш образ вендора не відповідає системі. Будь ласка, прошийте <xliff:g id="string">%s</xliff:g> образ вендора для вашого пристрою</string>
+
+    <!-- Global actions -->
+    <string name="reboot_to_bootloader_title">Перезавантаження у завантажувач</string>
+    <string name="reboot_to_bootloader_message">Перезавантаження у завантажувач\u2026</string>
+    <string name="reboot_to_recovery_title">Перезавантаження у рекавері</string>
+    <string name="reboot_to_recovery_message">Перезавантаження у рекавері\u2026</string>
+    <string name="reboot_system_title">Перезавантаження системи</string>
+    <string name="reboot_system_message">Перезавантаження системи\u2026</string>
+	
+	<!-- Cycle through ringer modes -->
+    <string name="volume_dialog_ringer_guidance_normal">Для дзвінків і сповіщень увімкнено звуковий сигнал</string>
+
+    <!-- Pocket Lock -->
+    <string name="pocket_lock_message_long_press">Натисніть і утримуйте кнопку живлення для розблокування</string>
+
+    <!-- Pocket View -->
+    <string name="pocket_view_title">Кишеньковий режим увімкнений</string>
+    <string name="pocket_view_title_cancel">Щоб активувати ваш телефон:</string>
+    <string name="pocket_view_top_tag_cancel">Не закривайте синю частину Вашого телефону і видаліть будь-які забруднення або пил на цій синій частині.</string>
+    <string name="pocket_view_top_tag_cancel2">Довго утримуйте кнопку живлення для примусового виходу із кишенькового режиму.</string>
+</resources>
