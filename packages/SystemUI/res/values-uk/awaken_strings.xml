@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright (c) 2009, The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Caffeine QS Tile -->
+    <string name="quick_settings_caffeine_label">Заборона сну</string>
+    <string name="accessibility_quick_settings_caffeine_off">Заборона сну вимкн.</string>
+    <string name="accessibility_quick_settings_caffeine_on">Заборона сну увімк.</string>
+
+    <!-- Ambient display QS tile -->
+    <string name="quick_settings_ambient_display_label">Індикація подій</string>
+    <string name="accessibility_quick_settings_ambient_display_off">Індикація подій вимкн.</string>
+    <string name="accessibility_quick_settings_ambient_display_on">Індикація подій увімк..</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Індикація подій вимкнена.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Індикація подій увімкнена.</string>
+
+    <!-- USB tethering QS tile -->
+    <string name="quick_settings_usb_tether_label">Точка доступу USB</string>
+
+    <!-- Heads Up QS Tile -->
+    <string name="quick_settings_heads_up_label">Спливаючі сповіщення</string>
+    <string name="accessibility_quick_settings_heads_up_off">Спливаючі сповіщення вимкнені.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Спливаючі сповіщення дозволені.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Спливаючі сповіщення вимкнені.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Спливаючі сповіщення увімкнені.</string>
+
+    <!-- Power Menu -->
+    <string name="global_action_reboot">Перезавантаження</string>
+    <string name="global_action_reboot_more">Перезавантаження\u2026</string>
+    <string name="global_action_reboot_sub">Система</string>
+    <string name="global_action_reboot_recovery">Рекавері</string>
+    <string name="global_action_reboot_bootloader">Завантажувач</string>
+    <string name="global_action_settings">Налаштування</string>
+
+    <!-- Label for UI element which allows deleting the screenshot [CHAR LIMIT=30] -->
+    <string name="screenshot_delete_label">Видалити</string>
+
+    <!-- Content description indicating that tapping the element will allow deleting the screenshot [CHAR LIMIT=NONE] -->
+    <string name="screenshot_delete_description">Видалити знімок екрана</string>
+
+    <!-- Screenshot QS tile -->
+    <string name="quick_settings_screenshot_label">Знімок екрана</string>
+    <string name="quick_settings_region_screenshot_label">Частковий знімок екрана</string>
+
+    <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">Синхронізація</string>
+    <string name="accessibility_quick_settings_sync_off">Синхронізація вимкн..</string>
+    <string name="accessibility_quick_settings_sync_on">Синхронізація увімк.</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Синхронізація вимкнена.</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Синхронізація увімкнена.</string>
+
+    <!-- Sound QS Tile -->
+    <string name="quick_settings_sound_label">Звук</string>
+    <string name="quick_settings_sound_ring">Рингтон</string>
+    <string name="quick_settings_sound_vibrate">Тільки вібрація</string>
+    <string name="quick_settings_sound_dnd">Не турбувати</string>
+	
+	<!-- Statusbar tuner -->
+    <string name="statusbar_items_title">Значки рядка стану</string>
+
+    <!-- Name of the VPN status bar icon. -->
+    <string name="status_bar_vpn">VPN</string>
+
+    <!-- Compass QS Tile -->
+   <string name="quick_settings_compass_label">Компас</string>
+    <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+    <string name="quick_settings_compass_init">Ініціалізація\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Компас вимкн..</string>
+    <string name="accessibility_quick_settings_compass_on">Компас увімк.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Компас вимкнений</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Компас увімкнений</string>
+    <string name="quick_settings_compass_N">Пн</string>
+    <string name="quick_settings_compass_NE">ПнСх</string>
+    <string name="quick_settings_compass_E">Сх</string>
+    <string name="quick_settings_compass_SE">ПдСх</string>
+    <string name="quick_settings_compass_S">Пд</string>
+    <string name="quick_settings_compass_SW">ПдЗх</string>
+    <string name="quick_settings_compass_W">Зх</string>
+    <string name="quick_settings_compass_NW">ПнЗх</string>
+
+    <!-- Screen record -->
+    <string name="screenrecord_stopdot_label">Показувати кнопку зупинки\nУтримуйте для переміщення</string>
+    <string name="screenrecord_lowquality_label">Менша якість для меншого розміру файлу</string>
+    <string name="screenrecord_longer_timeout_switch_label">Більший розмір файлу\nОбмеження разміру запису до 15 ГБ</string>
+
+    <!-- DataSwitch Tile -->
+    <string name="qs_data_switch_label">Поміняйте SIM-картку для передачі даних</string>
+    <string name="qs_data_switch_toast_0">У даний час SIM-картка не вставлена</string>
+    <string name="qs_data_switch_toast_1">Встановлена тільки одна SIM-картка</string>
+    <string name="qs_data_switch_changed_1">Використовується SIM 1 для передачі даних.</string>
+    <string name="qs_data_switch_changed_2">Використовується SIM 2 для передачі даних.</string>
+
+    <!-- CPUInfo tile -->
+    <string name="quick_settings_cpuinfo_label">Інформація про CPU</string>
+    <string name="accessibility_quick_settings_cpuinfo_off">Інформація про CPU вимкн.</string>
+    <string name="accessibility_quick_settings_cpuinfo_on">Інформація про CPU увімк.</string>
+    <string name="accessibility_quick_settings_cpuinfo_changed_off">Інформація про CPU вимкнена</string>
+    <string name="accessibility_quick_settings_cpuinfo_changed_on">Інформація про CPU увімкнена</string>
+
+    <!-- FPS Info tile -->
+    <string name="quick_settings_fpsinfo_label">Інформація про FPS</string>
+    <string name="accessibility_quick_settings_fpsinfo_off">Інформація про FPS вимкн.</string>
+    <string name="accessibility_quick_settings_fpsinfo_on">Інформація про FPS увімкн.</string>
+
+    <!-- VPN QS tile -->
+    <string name="quick_settings_vpn_label">VPN</string>
+    <string name="quick_settings_vpn_connect_dialog_title">Підключитися до\u2026</string>
+    <string name="vpn_credentials_hint">Будь ласка, введіть ваші облікові дані для підключення до <xliff:g id="name">%s</xliff:g></string>
+    <string name="vpn_credentials_username">Імя користувача</string>
+    <string name="vpn_credentials_password">Пароль</string>
+    <string name="vpn_credentials_dialog_connect">Підключитися</string>
+
+    <!-- Poweroff/Reboot/Recovery QS tile -->
+    <string name="quick_settings_poweroff_label">Вимкнути</string>
+    <string name="quick_settings_reboot_label">Перезавантажити</string>
+    <string name="quick_settings_reboot_recovery_label">Рекавері</string>
+
+    <!-- Mono QS Tile -->
+    <string name="quick_settings_monotoggle_tile">Аудіо режим</string>
+    <string name="quick_settings_monotoggle_tile_mono">Моно режим</string>
+    <string name="quick_settings_monotoggle_tile_stereo">Стерео режим</string>
+</resources>
