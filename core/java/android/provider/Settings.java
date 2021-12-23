@@ -5744,6 +5744,12 @@ public final class Settings {
         public static final String HEADS_UP_NOTIFICATION_SNOOZE = "heads_up_notification_snooze";
 
         /**
+         * Disable power menu on secure lock screens
+         * @hide
+         */
+        public static final String LOCK_POWER_MENU_DISABLED = "lockscreen_power_menu_disabled";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
@@ -11442,6 +11448,20 @@ public final class Settings {
          * @hide
          */
         public static final String FACE_UNLOCK_METHOD = "face_unlock_method";
+
+        /**
+         * Whether to show allow secure tiles on keyguard
+         * @hide
+         */
+        @Readable
+        public static final String QSTILE_REQUIRES_UNLOCKING = "qstile_requires_unlocking";
+
+        /**
+         * Whether to disable qs on secure lockscreen.
+         * Default 0
+         * @hide
+         */
+        public static final String SECURE_LOCKSCREEN_QS_DISABLED = "secure_lockscreen_qs_disabled";
 
         /**
          * These entries are considered common between the personal and the managed profile,

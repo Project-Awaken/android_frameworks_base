@@ -223,5 +223,6 @@ public class SecureSettings {
         Settings.Secure.BERRY_BLACK_THEME,
         Settings.Secure.GESTURE_NAVBAR_LENGTH_MODE,
         Settings.Secure.IGNORE_AUTH_CONFIRMATION,
+        Settings.Secure.SECURE_LOCKSCREEN_QS_DISABLED,
     };
 }
