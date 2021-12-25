@@ -21,6 +21,7 @@ import com.awaken.android.systemui.theme.ThemeOverlayControllerAwaken;
 
 import com.android.keyguard.KeyguardUpdateMonitor;
 import com.android.keyguard.KeyguardViewController;
+import com.android.systemui.assist.AssistManager;
 import com.android.systemui.broadcast.BroadcastDispatcher;
 import com.android.systemui.dagger.qualifiers.Background;
 import com.android.systemui.dagger.qualifiers.Main;
@@ -31,6 +32,7 @@ import com.android.systemui.dock.DockManagerImpl;
 import com.android.systemui.doze.DozeHost;
 import com.android.systemui.dump.DumpManager;
 import com.android.systemui.media.dagger.MediaModule;
+import com.android.systemui.navigationbar.NavigationBarOverlayController;
 import com.android.systemui.plugins.BcSmartspaceDataPlugin;
 import com.android.systemui.plugins.qs.QSFactory;
 import com.android.systemui.plugins.statusbar.StatusBarStateController;
@@ -72,6 +74,7 @@ import com.android.systemui.statusbar.policy.SensorPrivacyControllerImpl;
 import com.android.systemui.statusbar.policy.ZenModeController;
 import com.android.systemui.theme.ThemeOverlayController;
 import com.android.systemui.util.concurrency.DelayableExecutor;
+import com.google.android.systemui.gamedashboard.EntryPointController;
 
 import javax.inject.Named;
 
@@ -240,4 +243,7 @@ public abstract class SystemUIAwakenModule {
     static BcSmartspaceDataPlugin provideBcSmartspaceDataPlugin() {
         return new BcSmartspaceDataProvider();
     }
+
+    @Binds
+    abstract NavigationBarOverlayController bindEntryPointController(EntryPointController assistManager);
 }

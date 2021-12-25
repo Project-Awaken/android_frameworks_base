@@ -7,6 +7,7 @@ import com.android.systemui.dagger.SystemUIBinder;
 import com.android.systemui.dagger.SysUIComponent;
 import com.android.systemui.dagger.SystemUIModule;
 
+import com.awaken.android.systemui.gamedashboard.GameDashboardModule;
 import com.awaken.android.systemui.keyguard.KeyguardSliceProviderAwaken;
 import com.awaken.android.systemui.smartspace.KeyguardSmartspaceController;
 
@@ -16,8 +17,9 @@ import dagger.Subcomponent;
 @Subcomponent(modules = {
         DefaultComponentBinder.class,
         DependencyProvider.class,
-        SystemUIBinder.class,
+        GameDashboardModule.class,
         SystemUIModule.class,
+        SystemUIAwakenBinder.class,
         SystemUIAwakenModule.class})
 public interface SysUIComponentAwaken extends SysUIComponent {
     @SysUISingleton

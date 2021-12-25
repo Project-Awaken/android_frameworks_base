@@ -314,6 +314,7 @@
     <protected-broadcast android:name="com.google.android.systemui.smartspace.EXPIRE_EVENT"/>
 
     <uses-permission android:name="android.permission.MAINLINE_NETWORK_STACK" />
+    <uses-permission android:name="android.permission.MANAGE_GAME_MODE" android:protectionLevel="signature"/>
 
     <application
         android:name=".SystemUIApplication"
@@ -930,5 +931,26 @@
                 <action android:name="android.net.wifi.intent.TIMEOUT" />
             </intent-filter>
         </receiver>
+
+        <!-- Game Dashboard -->
+        <activity
+            android:theme="@style/GameMenuTheme"
+            android:name="com.awaken.android.systemui.gamedashboard.GameMenuActivityWrapper"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="behind"
+            android:finishOnCloseSystemDialogs="true"
+            android:showForAllUsers="true"/>
+
+        <activity
+            android:theme="@style/GameMenuTheme"
+            android:name="com.google.android.systemui.gamedashboard.GameDndConfigActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="behind"
+            android:finishOnCloseSystemDialogs="true"
+            android:showForAllUsers="true"/>
     </application>
 </manifest>
