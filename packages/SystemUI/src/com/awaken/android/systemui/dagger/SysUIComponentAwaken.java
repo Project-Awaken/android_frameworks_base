@@ -7,6 +7,9 @@ import com.android.systemui.dagger.SystemUIBinder;
 import com.android.systemui.dagger.SysUIComponent;
 import com.android.systemui.dagger.SystemUIModule;
 
+import com.awaken.android.systemui.keyguard.KeyguardSliceProviderAwaken;
+import com.awaken.android.systemui.smartspace.KeyguardSmartspaceController;
+
 import dagger.Subcomponent;
 
 @SysUISingleton
@@ -22,4 +25,12 @@ public interface SysUIComponentAwaken extends SysUIComponent {
     interface Builder extends SysUIComponent.Builder {
         SysUIComponentAwaken build();
     }
+
+    /**
+     * Member injection into the supplied argument.
+     */
+    void inject(KeyguardSliceProviderAwaken keyguardSliceProviderAwaken);
+
+    @SysUISingleton
+    KeyguardSmartspaceController createKeyguardSmartspaceController();
 }
