@@ -64,4 +64,7 @@
          platform signatures, specifically for use on devices with a vendor partition. -->
     <string-array name="config_vendorPlatformSignatures">
     </string-array>
+
+    <!-- Whether to cancel fingerprint operation if not idle -->
+    <bool name="config_fpCancelIfNotIdle">false</bool>
 </resources>
