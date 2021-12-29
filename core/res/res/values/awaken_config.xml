@@ -128,4 +128,7 @@
          recharge when the battery level is lower than a threshold. Set this so that the device
          will be charged between (limit - val) and limit. -->
     <integer name="config_chargingControlBatteryRechargeMargin">10</integer>
+
+    <!-- Whether to cancel fingerprint operation if not idle -->
+    <bool name="config_fpCancelIfNotIdle">false</bool>
 </resources>
