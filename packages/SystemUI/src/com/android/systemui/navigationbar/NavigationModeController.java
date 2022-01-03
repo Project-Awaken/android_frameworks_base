@@ -185,7 +185,6 @@ public class NavigationModeController implements Dumpable {
                 String.valueOf(mode), UserHandle.USER_CURRENT));
         if (DEBUG) {
             Log.d(TAG, "updateCurrentInteractionMode: mode=" + mode);
-            dumpAssetPaths(mCurrentUserContext);
         }
 
         if (notify) {
@@ -264,15 +263,5 @@ public class NavigationModeController implements Dumpable {
             defaultOverlays = "failed_to_fetch";
         }
         pw.println("  defaultOverlays=" + defaultOverlays);
-        dumpAssetPaths(mCurrentUserContext);
-    }
-
-    private void dumpAssetPaths(Context context) {
-        Log.d(TAG, "  contextUser=" + mCurrentUserContext.getUserId());
-        Log.d(TAG, "  assetPaths=");
-        ApkAssets[] assets = context.getResources().getAssets().getApkAssets();
-        for (ApkAssets a : assets) {
-            Log.d(TAG, "    " + a.getDebugName());
-        }
     }
 }
