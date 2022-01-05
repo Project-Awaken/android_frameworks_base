@@ -17,4 +17,7 @@
 <resources>
     <!-- Screen record dot -->
     <dimen name="screenrecord_dot_size">48dp</dimen>
+
+    <!-- Fps info text -->
+    <dimen name="fps_info_text_padding">4dp</dimen>
 </resources>
