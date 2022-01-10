@@ -104,5 +104,6 @@ public class SystemSettings {
         Settings.System.LOCKSCREEN_BATTERY_INFO,
         Settings.System.NAVIGATION_BAR_INVERSE,
         Settings.System.AUTO_BRIGHTNESS_ONE_SHOT,
+        Settings.System.ENABLE_RIPPLE_EFFECT,
     };
 }
