@@ -297,5 +297,6 @@ public class SecureSettingsValidators {
         VALIDATORS.put(Secure.MONET_ENGINE_WHITE_LUMINANCE, new InclusiveIntegerRangeValidator(0, 1000));
         VALIDATORS.put(Secure.SHOW_COMBINED_STATUS_BAR_SIGNAL_ICONS, BOOLEAN_VALIDATOR);
         VALIDATORS.put(Secure.GESTURE_NAVBAR_LENGTH_MODE, new InclusiveIntegerRangeValidator(0, 2));
+        VALIDATORS.put(Secure.SECURE_LOCKSCREEN_QS_DISABLED, BOOLEAN_VALIDATOR);
     }
 }
