@@ -280,6 +280,8 @@
     <!-- Be allowed to send commands to Flinger via SurfaceControl. -->
     <uses-permission android:name="android.permission.ACCESS_SURFACE_FLINGER" />
 
+    <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS" />
+
     <!-- Restore settings (used by QS) even if they have been modified -->
     <uses-permission android:name="android.permission.MODIFY_SETTINGS_OVERRIDEABLE_BY_RESTORE" />
 
