@@ -170,7 +170,7 @@ public class QuickStatusBarHeader extends FrameLayout implements
         // QS will always show the estimate, and BatteryMeterView handles the case where
         // it's unavailable or charging
         mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
-        mBatteryRemainingIcon.setOnClickListener(this);
+        setBatteryClickable(true);
 
         mIconsAlphaAnimatorFixed = new TouchAnimator.Builder()
                 .addFloat(mIconContainer, "alpha", 0, 1)
@@ -408,16 +408,14 @@ public class QuickStatusBarHeader extends FrameLayout implements
         mPrivacyChip.setVisibility(visibility ? View.VISIBLE : View.GONE);
         if (visibility) {
             // Animates the icons and battery indicator from alpha 0 to 1, when the chip is visible
-            mBatteryRemainingIcon.setOnClickListener(null);
-            mBatteryRemainingIcon.setClickable(false);
             mIconsAlphaAnimator = mIconsAlphaAnimatorFixed;
             mIconsAlphaAnimator.setPosition(mKeyguardExpansionFraction);
         } else {
             mIconsAlphaAnimator = null;
             mIconContainer.setAlpha(1);
             mBatteryRemainingIcon.setAlpha(1);
-            mBatteryRemainingIcon.setOnClickListener(this);
         }
+        setBatteryClickable(mExpanded || !visibility);
     }
 
     /** */
@@ -427,6 +425,7 @@ public class QuickStatusBarHeader extends FrameLayout implements
         quickQSPanelController.setExpanded(expanded);
 	mDateView.setVisibility(mClockView.isClockDateEnabled() ? View.INVISIBLE : View.VISIBLE);
         updateEverything();
+        setBatteryClickable(mExpanded || mPrivacyChip.getVisibility() != View.VISIBLE);
     }
 
     /**
@@ -600,5 +599,10 @@ public class QuickStatusBarHeader extends FrameLayout implements
     public void setExpandedScrollAmount(int scrollY) {
         mClockIconsView.setScrollY(scrollY);
         mDatePrivacyView.setScrollY(scrollY);
+    }
+
+    private void setBatteryClickable(boolean clickable) {
+        mBatteryRemainingIcon.setOnClickListener(clickable ? this : null);
+        mBatteryRemainingIcon.setClickable(clickable);
     }
 }
