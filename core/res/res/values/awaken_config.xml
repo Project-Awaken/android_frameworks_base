@@ -56,6 +56,10 @@
     <string-array name="config_deviceKeyHandlerLibs" translatable="false">
     </string-array>
 
+    <!-- List of system apps that are allowed to be locked with app lock.
+          Use with extreme caution. -->
+    <string-array name="config_appLockAllowedSystemApps" translatable="false" />
+
     <!-- Names of the key handler classes -->
     <string-array name="config_deviceKeyHandlerClasses" translatable="false">
     </string-array>

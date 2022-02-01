@@ -28,6 +28,10 @@
     <java-symbol type="string" name="url_copy_success" />
     <java-symbol type="string" name="url_copy_failed" />
 
+    <!-- App lock -->
+    <java-symbol type="string" name="unlock_application" />
+    <java-symbol type="array" name="config_appLockAllowedSystemApps" />
+
     <!-- Battery light customization -->
     <java-symbol type="bool" name="config_hasNotificationLed" />
     <java-symbol type="bool" name="config_intrusiveBatteryLed" />
