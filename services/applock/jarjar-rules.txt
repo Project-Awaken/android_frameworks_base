@@ -1,0 +1,2 @@
+rule kotlin.** com.android.server.jarjar.@0
+rule kotlinx.** com.android.server.jarjar.@0
