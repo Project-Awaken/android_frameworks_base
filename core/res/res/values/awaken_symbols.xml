@@ -114,4 +114,8 @@
 
     <!-- Wired/BT headset focus mode -->
     <java-symbol type="bool" name="config_deviceRingtoneFocusMode" />
+
+    <!-- App lock -->
+    <java-symbol type="string" name="unlock_application" />
+    <java-symbol type="array" name="config_appLockAllowedSystemApps" />
 </resources>
