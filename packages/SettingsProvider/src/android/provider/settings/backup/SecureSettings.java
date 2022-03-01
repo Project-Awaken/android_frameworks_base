@@ -249,5 +249,6 @@ public class SecureSettings {
         Settings.Secure.QS_SHOW_AUTO_BRIGHTNESS_BUTTON,
         Settings.Secure.BERRY_BLACK_THEME,
         Settings.Secure.GESTURE_NAVBAR_LENGTH_MODE,
+        Settings.Secure.IGNORE_AUTH_CONFIRMATION,
     };
 }
