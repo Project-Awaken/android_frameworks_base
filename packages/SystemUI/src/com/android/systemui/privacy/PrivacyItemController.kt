@@ -69,6 +69,9 @@ class PrivacyItemController @Inject constructor(
         val CAMERA_WHITELIST_PKG = arrayOf(
             "org.pixelexperience.faceunlock",
         )
+        val LOCATION_WHITELIST_PKG = arrayOf(
+            "com.android.bluetooth",
+        )
         val OPS_MIC_CAMERA = intArrayOf(AppOpsManager.OP_CAMERA,
                 AppOpsManager.OP_PHONE_CALL_CAMERA, AppOpsManager.OP_RECORD_AUDIO,
                 AppOpsManager.OP_PHONE_CALL_MICROPHONE)
@@ -155,7 +158,8 @@ class PrivacyItemController @Inject constructor(
             if (code in OPS_MIC_CAMERA && !micCameraAvailable) {
                 return
             }
-            if (code in OPS_LOCATION && !locationAvailable) {
+            if (code in OPS_LOCATION && !locationAvailable
+                    || packageName in LOCATION_WHITELIST_PKG) {
                 return
             }
             if (code in OPS_MIC_CAMERA && !micCameraAvailable
@@ -341,7 +345,8 @@ class PrivacyItemController @Inject constructor(
         if (type == PrivacyType.TYPE_CAMERA && !micCameraAvailable) {
             return null
         }
-        if (type == PrivacyType.TYPE_LOCATION && !locationAvailable) {
+        if (type == PrivacyType.TYPE_LOCATION && !locationAvailable
+                || appOpItem.packageName in LOCATION_WHITELIST_PKG) {
             return null
         }
         if (type == PrivacyType.TYPE_CAMERA && !micCameraAvailable
