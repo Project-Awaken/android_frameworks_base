@@ -159,9 +159,6 @@
     <string name="keyguard_indication_superdart_charging_time" formatted="false"><xliff:g id="percentage">%2$s</xliff:g> • SuperDart Charging (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> until full)</string>
     <string name="keyguard_plugged_in_superdart_charging">SuperDart Charging</string>
 
-    <!-- Now playing lockscreen / ambient music ticker -->
-    <string name="ambientmusic_songinfo" formatted="false" translatable="false">%s • %s</string>
-
     <!-- Screenshot Delete Toast -->
     <string name="delete_screenshot_toast">Screenshot deleted</string>
 

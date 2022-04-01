@@ -139,7 +139,6 @@ import com.android.systemui.SystemUI;
 import com.android.systemui.accessibility.floatingmenu.AccessibilityFloatingMenuController;
 import com.android.systemui.animation.ActivityLaunchAnimator;
 import com.android.systemui.animation.DelegateLaunchAnimatorController;
-import com.android.systemui.ambientmusic.AmbientIndicationContainer;
 import com.android.systemui.assist.AssistManager;
 import com.android.systemui.biometrics.AuthRippleController;
 import com.android.systemui.broadcast.BroadcastDispatcher;
@@ -1218,9 +1217,6 @@ public class StatusBar extends SystemUI implements
 
         mAmbientIndicationContainer = mNotificationShadeWindowView.findViewById(
                 R.id.ambient_indication_container);
-        if (mAmbientIndicationContainer != null) {
-            ((AmbientIndicationContainer) mAmbientIndicationContainer).initializeView(this);
-        }
 
         mAutoHideController.setStatusBar(new AutoHideUiElement() {
             @Override
@@ -3264,12 +3260,6 @@ public class StatusBar extends SystemUI implements
         mNotificationPanelViewController.setDozing(mDozing, animate, mWakeUpTouchLocation);
         Dependency.get(PulseController.class).setDozing(mDozing);
         updateQsExpansionEnabled();
-
-        if (mAmbientIndicationContainer != null) {
-            ((AmbientIndicationContainer)mAmbientIndicationContainer)
-                    .updateDozingState(mDozing);
-        }
-
         Trace.endSection();
     }
 
@@ -4529,10 +4519,6 @@ public class StatusBar extends SystemUI implements
                     Dependency.get(PulseController.class).setKeyguardShowing(mState == StatusBarState.KEYGUARD);
                     updateKeyguardState();
                     ((StatusBarIconControllerImpl) mStatusBarIconController).setKeyguardShowing(mState == StatusBarState.KEYGUARD);
-                    if (mAmbientIndicationContainer != null) {
-                        ((AmbientIndicationContainer)mAmbientIndicationContainer)
-                                .updateKeyguardState(mState == StatusBarState.KEYGUARD);
-                    }
                     Trace.endSection();
                 }
 
