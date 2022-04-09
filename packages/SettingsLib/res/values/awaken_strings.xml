@@ -25,4 +25,8 @@
 
     <!-- String for removal of sensitive info on about, depending on tap -->
     <string name="device_info_protected_single_press">Tap to show info</string>
+
+    <!-- NR Types -->
+    <string name="data_connection_5g_nsa" translatable="false">5G NSA</string>
+    <string name="data_connection_5g_sa" translatable="false">5G SA</string>
 </resources>
