@@ -54,9 +54,14 @@
         android:icon="@drawable/ic_statusbar_do_not_disturb" />
 
     <com.android.systemui.tuner.StatusBarSwitch
-        android:key="volume"
-        android:title="@*android:string/volume_unknown"
+        android:key="mute"
+        android:title="@string/volume_ringer_status_silent"
         android:icon="@drawable/ic_statusbar_mute" />
+
+    <com.android.systemui.tuner.StatusBarSwitch
+        android:key="volume"
+        android:title="@string/volume_ringer_status_vibrate"
+        android:icon="@drawable/ic_statusbar_vibrate" />
 
     <com.android.systemui.tuner.StatusBarSwitch
         android:key="wifi"
