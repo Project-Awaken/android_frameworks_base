@@ -126,6 +126,7 @@ android_library {
         "android.frameworks.stats-V1-java",
         "vendor-pixelatoms-java",
         "colorkt",
+        "monet",
         "themelib",
         "vendor.lineage.powershare-V1.0-java",
     ],
