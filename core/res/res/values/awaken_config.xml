@@ -134,5 +134,6 @@
         <item>com.android.networkstack.tethering</item>
         <item>com.android.systemui</item>
         <item>com.google.android.settings.intelligence</item>
+        <item>com.android.location.fused</item>
     </string-array>
 </resources>
