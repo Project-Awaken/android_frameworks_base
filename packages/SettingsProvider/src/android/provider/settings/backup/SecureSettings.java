@@ -192,6 +192,7 @@ public class SecureSettings {
         Settings.Secure.LOCKSCREEN_SHOW_CONTROLS,
         Settings.Secure.LOCKSCREEN_SHOW_WALLET,
         Settings.Secure.LOCKSCREEN_USE_DOUBLE_LINE_CLOCK,
+        Settings.Secure.STATUS_BAR_SHOW_VIBRATE_ICON,
         Settings.Secure.SHOW_COMBINED_STATUS_BAR_SIGNAL_ICONS,
         Settings.Secure.GESTURE_NAVBAR_LENGTH_MODE,
         Settings.Secure.QS_SHOW_BRIGHTNESS,
