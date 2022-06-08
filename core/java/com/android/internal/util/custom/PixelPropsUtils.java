@@ -38,8 +38,7 @@ public class PixelPropsUtils {
     private static final Map<String, Object> propsToChangePixel5;
     private static final String[] packagesToChangePixel5 = {
             "com.android.vending",
-            "com.google.android.tts",
-            "com.google.android.apps.recorder"
+            "com.google.android.tts"
     };
 
     private static final Map<String, Object> propsToChangePixelXL;
@@ -68,7 +67,8 @@ public class PixelPropsUtils {
         "com.google.android.UltraCVM",
         "com.google.android.apps.cameralite",
         "com.google.android.apps.wearables.maestro.companion",
-        "com.google.ar.core"
+        "com.google.ar.core",
+        "com.google.android.apps.recorder"
     };
 
     private static ArrayList<String> allProps = new ArrayList<>(Arrays.asList("BRAND", "MANUFACTURER", "DEVICE", "PRODUCT", "MODEL", "FINGERPRINT"));
