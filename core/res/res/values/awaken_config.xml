@@ -135,5 +135,6 @@
         <item>com.android.systemui</item>
         <item>com.google.android.settings.intelligence</item>
         <item>com.android.location.fused</item>
+        <item>com.android.cellbroadcastservice</item>
     </string-array>
 </resources>
