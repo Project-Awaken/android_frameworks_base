@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2022 Project-Awaken
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Caffeine QS Tile -->
+    <string name="quick_settings_caffeine_label">Cafeína</string>
+    <string name="accessibility_quick_settings_caffeine_off">Cafeína desactivada</string>
+    <string name="accessibility_quick_settings_caffeine_on">Cafeína activada</string>
+    <!-- Ambient display QS tile -->
+    <string name="quick_settings_ambient_display_label">Pantalla ambiente</string>
+    <string name="accessibility_quick_settings_ambient_display_off">Pantalla ambiente apagada.</string>
+    <string name="accessibility_quick_settings_ambient_display_on">Pantalla ambiente activada.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Pantalla ambiente desactivada.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Pantalla ambiente activada.</string>
+    <!-- AOD QS tile -->
+    <string name="quick_settings_aod_label">AOD (Pantalla siempre encendida)</string>
+    <string name="quick_settings_aod_off_powersave_label">AOD apagado\nAhorro de batería</string>
+    <!-- USB tethering QS tile -->
+    <string name="quick_settings_usb_tether_label">Anclaje de red por USB</string>
+    <!-- Heads Up QS Tile -->
+    <string name="quick_settings_heads_up_label">Notificaciones emergentes</string>
+    <string name="accessibility_quick_settings_heads_up_off">Notificaciones emergentes desactivadas.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Notificaciones flotantes activadas.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Notificaciones emergentes desactivadas.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Notificaciones emergentes activadas.</string>
+    <!-- Label for UI element which allows deleting the screenshot [CHAR LIMIT=30] -->
+    <string name="screenshot_delete_label">Borrar</string>
+    <!-- Content description indicating that tapping the element will allow deleting the screenshot [CHAR LIMIT=NONE] -->
+    <string name="screenshot_delete_description">Eliminar captura de pantalla</string>
+    <!-- Power Menu -->
+    <string name="global_action_reboot">Reiniciar</string>
+    <string name="global_action_reboot_more">Avanzado</string>
+    <string name="global_action_reboot_sub">Sistema</string>
+    <string name="global_action_reboot_recovery">Recovery</string>
+    <string name="global_action_reboot_bootloader">Bootloader</string>
+    <string name="global_action_reboot_systemui">SystemUI</string>
+    <string name="global_action_settings">Ajustes</string>
+    <!-- Screenshot QS tile -->
+    <string name="quick_settings_screenshot_label">Captura de Pantalla</string>
+    <string name="quick_settings_full_screenshot_label">Completa</string>
+    <string name="quick_settings_region_screenshot_label">Parcial</string>
+    <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">Sincronización</string>
+    <string name="accessibility_quick_settings_sync_off">Sincronización desactivada</string>
+    <string name="accessibility_quick_settings_sync_on">Sincronización activada</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Sincronización desactivada</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Sincronización activada</string>
+    <!-- Sound QS Tile -->
+    <string name="quick_settings_sound_label">Sonido</string>
+    <string name="quick_settings_sound_ring">Timbre</string>
+    <string name="quick_settings_sound_vibrate">Vibración</string>
+    <string name="quick_settings_sound_mute">Silencio</string>
+    <!-- Statusbar tuner -->
+    <string name="statusbar_items_title">Iconos de la barra de estado</string>
+    <!-- Name of the VPN status bar icon. -->
+    <string name="status_bar_vpn">VPN</string>
+    <!-- Compass QS Tile -->
+    <string name="quick_settings_compass_label">Brújula</string>
+    <string name="quick_settings_compass_value"><xliff:g id="grados">%1$.0f</xliff:g>\u00b0 <xliff:g id="dirección">%2$s</xliff:g></string>
+    <string name="quick_settings_compass_init">Iniciando\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Brújula desactivada</string>
+    <string name="accessibility_quick_settings_compass_on">Brújula activada</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Brújula desactivada</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Brújula activada</string>
+    <string name="quick_settings_compass_N">N</string>
+    <string name="quick_settings_compass_NE">NE</string>
+    <string name="quick_settings_compass_E">E</string>
+    <string name="quick_settings_compass_SE">SE</string>
+    <string name="quick_settings_compass_S">S</string>
+    <string name="quick_settings_compass_SW">SO</string>
+    <string name="quick_settings_compass_W">O</string>
+    <string name="quick_settings_compass_NW">NO</string>
+    <!-- Screen record -->
+    <string name="screenrecord_stopdot_label">Show stop dot</string>
+    <string name="screenrecord_stopdot_summary">Longpress to move it</string>
+    <string name="screenrecord_lowquality_label">Lower quality</string>
+    <string name="screenrecord_lowquality_summary">For smaller file size</string>
+    <string name="screenrecord_longer_timeout_switch_label">Bigger file size limit</string>
+    <string name="screenrecord_longer_timeout_switch_summary">Limit recording size to 15 GB</string>
+    <!-- DataSwitch Tile -->
+    <string name="qs_data_switch_label">Cambiar tarjeta de datos a</string>
+    <string name="qs_data_switch_toast_0">Actualmente no hay tarjeta SIM insertada</string>
+    <string name="qs_data_switch_toast_1">Solo se ha insertado una tarjeta SIM</string>
+    <string name="qs_data_switch_changed_1">Cambiar a SIM 1 para datos móviles.</string>
+    <string name="qs_data_switch_changed_2">Cambiar a SIM 2 para datos móviles.</string>
+    <!-- CPUInfo tile -->
+    <string name="quick_settings_cpuinfo_label">Info de CPU</string>
+    <!-- FPS Info tile -->
+    <string name="quick_settings_fpsinfo_label">Info de FPS</string>
+    <string name="accessibility_quick_settings_fpsinfo_off">Info de FPS desactivada</string>
+    <string name="accessibility_quick_settings_fpsinfo_on">Info de FPS activada</string>
+    <!-- FPS view text placeholder -->
+    <string name="fps_text_placeholder">FPS: <xliff:g id="fps" example="90">%1$d</xliff:g></string>
+    <!-- VPN QS tile -->
+    <string name="quick_settings_vpn_label">VPN</string>
+    <string name="quick_settings_vpn_connect_dialog_title">Conectar a\u2026</string>
+    <string name="vpn_credentials_hint">Por favor, ingrese sus credenciales para conectarse a <xliff:g id="name">%s</xliff:g></string>
+    <string name="vpn_credentials_username">Usuario</string>
+    <string name="vpn_credentials_password">Contraseña</string>
+    <string name="vpn_credentials_dialog_connect">Conectar</string>
+    <!-- Mono QS Tile -->
+    <string name="quick_settings_monotoggle_tile">Modo de audio</string>
+    <string name="quick_settings_monotoggle_tile_mono">Audio mono</string>
+    <string name="quick_settings_monotoggle_tile_stereo">Audio Estéreo</string>
+    <!-- Heads up snooze toast -->
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Notificaciones flotantes pospuestas por 1 minuto.</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%1$s</xliff:g> - Notificaciones emergentes pospuestas durante <xliff:g id="number">%2$d</xliff:g> minutos.</string>
+    <!-- Name of the nfc status bar icon. -->
+    <string name="status_bar_nfc">NFC</string>
+    <!-- Accessibility label for nfc icon (not shown on screen) [CHAR LIMIT=NONE] -->
+    <string name="accessibility_status_bar_nfc">Nfc</string>
+    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+    <string name="keyguard_indication_dash_charging_time" formatted="false"><xliff:g id="percentage">%2$s</xliff:g> • Carga Dash (<xliff:g id="charging_time_left" example="4 horas y 2 minutos">%s</xliff:g> hasta 100%)</string>
+    <string name="keyguard_plugged_in_dash_charging">Carga Dash</string>
+    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
+    <string name="keyguard_indication_warp_charging_time" formatted="false"><xliff:g id="percentage">%2$s</xliff:g> • Carga Warp (<xliff:g id="charging_time_left" example="4 horas y 2 minutos">%s</xliff:g> para completar)</string>
+    <string name="keyguard_plugged_in_warp_charging">Carga Warp</string>
+    <!-- Indication on the keyguard that is shown when the device is charging with a VOOC charger. Should match keyguard_plugged_in_vooc_charging [CHAR LIMIT=40]-->
+    <string name="keyguard_indication_vooc_charging_time" formatted="false"><xliff:g id="percentage">%2$s</xliff:g> • Carga VOOC (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> hasta completar)</string>
+    <string name="keyguard_plugged_in_vooc_charging">Carga VOOC</string>
+    <!-- Indication on the keyguard that is shown when the device is charging with a SuperDart charger. Should match keyguard_plugged_in_superdart_charging [CHAR LIMIT=40]-->
+    <string name="keyguard_indication_superdart_charging_time" formatted="false"><xliff:g id="percentage">%2$s</xliff:g> • Carga SuperDart (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> hasta completar)</string>
+    <string name="keyguard_plugged_in_superdart_charging">Carga SuperDart</string>
+    <!-- Screenshot Delete Toast -->
+    <string name="delete_screenshot_toast">Captura de pantalla eliminada</string>
+    <!-- Face Unlock -->
+    <string name="face_unlock_recognizing">Reconociendo cara...</string>
+    <!-- Name of the roaming status bar icon. -->
+    <string name="status_bar_roaming">Indicador de roaming</string>
+    <!-- Data usage info in QS footer -->
+    <string name="usage_data">usado hoy</string>
+    <string name="usage_data_default_suffix">Datos</string>
+    <string name="usage_wifi_default_suffix">Wi-Fi</string>
+    <!-- PowerShare QS tile -->
+    <string name="quick_settings_powershare_label">Wireless PowerShare</string>
+    <string name="quick_settings_powershare_off_powersave_label">Wireless PowerShare desactivado\nModo ahorro de energía</string>
+    <string name="quick_settings_powershare_off_low_battery_label">Wireless PowerShare desactivado\nBatería baja</string>
+    <string name="quick_settings_powershare_enabled_label">Wireless PowerShare activada</string>
+    <!-- Name of the call strength status bar icon. -->
+    <string name="status_bar_call_strength">Intensidad de llamada</string>
+</resources>

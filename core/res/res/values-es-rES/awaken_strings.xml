@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2022 Project-Awaken
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Button that copies the url to the log of a crashed application -->
+    <string name="aerr_copy">Copiar URL del registro de errores</string>
+    <string name="url_copy_success">URL copiada con éxito</string>
+    <string name="url_copy_failed">Se ha producido un error al cargar el registro en Dogbin</string>
+    <!-- Vendor mismatch fingerprint warning [CHAR LIMIT=NONE] -->
+    <string name="system_error_vendorprint">Su imagen de Vendor no coincide con el sistema. Por favor instale la imagen de Vendor de <xliff:g id="string">%s</xliff:g> para su dispositivo</string>
+    <!-- Global actions -->
+    <string name="reboot_to_bootloader_title">Reiniciar al bootloader</string>
+    <string name="reboot_to_bootloader_message">Reiniciando al bootloader\u2026</string>
+    <string name="reboot_to_recovery_title">Reiniciar en recovery</string>
+    <string name="reboot_to_recovery_message">Reiniciando en recovery</string>
+    <string name="reboot_system_title">Reiniciar sistema</string>
+    <string name="reboot_system_message">Reiniciando sistema\u2026</string>
+    <!-- Cycle through ringer modes -->
+    <string name="volume_dialog_ringer_guidance_normal">Las llamadas y notificaciones sonarán</string>
+    <!-- Pocket Lock -->
+    <string name="pocket_lock_message_long_press">Pulse y mantenga el botón de encendido para desbloquear</string>
+    <!-- Pocket View -->
+    <string name="pocket_view_title">Modo bolsillo activado</string>
+    <string name="pocket_view_title_cancel">Para usar su teléfono:</string>
+    <string name="pocket_view_top_tag_cancel">Compruebe si la zona azul de su teléfono está libre de cualquier obstrucción, y limpia cualquier suciedad o polvo.</string>
+    <string name="pocket_view_top_tag_cancel2">Mantener presionado el botón de encendido para forzar la salida del modo bolsillo.</string>
+    <!-- Face unlock -->
+    <string name="face_unlock_disabled_idle">Desbloqueo facial desactivado debido a inactividad</string>
+    <!-- App lock -->
+    <string name="unlock_application">Desbloquear <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
+</resources>

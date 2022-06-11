@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2022 Project-Awaken
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Button that copies the url to the log of a crashed application -->
+    <string name="aerr_copy">复制崩溃日志链接</string>
+    <string name="url_copy_success">已成功复制链接</string>
+    <string name="url_copy_failed">向 dogbin 上传日志时发生错误</string>
+    <!-- Vendor mismatch fingerprint warning [CHAR LIMIT=NONE] -->
+    <string name="system_error_vendorprint">您的设备制造商镜像与系统不匹配。请为您的设备刷入 <xliff:g id="string">%s </xliff:g> 设备制造商镜像</string>
+    <!-- Global actions -->
+    <string name="reboot_to_bootloader_title">重启至引导模式</string>
+    <string name="reboot_to_bootloader_message">正在重启至引导模式\u2026</string>
+    <string name="reboot_to_recovery_title">重启至恢复模式</string>
+    <string name="reboot_to_recovery_message">正在重启至恢复模式\u2026</string>
+    <string name="reboot_system_title">重启系统</string>
+    <string name="reboot_system_message">正在重启系统\u2026</string>
+    <!-- Cycle through ringer modes -->
+    <string name="volume_dialog_ringer_guidance_normal">来电和通知时响铃</string>
+    <!-- Pocket Lock -->
+    <string name="pocket_lock_message_long_press">按住电源按键解锁</string>
+    <!-- Pocket View -->
+    <string name="pocket_view_title">口袋模式已开启</string>
+    <string name="pocket_view_title_cancel">激活您的手机</string>
+    <string name="pocket_view_top_tag_cancel">确保手机的蓝色区域清洁无杂物</string>
+    <string name="pocket_view_top_tag_cancel2">长按电源键强制退出口袋模式</string>
+    <!-- Face unlock -->
+    <string name="face_unlock_disabled_idle">面部解锁因不活跃被禁用</string>
+    <!-- App lock -->
+    <string name="unlock_application">解锁 <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
+</resources>

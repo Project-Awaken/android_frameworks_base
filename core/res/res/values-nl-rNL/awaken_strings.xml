@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2022 Project-Awaken
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Button that copies the url to the log of a crashed application -->
+    <string name="aerr_copy">Kopieer crashlog link</string>
+    <string name="url_copy_success">URL succesvol gekopieerd</string>
+    <string name="url_copy_failed">Er is een fout opgetreden tijdens het uploaden naar dogbin</string>
+    <!-- Vendor mismatch fingerprint warning [CHAR LIMIT=NONE] -->
+    <string name="system_error_vendorprint">Je vendor image komt niet overeen met het systeem. Flash alsjeblieft de <xliff:g id="string">%s</xliff:g> vendor image passend bij je apparaat</string>
+    <!-- Global actions -->
+    <string name="reboot_to_bootloader_title">Herstart naar Bootloader</string>
+    <string name="reboot_to_bootloader_message">Opnieuw opstarten naar bootloader\u2026</string>
+    <string name="reboot_to_recovery_title">Herstart naar Recoverymodus</string>
+    <string name="reboot_to_recovery_message">Herstarten naar Recoverymodus\u2026</string>
+    <string name="reboot_system_title">Herstart systeem</string>
+    <string name="reboot_system_message">Opnieuw starten\u2026</string>
+    <!-- Cycle through ringer modes -->
+    <string name="volume_dialog_ringer_guidance_normal">Geluid bij oproepen en meldingen</string>
+    <!-- Pocket Lock -->
+    <string name="pocket_lock_message_long_press">Houd de aan-uitknop ingedrukt om te ontgrendelen</string>
+    <!-- Pocket View -->
+    <string name="pocket_view_title">Pocket mode is aan</string>
+    <string name="pocket_view_title_cancel">Om je telefoon te gebruiken:</string>
+    <string name="pocket_view_top_tag_cancel">Controleer of het blauwe gedeelte van je telefoon vrij is van belemmeringen, en verwijder vuil of stof.</string>
+    <string name="pocket_view_top_tag_cancel2">Houd de aan-/uitknop ingedrukt om de zakmodus af te breken.</string>
+    <!-- Face unlock -->
+    <string name="face_unlock_disabled_idle">Gezichtsontgrendeling is uitgeschakeld door inactiviteit</string>
+    <!-- App lock -->
+    <string name="unlock_application">Unlock <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
+</resources>

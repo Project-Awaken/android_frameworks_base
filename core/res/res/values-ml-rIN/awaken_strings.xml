@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2022 Project-Awaken
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Button that copies the url to the log of a crashed application -->
+    <string name="aerr_copy">ക്രാഷ് ലോഗ് ലിങ്ക് പകർത്തുക</string>
+    <string name="url_copy_success">ലിങ്ക് വിജയകരമായി പകർത്തി</string>
+    <string name="url_copy_failed">ലോഗുകൾ ഡോഗ്ബിനിലേക്ക് അപ്‌ലോഡുചെയ്യുമ്പോൾ ഒരു പിശക് സംഭവിച്ചു</string>
+    <!-- Vendor mismatch fingerprint warning [CHAR LIMIT=NONE] -->
+    <string name="system_error_vendorprint">നിങ്ങളുടെ വെണ്ടർ ഇമേജ് സിസ്റ്റത്തിൽ പൊരുത്തപ്പെടുന്നില്ല.ദയവ് ചെയ്തു നിങ്ങളുടെ ഡിവൈസിനുള്ള <xliff:g id="string">%s</xliff:g> വെണ്ടർ ഇമേജ് ഫ്ലാഷ് ചെയ്യുക</string>
+    <!-- Global actions -->
+    <string name="reboot_to_bootloader_title">റീബൂട്ട് ബൂട്ട്ലോഡർ</string>
+    <string name="reboot_to_bootloader_message">ബൂട്ട്ലോഡറിലേക്ക് റീബൂട്ട് ചെയ്യുന്നു\u2026</string>
+    <string name="reboot_to_recovery_title">റികവറി റീബൂട്ട് ചെയ്യുക</string>
+    <string name="reboot_to_recovery_message">റികവറിയിലേക് റീബൂട്ട് ചെയ്യുന്നു\u2026</string>
+    <string name="reboot_system_title">സിസ്റ്റം പുനരാരംഭിക്കുക</string>
+    <string name="reboot_system_message">സിസ്റ്റം പുനരാരംഭിക്കുന്നു\u2026</string>
+    <!-- Cycle through ringer modes -->
+    <string name="volume_dialog_ringer_guidance_normal">കോളുകളും അറിയിപ്പുകളും ശബ്ദിക്കും</string>
+    <!-- Pocket Lock -->
+    <string name="pocket_lock_message_long_press">അൺലോക്കുചെയ്യാൻ പവർ ബട്ടൺ അമർത്തിപ്പിടിക്കുക</string>
+    <!-- Pocket View -->
+    <string name="pocket_view_title">പോക്കറ്റ് മോഡ് ഓണാണ്</string>
+    <string name="pocket_view_title_cancel">നിങ്ങളുടെ ഫോൺ ഉപയോഗിക്കാൻ:</string>
+    <string name="pocket_view_top_tag_cancel">നിങ്ങളുടെ ഫോണിന്റെ നീലനിറത്തിലുള്ള ഭാഗത്ത് എന്തെങ്കിലും തടസ്സങ്ങളുണ്ടോയെന്ന് പരിശോധിക്കുക, അഴുക്കും പൊടിയും നീക്കം ചെയ്യുക.</string>
+    <string name="pocket_view_top_tag_cancel2">പോക്കറ്റ് മോഡ് നിർബന്ധിതമാക്കാൻ പവർ ബട്ടൺ ദീർഘനേരം അമർത്തുക.</string>
+    <!-- Face unlock -->
+    <string name="face_unlock_disabled_idle">നിഷ്‌ക്രിയത്വം കാരണം ഫെയ്‌സ് അൺലോക്ക് പ്രവർത്തനരഹിതമാക്കി</string>
+    <!-- App lock -->
+    <string name="unlock_application"><xliff:g id="LABEL">%1$s</xliff:g> തുറന്നു</string>
+</resources>
