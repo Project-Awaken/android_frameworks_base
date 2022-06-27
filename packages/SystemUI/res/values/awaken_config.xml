@@ -17,6 +17,12 @@
     <!-- Color of the UDFPS pressed view -->
     <color name="config_udfpsColor">#ffffffff</color>
 
+    <!-- Doze: does the double tap sensor need a proximity check? -->
+    <bool name="doze_double_tap_proximity_check">false</bool>
+
+    <!-- Doze: does the long press sensor need a proximity check? -->
+    <bool name="doze_long_press_proximity_check">false</bool>
+
     <!-- Max visible notification icons -->
     <integer name="config_maxVisibleNotificationIcons">4</integer>
     <integer name="config_maxVisibleNotificationIconsOnLock">3</integer>
