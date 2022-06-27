@@ -69,4 +69,7 @@
     <bool name="flag_smartspace">true</bool>
     <string name="config_systemUIFactoryComponent">org.pixelexperience.systemui.SystemUIGoogleFactory</string>
     <string name="config_systemUIVendorServiceComponent">org.pixelexperience.systemui.GoogleServices</string>
+
+    <!-- Doze: does the double tap sensor need a proximity check? -->
+    <bool name="doze_double_tap_proximity_check">false</bool>
 </resources>
