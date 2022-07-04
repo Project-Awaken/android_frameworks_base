@@ -136,5 +136,8 @@
         <item>com.google.android.settings.intelligence</item>
         <item>com.android.location.fused</item>
         <item>com.android.cellbroadcastservice</item>
+        <item>org.microg.nlp.backend.ichnaea</item>
+        <item>org.microg.nlp.backend.apple</item>
+        <item>org.fitchfamily.android.dejavu</item>
     </string-array>
 </resources>
