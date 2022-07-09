@@ -117,7 +117,7 @@
     <string name="quick_settings_monotoggle_tile_stereo">Audio Stereo</string>
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Notifikasi mengambang ditunda selama 1 menit.</string>
-    <string name="heads_up_snooze_message"><xliff:g id="string">%1$s</xliff:g> - Notifikasi mengambang ditunda selama <xliff:g id="number">%2$d</xliff:g> menit.</string>
+    <string name="heads_up_snooze_message" formatted="false"><xliff:g id="string">%1$s</xliff:g> - Notifikasi mengambang ditunda selama <xliff:g id="number">%2$d</xliff:g> menit.</string>
     <!-- Name of the nfc status bar icon. -->
     <string name="status_bar_nfc">NFC</string>
     <!-- Accessibility label for nfc icon (not shown on screen) [CHAR LIMIT=NONE] -->
@@ -151,4 +151,10 @@
     <string name="quick_settings_powershare_enabled_label">PowerShare Nirkabel diaktifkan</string>
     <!-- Name of the call strength status bar icon. -->
     <string name="status_bar_call_strength">Kekuatan panggilan</string>
+    <!-- OnTheSpot: Action denial button text. [CHAR LIMIT=NONE] -->
+    <string name="on_the_spot_deny">Tidak terima kasih</string>
+    <!-- OnTheSpot: Action confirmation button text. [CHAR LIMIT=NONE] -->
+    <string name="on_the_spot_confirm">Oke</string>
+    <!-- 5G toggle in internet dialog -->
+    <string name="enable_fiveg">Aktifkan 5G</string>
 </resources>

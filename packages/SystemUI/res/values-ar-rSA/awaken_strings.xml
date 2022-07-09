@@ -117,7 +117,7 @@
     <string name="quick_settings_monotoggle_tile_stereo">صوت الستيريو (ثنائي)</string>
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> • تم إغلاق تنبيهات هذا التطبيق الدقيقة واحدة.</string>
-    <string name="heads_up_snooze_message"><xliff:g id="string">%1$s</xliff:g> • الاشعارات العائمة فى وضع الغفوة لمدة <xliff:g id="number">%2$d</xliff:g> دقائق.</string>
+    <string name="heads_up_snooze_message" formatted="false"><xliff:g id="string">%1$s</xliff:g> • الاشعارات العائمة فى وضع الغفوة لمدة <xliff:g id="number">%2$d</xliff:g> دقائق.</string>
     <!-- Name of the nfc status bar icon. -->
     <string name="status_bar_nfc">NFC</string>
     <!-- Accessibility label for nfc icon (not shown on screen) [CHAR LIMIT=NONE] -->
@@ -151,4 +151,10 @@
     <string name="quick_settings_powershare_enabled_label">الشحن اللاسلكي العكسي مفعل</string>
     <!-- Name of the call strength status bar icon. -->
     <string name="status_bar_call_strength">قوة الاتصال</string>
+    <!-- OnTheSpot: Action denial button text. [CHAR LIMIT=NONE] -->
+    <string name="on_the_spot_deny">لا شكراً</string>
+    <!-- OnTheSpot: Action confirmation button text. [CHAR LIMIT=NONE] -->
+    <string name="on_the_spot_confirm">حسنا</string>
+    <!-- 5G toggle in internet dialog -->
+    <string name="enable_fiveg">تفعيل الجيل الخامس</string>
 </resources>

@@ -84,12 +84,12 @@
     <string name="quick_settings_compass_W">ตะวันตก</string>
     <string name="quick_settings_compass_NW">ตะวันตกเฉียงเหนือ</string>
     <!-- Screen record -->
-    <string name="screenrecord_stopdot_label">Show stop dot</string>
-    <string name="screenrecord_stopdot_summary">Longpress to move it</string>
-    <string name="screenrecord_lowquality_label">Lower quality</string>
-    <string name="screenrecord_lowquality_summary">For smaller file size</string>
-    <string name="screenrecord_longer_timeout_switch_label">Bigger file size limit</string>
-    <string name="screenrecord_longer_timeout_switch_summary">Limit recording size to 15 GB</string>
+    <string name="screenrecord_stopdot_label">แสดงปุ่มหยุด</string>
+    <string name="screenrecord_stopdot_summary">กดค้างเพื่อเคลื่อนย้าย</string>
+    <string name="screenrecord_lowquality_label">ลดคุณภาพลง</string>
+    <string name="screenrecord_lowquality_summary">สำหรับขนาดไฟล์ที่เล็กกว่า</string>
+    <string name="screenrecord_longer_timeout_switch_label">ลิมิตขนาดไฟล์ใหญ่ขึ้น</string>
+    <string name="screenrecord_longer_timeout_switch_summary">ลิมิตขนาดการอัดหน้าจอไว้ที่ 15 GB</string>
     <!-- DataSwitch Tile -->
     <string name="qs_data_switch_label">สลับซิมข้อมูลมือถือ</string>
     <string name="qs_data_switch_toast_0">ขณะนี้ไม่ได้ใส่ซิมการ์ด</string>
@@ -151,4 +151,10 @@
     <string name="quick_settings_powershare_enabled_label">Wireless PowerShare ถูกเปิดใช้งาน</string>
     <!-- Name of the call strength status bar icon. -->
     <string name="status_bar_call_strength">ระดับเสียงคอล</string>
+    <!-- OnTheSpot: Action denial button text. [CHAR LIMIT=NONE] -->
+    <string name="on_the_spot_deny">No Thanks</string>
+    <!-- OnTheSpot: Action confirmation button text. [CHAR LIMIT=NONE] -->
+    <string name="on_the_spot_confirm">Okay</string>
+    <!-- 5G toggle in internet dialog -->
+    <string name="enable_fiveg">Enable 5G</string>
 </resources>

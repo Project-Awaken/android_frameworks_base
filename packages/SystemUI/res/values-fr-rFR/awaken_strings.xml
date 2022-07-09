@@ -117,7 +117,7 @@
     <string name="quick_settings_monotoggle_tile_stereo">Stéréo</string>
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Notifications furtives en attente pendant 1 minute.</string>
-    <string name="heads_up_snooze_message"><xliff:g id="string">%1$s</xliff:g> - Notifications furtives en attente pendant <xliff:g id="number">%2$d</xliff:g> minutes.</string>
+    <string name="heads_up_snooze_message" formatted="false"><xliff:g id="string">%1$s</xliff:g> - Notifications furtives en attente pendant <xliff:g id="number">%2$d</xliff:g> minutes.</string>
     <!-- Name of the nfc status bar icon. -->
     <string name="status_bar_nfc">NFC</string>
     <!-- Accessibility label for nfc icon (not shown on screen) [CHAR LIMIT=NONE] -->
@@ -151,4 +151,10 @@
     <string name="quick_settings_powershare_enabled_label">Le partage de charge sans fil est activé</string>
     <!-- Name of the call strength status bar icon. -->
     <string name="status_bar_call_strength">Puissance d\'appel</string>
+    <!-- OnTheSpot: Action denial button text. [CHAR LIMIT=NONE] -->
+    <string name="on_the_spot_deny">No Thanks</string>
+    <!-- OnTheSpot: Action confirmation button text. [CHAR LIMIT=NONE] -->
+    <string name="on_the_spot_confirm">Okay</string>
+    <!-- 5G toggle in internet dialog -->
+    <string name="enable_fiveg">Enable 5G</string>
 </resources>

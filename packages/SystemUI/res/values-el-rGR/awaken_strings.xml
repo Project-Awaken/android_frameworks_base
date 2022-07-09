@@ -84,12 +84,12 @@
     <string name="quick_settings_compass_W">W</string>
     <string name="quick_settings_compass_NW">NW</string>
     <!-- Screen record -->
-    <string name="screenrecord_stopdot_label">Show stop dot</string>
-    <string name="screenrecord_stopdot_summary">Longpress to move it</string>
-    <string name="screenrecord_lowquality_label">Lower quality</string>
-    <string name="screenrecord_lowquality_summary">For smaller file size</string>
-    <string name="screenrecord_longer_timeout_switch_label">Bigger file size limit</string>
-    <string name="screenrecord_longer_timeout_switch_summary">Limit recording size to 15 GB</string>
+    <string name="screenrecord_stopdot_label">Εμφάνιση κουκίδας παύσης</string>
+    <string name="screenrecord_stopdot_summary">Πατήστε παρατεταμένα για να τη μετακινήσετε</string>
+    <string name="screenrecord_lowquality_label">Χαμηλότερη ποιότητα</string>
+    <string name="screenrecord_lowquality_summary">Για μικρότερο μέγεθος αρχείου</string>
+    <string name="screenrecord_longer_timeout_switch_label">Μεγαλύτερο όριο μεγέθους αρχείου</string>
+    <string name="screenrecord_longer_timeout_switch_summary">Περιορίστε το μέγεθος εγγραφής στα 15 GB</string>
     <!-- DataSwitch Tile -->
     <string name="qs_data_switch_label">Εναλλαγή κάρτας δεδομένων σε</string>
     <string name="qs_data_switch_toast_0">Προς το παρόν δεν έχει τοποθετηθεί κάρτα SIM</string>
@@ -117,7 +117,7 @@
     <string name="quick_settings_monotoggle_tile_stereo">Στερεοφωνικός ήχος</string>
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Η αναδυόμενη ειδοποίηση αναβάλλεται για 1 λεπτό.</string>
-    <string name="heads_up_snooze_message"><xliff:g id="string">%1$s</xliff:g> - Οι αναδυόμενες ειδοποιήσεις αναβάλλονται για <xliff:g id="number">%2$d</xliff:g> λεπτά.</string>
+    <string name="heads_up_snooze_message" formatted="false"><xliff:g id="string">%1$s</xliff:g> - Οι αναδυόμενες ειδοποιήσεις αναβάλλονται για <xliff:g id="number">%2$d</xliff:g> λεπτά.</string>
     <!-- Name of the nfc status bar icon. -->
     <string name="status_bar_nfc">NFC</string>
     <!-- Accessibility label for nfc icon (not shown on screen) [CHAR LIMIT=NONE] -->
@@ -151,4 +151,10 @@
     <string name="quick_settings_powershare_enabled_label">Ο ασύρματος διαμοιρασμός ενέργειας είναι ενεργοποιημένος</string>
     <!-- Name of the call strength status bar icon. -->
     <string name="status_bar_call_strength">Ισχύς κλήσης</string>
+    <!-- OnTheSpot: Action denial button text. [CHAR LIMIT=NONE] -->
+    <string name="on_the_spot_deny">No Thanks</string>
+    <!-- OnTheSpot: Action confirmation button text. [CHAR LIMIT=NONE] -->
+    <string name="on_the_spot_confirm">Okay</string>
+    <!-- 5G toggle in internet dialog -->
+    <string name="enable_fiveg">Enable 5G</string>
 </resources>

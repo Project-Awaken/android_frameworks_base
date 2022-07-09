@@ -23,4 +23,5 @@
     <string name="status_deep_sleep">(Tidur nyenyak: %1$d%2$s)</string>
     <!-- String for removal of sensitive info on about, depending on tap -->
     <string name="device_info_protected_single_press">Sentuh untuk melihat info</string>
+    <!-- NR Types -->
 </resources>

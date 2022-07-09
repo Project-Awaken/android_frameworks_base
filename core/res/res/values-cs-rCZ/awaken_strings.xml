@@ -16,29 +16,29 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Button that copies the url to the log of a crashed application -->
-    <string name="aerr_copy">Copy crash log URL</string>
-    <string name="url_copy_success">URL copied successfully</string>
-    <string name="url_copy_failed">An error occured while uploading the log to dogbin</string>
+    <string name="aerr_copy">Kopírovat URL protokolu o selhání</string>
+    <string name="url_copy_success">URL úspěšně zkopírována</string>
+    <string name="url_copy_failed">Při nahrávání protokolu o selhání došlo k chybě</string>
     <!-- Vendor mismatch fingerprint warning [CHAR LIMIT=NONE] -->
-    <string name="system_error_vendorprint">Your vendor image does not match the system. Please flash the <xliff:g id="string">%s</xliff:g> vendor image for your device</string>
+    <string name="system_error_vendorprint">Váš dodavatel obrazu se neshoduje se systémem. Prosím flashněte obraz pro vaše zařízení <xliff:g id="string">%s </xliff:g></string>
     <!-- Global actions -->
-    <string name="reboot_to_bootloader_title">Reboot bootloader</string>
-    <string name="reboot_to_bootloader_message">Rebooting to bootloader\u2026</string>
-    <string name="reboot_to_recovery_title">Reboot recovery</string>
-    <string name="reboot_to_recovery_message">Rebooting to recovery\u2026</string>
-    <string name="reboot_system_title">Restart system</string>
-    <string name="reboot_system_message">Restarting system\u2026</string>
+    <string name="reboot_to_bootloader_title">Restartovat do bootloaderu</string>
+    <string name="reboot_to_bootloader_message">Restartování do bootloaderu\u2026</string>
+    <string name="reboot_to_recovery_title">Restartovat do recovery</string>
+    <string name="reboot_to_recovery_message">Restartování do recovery\u2026</string>
+    <string name="reboot_system_title">Restartovat systém</string>
+    <string name="reboot_system_message">Restartování systému\u2026</string>
     <!-- Cycle through ringer modes -->
-    <string name="volume_dialog_ringer_guidance_normal">Calls and notifications will ring</string>
+    <string name="volume_dialog_ringer_guidance_normal">Volání a oznámení budou vyzvánět</string>
     <!-- Pocket Lock -->
-    <string name="pocket_lock_message_long_press">Press and hold power button to unlock</string>
+    <string name="pocket_lock_message_long_press">Stisknutím a podržením tlačítka napájení odemknete obrazovku</string>
     <!-- Pocket View -->
-    <string name="pocket_view_title">Pocket mode is on</string>
-    <string name="pocket_view_title_cancel">To use your phone:</string>
-    <string name="pocket_view_top_tag_cancel">Check if the blue area of your phone is clear of any obstructions, and clean off any dirt or dust.</string>
-    <string name="pocket_view_top_tag_cancel2">Long press the power button to force quit pocket mode.</string>
+    <string name="pocket_view_title">Režim v kapse je zapnutý</string>
+    <string name="pocket_view_title_cancel">Pro použití telefonu:</string>
+    <string name="pocket_view_top_tag_cancel">Zkontrolujte, zda je modrá oblast telefonu bez jakýchkoli překážek a vyčistěte nečistoty nebo prach.</string>
+    <string name="pocket_view_top_tag_cancel2">Dlouhým stiskem tlačítka Napájení vynutíte ukončení režimu v kapse.</string>
     <!-- Face unlock -->
-    <string name="face_unlock_disabled_idle">Face unlock disabled due to inactivity</string>
+    <string name="face_unlock_disabled_idle">Odemknutí obličejem vypnuto z důvodu nečinnosti</string>
     <!-- App lock -->
-    <string name="unlock_application">Unlock <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
+    <string name="unlock_application">Odemknout <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
 </resources>

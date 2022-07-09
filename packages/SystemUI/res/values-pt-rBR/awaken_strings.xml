@@ -84,12 +84,12 @@
     <string name="quick_settings_compass_W">W</string>
     <string name="quick_settings_compass_NW">NW</string>
     <!-- Screen record -->
-    <string name="screenrecord_stopdot_label">Show stop dot</string>
-    <string name="screenrecord_stopdot_summary">Longpress to move it</string>
-    <string name="screenrecord_lowquality_label">Lower quality</string>
-    <string name="screenrecord_lowquality_summary">For smaller file size</string>
-    <string name="screenrecord_longer_timeout_switch_label">Bigger file size limit</string>
-    <string name="screenrecord_longer_timeout_switch_summary">Limit recording size to 15 GB</string>
+    <string name="screenrecord_stopdot_label">Mostrar ponto de parar gravação</string>
+    <string name="screenrecord_stopdot_summary">Toque longo para mover</string>
+    <string name="screenrecord_lowquality_label">Qualidade mais baixa</string>
+    <string name="screenrecord_lowquality_summary">Para gerar arquivos menores</string>
+    <string name="screenrecord_longer_timeout_switch_label">Limite de tamanho de arquivo maior</string>
+    <string name="screenrecord_longer_timeout_switch_summary">Limite o tamanho da gravação para 15 GB</string>
     <!-- DataSwitch Tile -->
     <string name="qs_data_switch_label">Trocar Sim de dados</string>
     <string name="qs_data_switch_toast_0">Atualmente, nenhum cartão SIM está inserido</string>
@@ -117,7 +117,7 @@
     <string name="quick_settings_monotoggle_tile_stereo">Áudio estéreo</string>
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s </xliff:g> • As notificações flutuantes foram silenciadas por 1 minuto.</string>
-    <string name="heads_up_snooze_message"><xliff:g id="string">%1$s</xliff:g> - As notificações flutuantes foram silenciadas por <xliff:g id="number">%2$d</xliff:g> minutos.</string>
+    <string name="heads_up_snooze_message" formatted="false"><xliff:g id="string">%1$s</xliff:g> - As notificações flutuantes foram silenciadas por <xliff:g id="number">%2$d</xliff:g> minutos.</string>
     <!-- Name of the nfc status bar icon. -->
     <string name="status_bar_nfc">NFC</string>
     <!-- Accessibility label for nfc icon (not shown on screen) [CHAR LIMIT=NONE] -->
@@ -151,4 +151,10 @@
     <string name="quick_settings_powershare_enabled_label">Compartilhamento de Energia sem fio está ativado</string>
     <!-- Name of the call strength status bar icon. -->
     <string name="status_bar_call_strength">Intensidade do sinal para chamadas</string>
+    <!-- OnTheSpot: Action denial button text. [CHAR LIMIT=NONE] -->
+    <string name="on_the_spot_deny">Não, Obrigado</string>
+    <!-- OnTheSpot: Action confirmation button text. [CHAR LIMIT=NONE] -->
+    <string name="on_the_spot_confirm">Ok</string>
+    <!-- 5G toggle in internet dialog -->
+    <string name="enable_fiveg">Ativar 5G</string>
 </resources>

@@ -49,30 +49,30 @@
     <string name="global_action_reboot_systemui">SystemUI</string>
     <string name="global_action_settings">Cài đặt</string>
     <!-- Screenshot QS tile -->
-    <string name="quick_settings_screenshot_label">Screenshot</string>
-    <string name="quick_settings_full_screenshot_label">Full</string>
-    <string name="quick_settings_region_screenshot_label">Partial</string>
+    <string name="quick_settings_screenshot_label">Chụp màn hình</string>
+    <string name="quick_settings_full_screenshot_label">Toàn bộ</string>
+    <string name="quick_settings_region_screenshot_label">Một phần</string>
     <!-- Sync QS Tile -->
-    <string name="quick_settings_sync_label">Sync</string>
-    <string name="accessibility_quick_settings_sync_off">Sync off</string>
-    <string name="accessibility_quick_settings_sync_on">Sync on</string>
-    <string name="accessibility_quick_settings_sync_changed_off">Sync turned off</string>
-    <string name="accessibility_quick_settings_sync_changed_on">Sync turned on</string>
+    <string name="quick_settings_sync_label">Đồng bộ</string>
+    <string name="accessibility_quick_settings_sync_off">Tắt đồng bộ</string>
+    <string name="accessibility_quick_settings_sync_on">Bật đồng bộ</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Đã tắt đồng bộ</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Đồng bộ đã bật</string>
     <!-- Sound QS Tile -->
-    <string name="quick_settings_sound_label">Sound</string>
-    <string name="quick_settings_sound_ring">Ring</string>
-    <string name="quick_settings_sound_vibrate">Vibrate</string>
-    <string name="quick_settings_sound_mute">Mute</string>
+    <string name="quick_settings_sound_label">Âm thanh</string>
+    <string name="quick_settings_sound_ring">Chuông</string>
+    <string name="quick_settings_sound_vibrate">Rung</string>
+    <string name="quick_settings_sound_mute">Tắt tiếng</string>
     <!-- Statusbar tuner -->
-    <string name="statusbar_items_title">Statusbar icons</string>
+    <string name="statusbar_items_title">B.tượng thanh t.thái</string>
     <!-- Name of the VPN status bar icon. -->
     <string name="status_bar_vpn">VPN</string>
     <!-- Compass QS Tile -->
-    <string name="quick_settings_compass_label">Compass</string>
+    <string name="quick_settings_compass_label">La bàn</string>
     <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
     <string name="quick_settings_compass_init">Initializing\u2026</string>
-    <string name="accessibility_quick_settings_compass_off">Compass off</string>
-    <string name="accessibility_quick_settings_compass_on">Compass on</string>
+    <string name="accessibility_quick_settings_compass_off">Tắt la bàn</string>
+    <string name="accessibility_quick_settings_compass_on">Bật la bàn</string>
     <string name="accessibility_quick_settings_compass_changed_off">Compass turned off</string>
     <string name="accessibility_quick_settings_compass_changed_on">Compass turned on</string>
     <string name="quick_settings_compass_N">N</string>
@@ -117,7 +117,7 @@
     <string name="quick_settings_monotoggle_tile_stereo">Stereo audio</string>
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Peeking notification are snoozing for 1 minute.</string>
-    <string name="heads_up_snooze_message"><xliff:g id="string">%1$s</xliff:g> - Peeking notifications are snoozing for <xliff:g id="number">%2$d</xliff:g> minutes.</string>
+    <string name="heads_up_snooze_message" formatted="false"><xliff:g id="string">%1$s</xliff:g> - Peeking notifications are snoozing for <xliff:g id="number">%2$d</xliff:g> minutes.</string>
     <!-- Name of the nfc status bar icon. -->
     <string name="status_bar_nfc">NFC</string>
     <!-- Accessibility label for nfc icon (not shown on screen) [CHAR LIMIT=NONE] -->
@@ -151,4 +151,10 @@
     <string name="quick_settings_powershare_enabled_label">Wireless PowerShare is enabled</string>
     <!-- Name of the call strength status bar icon. -->
     <string name="status_bar_call_strength">Call strength</string>
+    <!-- OnTheSpot: Action denial button text. [CHAR LIMIT=NONE] -->
+    <string name="on_the_spot_deny">No Thanks</string>
+    <!-- OnTheSpot: Action confirmation button text. [CHAR LIMIT=NONE] -->
+    <string name="on_the_spot_confirm">Okay</string>
+    <!-- 5G toggle in internet dialog -->
+    <string name="enable_fiveg">Enable 5G</string>
 </resources>
