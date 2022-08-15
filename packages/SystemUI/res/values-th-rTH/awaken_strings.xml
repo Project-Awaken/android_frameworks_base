@@ -152,9 +152,7 @@
     <!-- Name of the call strength status bar icon. -->
     <string name="status_bar_call_strength">ระดับเสียงคอล</string>
     <!-- OnTheSpot: Action denial button text. [CHAR LIMIT=NONE] -->
-    <string name="on_the_spot_deny">No Thanks</string>
+    <string name="on_the_spot_deny">ไม่เป็นไร</string>
     <!-- OnTheSpot: Action confirmation button text. [CHAR LIMIT=NONE] -->
-    <string name="on_the_spot_confirm">Okay</string>
-    <!-- 5G toggle in internet dialog -->
-    <string name="enable_fiveg">Enable 5G</string>
+    <string name="on_the_spot_confirm">ตกลง</string>
 </resources>

@@ -24,8 +24,8 @@
     <!-- Global actions -->
     <string name="reboot_to_bootloader_title">إعادة التشغيل الى وضع البوتلودر</string>
     <string name="reboot_to_bootloader_message">جاري إعادة التشغيل إلى البوتلودر</string>
-    <string name="reboot_to_recovery_title">إعادة تشغيل إلى الـRecovery</string>
-    <string name="reboot_to_recovery_message">يتم اعادة التشغيل إلى وضع الـRecovery \u2026</string>
+    <string name="reboot_to_recovery_title">إعادة تشغيل إلى الريكفرى</string>
+    <string name="reboot_to_recovery_message">يتم اعادة التشغيل إلى وضع الريكفرى \u2026</string>
     <string name="reboot_system_title">إعادة تشغيل النظام</string>
     <string name="reboot_system_message">إعادة تشغيل الواجهة الرسومية</string>
     <!-- Cycle through ringer modes -->

@@ -155,6 +155,4 @@
     <string name="on_the_spot_deny">Não, Obrigado</string>
     <!-- OnTheSpot: Action confirmation button text. [CHAR LIMIT=NONE] -->
     <string name="on_the_spot_confirm">Ok</string>
-    <!-- 5G toggle in internet dialog -->
-    <string name="enable_fiveg">Ativar 5G</string>
 </resources>

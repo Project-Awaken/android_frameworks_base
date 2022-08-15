@@ -31,7 +31,7 @@
     <!-- Cycle through ringer modes -->
     <string name="volume_dialog_ringer_guidance_normal">สายเรียกเข้าและการแจ้งเตือนจะส่งเสียง</string>
     <!-- Pocket Lock -->
-    <string name="pocket_lock_message_long_press">กด ปุ่มเปิด/ปิดเครื่อง ค้างไว้เพื่อปลดล็อค</string>
+    <string name="pocket_lock_message_long_press">กด ปุ่มเปิด/ปิดเครื่อง ค้างไว้เพื่อปลดล็อก</string>
     <!-- Pocket View -->
     <string name="pocket_view_title">โหมดพกพาเปิดอยู่</string>
     <string name="pocket_view_title_cancel">เพื่อใช้โทรศัพท์ของคุณ:</string>

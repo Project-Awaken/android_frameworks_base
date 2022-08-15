@@ -31,11 +31,11 @@
     <!-- USB tethering QS tile -->
     <string name="quick_settings_usb_tether_label">‏ربط USB</string>
     <!-- Heads Up QS Tile -->
-    <string name="quick_settings_heads_up_label">وضع الانتباه</string>
-    <string name="accessibility_quick_settings_heads_up_off">ايقاف وضع الانتباه.</string>
-    <string name="accessibility_quick_settings_heads_up_on">تشغيل وضع الانتباه.</string>
-    <string name="accessibility_quick_settings_heads_up_changed_off">تم اطفاء وضع الانتباه.</string>
-    <string name="accessibility_quick_settings_heads_up_changed_on">تم تشغيل وضع الانتباه.</string>
+    <string name="quick_settings_heads_up_label">التنبيهات العلوية</string>
+    <string name="accessibility_quick_settings_heads_up_off">ايقاف التنبيهات العلوية.</string>
+    <string name="accessibility_quick_settings_heads_up_on">تشغيل التنبيهات العلوية.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">تم اطفاء التنبيهات العلوية.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">تم تشغيل التنبيهات العلوية.</string>
     <!-- Label for UI element which allows deleting the screenshot [CHAR LIMIT=30] -->
     <string name="screenshot_delete_label">حذف</string>
     <!-- Content description indicating that tapping the element will allow deleting the screenshot [CHAR LIMIT=NONE] -->
@@ -44,8 +44,8 @@
     <string name="global_action_reboot">إعادة التشغيل</string>
     <string name="global_action_reboot_more">إعدادات متقدمة</string>
     <string name="global_action_reboot_sub">النظام</string>
-    <string name="global_action_reboot_recovery">Recovery</string>
-    <string name="global_action_reboot_bootloader">Bootloader</string>
+    <string name="global_action_reboot_recovery">الريكفرى</string>
+    <string name="global_action_reboot_bootloader">البوت لودر</string>
     <string name="global_action_reboot_systemui">واجهة المستخدم</string>
     <string name="global_action_settings">الإعدادات</string>
     <!-- Screenshot QS tile -->
@@ -117,7 +117,7 @@
     <string name="quick_settings_monotoggle_tile_stereo">صوت الستيريو (ثنائي)</string>
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> • تم إغلاق تنبيهات هذا التطبيق الدقيقة واحدة.</string>
-    <string name="heads_up_snooze_message" formatted="false"><xliff:g id="string">%1$s</xliff:g> • الاشعارات العائمة فى وضع الغفوة لمدة <xliff:g id="number">%2$d</xliff:g> دقائق.</string>
+    <string name="heads_up_snooze_message" formatted="false"><xliff:g id="string">%1$s</xliff:g> • التنبيهات العائمة فى وضع الغفوة لمدة <xliff:g id="number">%2$d</xliff:g> دقائق.</string>
     <!-- Name of the nfc status bar icon. -->
     <string name="status_bar_nfc">NFC</string>
     <!-- Accessibility label for nfc icon (not shown on screen) [CHAR LIMIT=NONE] -->
@@ -155,6 +155,4 @@
     <string name="on_the_spot_deny">لا شكرا</string>
     <!-- OnTheSpot: Action confirmation button text. [CHAR LIMIT=NONE] -->
     <string name="on_the_spot_confirm">حسنا</string>
-    <!-- 5G toggle in internet dialog -->
-    <string name="enable_fiveg">تفعيل شبكه الجيل الخامس</string>
 </resources>
