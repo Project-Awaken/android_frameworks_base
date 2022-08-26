@@ -991,8 +991,9 @@ public class BroadcastQueueImpl extends BroadcastQueue {
     }
 
 	private boolean isBootCompletedIntent(Intent intent) {
-        return intent.getAction() == Intent.ACTION_BOOT_COMPLETED ||
-                intent.getAction() == Intent.ACTION_LOCKED_BOOT_COMPLETED;
+        return Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction()) ||
+                Intent.ACTION_LOCKED_BOOT_COMPLETED.equals(intent.getAction()) ||
+                Intent.ACTION_MEDIA_MOUNTED.equals(intent.getAction());
     }
 
     public void processNextBroadcastLocked(boolean fromMsg, boolean skipOomAdj) {
@@ -1396,7 +1397,7 @@ public class BroadcastQueueImpl extends BroadcastQueue {
         if (isBootCompletedIntent(r.intent) &&
                 mService.shouldSkipBootCompletedBroadcastForPackage(
                         info.activityInfo.applicationInfo)) {
-            Slog.i(TAG, "BOOT_COMPLETED broadcast skipped because of strict standby for "
+            Slog.i(TAG, "Boot broadcast skipped because of strict standby for "
                     + info.activityInfo.applicationInfo.packageName);
             skip = true;
         }
