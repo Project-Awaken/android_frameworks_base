@@ -33,6 +33,8 @@ public class PixelPropsUtils {
     private static final String TAG = PixelPropsUtils.class.getSimpleName();
     private static final boolean DEBUG = false;
 
+    private static final String SAMSUNG = "com.samsung.android.";
+
     private static final Map<String, Object> propsToChange;
     private static final Map<String, Object> propsToChangePixel5;
     private static final Map<String, Object> propsToChangePixel7Pro;
@@ -47,17 +49,7 @@ public class PixelPropsUtils {
 
     private static final String[] packagesToChangePixelXL = {
             "com.google.android.apps.photos",
-            "com.google.android.inputmethod.latin",
-            "com.samsung.accessory",
-            "com.samsung.accessory.fridaymgr",
-            "com.samsung.accessory.berrymgr",
-            "com.samsung.accessory.neobeanmgr",
-            "com.samsung.android.app.watchmanager",
-            "com.samsung.android.geargplugin",
-            "com.samsung.android.gearnplugin",
-            "com.samsung.android.modenplugin",
-            "com.samsung.android.neatplugin",
-            "com.samsung.android.waterplugin"
+            "com.google.android.inputmethod.latin"
     };
 
     private static final String[] extraPackagesToChange = {
@@ -127,6 +119,7 @@ public class PixelPropsUtils {
             return;
         }
         if (packageName.startsWith("com.google.")
+                || packageName.startsWith(SAMSUNG)
                 || Arrays.asList(extraPackagesToChange).contains(packageName)) {
 
             if (packageName.equals("com.google.android.apps.photos")) {
@@ -135,7 +128,9 @@ public class PixelPropsUtils {
                 sIsFinsky = true;
                 return;
             } else {
-                if (Arrays.asList(packagesToChangePixel7Pro).contains(packageName)) {
+                if ((Arrays.asList(packagesToChangePixel7Pro).contains(packageName))
+                        || packageName.startsWith(SAMSUNG)
+                        || Arrays.asList(extraPackagesToChange).contains(packageName)) {
                     propsToChange.putAll(propsToChangePixel7Pro);
                 } else if (Arrays.asList(packagesToChangePixelXL).contains(packageName)) {
                     propsToChange.putAll(propsToChangePixelXL);
