@@ -33,6 +33,9 @@
     <!-- Screen record dot -->
     <dimen name="screenrecord_dot_size">48dp</dimen>
 
+    <!-- The height of the WiFi toggle layout in Internet panel -->
+    <dimen name="internet_dialog_wifi_toggle_height">56dp</dimen>
+
     <!-- Width of the battery icon in the status bar when set to circle style. -->
     <dimen name="status_bar_battery_icon_circle_width">14.5dp</dimen>
 </resources>
