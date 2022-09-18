@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2022 Paranoid Android
+ *           (C) 2023 StatiXOS
  *           (C) 2023 ArrowOS
  *           (C) 2023 The LibreMobileOS Foundation
  *
@@ -46,10 +47,14 @@ public class PropImitationHooks {
     private static final String PACKAGE_ARCORE = "com.google.ar.core";
     private static final String PACKAGE_ASI = "com.google.android.as";
     private static final String PACKAGE_FINSKY = "com.android.vending";
+    private static final String PACKAGE_GBOARD = "com.google.android.inputmethod.latin";
     private static final String PACKAGE_GMS = "com.google.android.gms";
     private static final String PROCESS_GMS_UNSTABLE = PACKAGE_GMS + ".unstable";
     private static final String PACKAGE_GPHOTOS = "com.google.android.apps.photos";
     private static final String PACKAGE_NETFLIX = "com.netflix.mediaclient";
+    private static final String PACKAGE_SETUPWIZARD = "com.google.android.setupwizard";
+    private static final String PACKAGE_SUBSCRIPTION_RED = "com.google.android.apps.subscriptions.red";
+    private static final String PACKAGE_TURBO = "com.google.android.apps.turbo";
     private static final String PACKAGE_VELVET = "com.google.android.googlequicksearchbox";
 
     private static final String PROP_SECURITY_PATCH = "persist.sys.pihooks.security_patch";
@@ -61,13 +66,13 @@ public class PropImitationHooks {
     private static final String FEATURE_NEXUS_PRELOAD =
             "com.google.android.apps.photos.NEXUS_PRELOAD";
 
-    private static final Map<String, String> sPixelFiveProps = Map.of(
-        "PRODUCT", "redfin",
-        "DEVICE", "redfin",
+    private static final Map<String, String> sPixelEightProps = Map.of(
+        "PRODUCT", "husky",
+        "DEVICE", "husky",
         "MANUFACTURER", "Google",
         "BRAND", "google",
-        "MODEL", "Pixel 5",
-        "FINGERPRINT", "google/redfin/redfin:13/TQ3A.230901.001/10750268:user/release-keys"
+        "MODEL", "Pixel 8 Pro",
+        "FINGERPRINT", "google/husky/husky:14/AP1A.240405.002/11480754:user/release-keys"
     );
 
     private static final Map<String, String> sPixelOneProps = Map.of(
@@ -122,7 +127,7 @@ public class PropImitationHooks {
 
         /* Set certified properties for GMSCore
          * Set stock fingerprint for ARCore
-         * Set Pixel 5 for Google and ASI
+         * Set Pixel 8 Pro for ASI, Google and GMS device configurator
          * Set Pixel XL for Google Photos
          * Set custom model for Netflix
          */
@@ -131,10 +136,11 @@ public class PropImitationHooks {
         } else if (!sStockFp.isEmpty() && packageName.equals(PACKAGE_ARCORE)) {
             dlog("Setting stock fingerprint for: " + packageName);
             setPropValue("FINGERPRINT", sStockFp);
-        } else if (sSpoofGapps && (packageName.equals(PACKAGE_VELVET)
-                || packageName.equals(PACKAGE_ASI))) {
-            dlog("Spoofing Pixel 5 for: " + packageName);
-            sPixelFiveProps.forEach(PropImitationHooks::setPropValue);
+        } else if (sSpoofGapps && (packageName.equals(PACKAGE_ASI) || packageName.equals(PACKAGE_GBOARD)
+                || packageName.equals(PACKAGE_SETUPWIZARD) || packageName.equals(PACKAGE_SUBSCRIPTION_RED)
+                || packageName.equals(PACKAGE_TURBO) || packageName.equals(PACKAGE_VELVET))) {
+            dlog("Spoofing Pixel 8 Pro for: " + packageName);
+            sPixelEightProps.forEach(PropImitationHooks::setPropValue);
         } else if (sIsPhotos) {
             dlog("Spoofing Pixel 1 for Google Photos");
             sPixelOneProps.forEach((PropImitationHooks::setPropValue));
