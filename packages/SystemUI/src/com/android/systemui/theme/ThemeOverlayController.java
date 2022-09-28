@@ -574,7 +574,7 @@ public class ThemeOverlayController implements CoreStartable, Dumpable {
         }
     }
 
-    private void reevaluateSystemTheme(boolean forceReload) {
+    protected void reevaluateSystemTheme(boolean forceReload) {
         final WallpaperColors currentColors = mCurrentColors.get(mUserTracker.getUserId());
         final int mainColor;
         if (currentColors == null) {
