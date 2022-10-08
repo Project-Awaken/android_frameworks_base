@@ -120,6 +120,7 @@ public class NavigationModeController implements Dumpable {
         mOverlayManager = IOverlayManager.Stub.asInterface(
                 ServiceManager.getService(Context.OVERLAY_SERVICE));
         mUiBgExecutor = uiBgExecutor;
+        mSecureSettings = secureSettings;
         dumpManager.registerDumpable(getClass().getSimpleName(), this);
 
         deviceProvisionedController.addCallback(mDeviceProvisionedCallback);
@@ -162,7 +163,6 @@ public class NavigationModeController implements Dumpable {
                 }
             }, UserHandle.USER_ALL);
 
-        mSecureSettings = secureSettings;
         mSecureSettings.registerContentObserverForUser(
             Settings.Secure.GESTURE_NAVBAR_LENGTH_MODE,
             new ContentObserver(mainHandler) {
