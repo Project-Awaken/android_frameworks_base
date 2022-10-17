@@ -156,8 +156,8 @@ public class Flags {
 
     /***************************************/
     // 600- status bar
-    public static final UnreleasedFlag COMBINED_STATUS_BAR_SIGNAL_ICONS =
-            new UnreleasedFlag(601, false);
+    public static final ResourceBooleanFlag COMBINED_STATUS_BAR_SIGNAL_ICONS =
+            new ResourceBooleanFlag(601, R.bool.flag_combined_status_bar_signal_icons);
 
     public static final ResourceBooleanFlag STATUS_BAR_USER_SWITCHER =
             new ResourceBooleanFlag(602, R.bool.flag_user_switcher_chip);
