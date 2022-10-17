@@ -40,4 +40,5 @@
          protected. -->
     <bool name="flag_battery_shield_icon">false</bool>
 
+    <bool name="flag_combined_status_bar_signal_icons">true</bool>
 </resources>
