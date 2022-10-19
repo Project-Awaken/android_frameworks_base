@@ -702,6 +702,8 @@ public class CentralSurfacesImpl extends CoreStartable implements
         onBackPressed();
     };
 
+    private final DeviceStateManager mDeviceStateManager;
+
     /**
      * Public constructor for CentralSurfaces.
      *
@@ -876,6 +878,7 @@ public class CentralSurfacesImpl extends CoreStartable implements
         mMessageRouter = messageRouter;
         mWallpaperManager = wallpaperManager;
         mJankMonitor = jankMonitor;
+        mDeviceStateManager = deviceStateManager;
 
         mLockscreenShadeTransitionController = lockscreenShadeTransitionController;
         mStartingSurfaceOptional = startingSurfaceOptional;
@@ -908,8 +911,6 @@ public class CentralSurfacesImpl extends CoreStartable implements
         mMessageRouter.subscribeTo(MSG_LAUNCH_TRANSITION_TIMEOUT,
                 id -> onLaunchTransitionTimeout());
 
-        deviceStateManager.registerCallback(mMainExecutor,
-                new FoldStateListener(mContext, this::onFoldedStateChanged));
         wiredChargingRippleController.registerCallbacks();
         mMessageRouter.subscribeTo(MSG_LONG_PRESS_BRIGHTNESS_CHANGE,
                 id -> onLongPressBrightnessChange());
@@ -1553,6 +1554,9 @@ public class CentralSurfacesImpl extends CoreStartable implements
         mNotificationShelfController = mCentralSurfacesComponent.getNotificationShelfController();
         mAuthRippleController = mCentralSurfacesComponent.getAuthRippleController();
         mAuthRippleController.init();
+
+        mDeviceStateManager.registerCallback(mMainExecutor,
+                new FoldStateListener(mContext, this::onFoldedStateChanged));
 
         mHeadsUpManager.addListener(mCentralSurfacesComponent.getStatusBarHeadsUpChangeListener());
 
