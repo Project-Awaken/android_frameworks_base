@@ -20,6 +20,9 @@
     <dimen name="navigation_home_handle_width_medium">130dp</dimen>
     <dimen name="navigation_home_handle_width_long">160dp</dimen>
 
+    <!-- Bluetooth dialog -->
+    <dimen name="bluetooth_dialog_active_device_bottom_margin">4dp</dimen>
+
     <!-- Fps info text -->
     <dimen name="fps_info_text_padding">4dp</dimen>
 
