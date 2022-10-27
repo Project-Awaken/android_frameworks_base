@@ -30,6 +30,10 @@
     <string name="quick_settings_aod_label">AOD</string>
     <string name="quick_settings_aod_off_powersave_label">AOD off\nBattery saver</string>
 
+    <!-- Bluetooth dialog -->
+    <string name="bluetooth_is_off">Bluetooth is off</string>
+    <string name="tap_a_device_to_connect">Tap a device to connect</string>
+
     <!-- Caffeine QS tile -->
     <string name="quick_settings_caffeine_label">Caffeine</string>
     <string name="accessibility_quick_settings_caffeine_off">Caffeine off.</string>

@@ -20,6 +20,10 @@
     <dimen name="navigation_home_handle_width_medium">130dp</dimen>
     <dimen name="navigation_home_handle_width_long">160dp</dimen>
 
+    <!-- Bluetooth dialog -->
+    <dimen name="bluetooth_dialog_active_device_bottom_margin">4dp</dimen>
+    <dimen name="bluetooth_dialog_toggle_height">56dp</dimen>
+
     <!-- Old style mobile data indicators -->
     <dimen name="status_bar_mobile_signal_with_type_width">18dp</dimen>
     <dimen name="status_bar_mobile_signal_width">16dp</dimen>
