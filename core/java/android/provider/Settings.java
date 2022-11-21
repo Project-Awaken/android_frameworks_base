@@ -6007,6 +6007,27 @@ public final class Settings {
         public static final String STATUS_BAR_CLOCK_AUTO_HIDE_SDURATION = "status_bar_clock_auto_hide_sduration";
 
         /**
+         * Which notification Vibration Pattern to use
+         * 0: default provided value
+         * 1: dzzz-da
+         * 2: mm-mm-mm
+         * 3: da-da-dzzz
+         * 4: da-dzzz-da
+         * 5: custom
+         * @hide
+         */
+        @Readable
+        public static final String NOTIFICATION_VIBRATION_PATTERN = "notification_vibration_pattern";
+
+        /**
+         * Custom notification vibration pattern
+         * format: ms,ms,ms each a range from 0 to 1000 ms
+         * @hide
+         */
+        @Readable
+        public static final String CUSTOM_NOTIFICATION_VIBRATION_PATTERN = "custom_notification_vibration_pattern";
+
+        /**
          * These are all public system settings
          *
          * @hide
