@@ -45,6 +45,7 @@ import androidx.annotation.StyleRes;
 import androidx.annotation.VisibleForTesting;
 
 import com.android.app.animation.Interpolators;
+import com.android.settingslib.Utils;
 import com.android.settingslib.graph.CircleBatteryDrawable;
 import com.android.settingslib.graph.FullCircleBatteryDrawable;
 import com.android.systemui.DualToneHandler;
@@ -94,6 +95,7 @@ public class BatteryMeterView extends LinearLayout implements DarkReceiver {
     private boolean mIsBatteryDefender;
     private boolean mIsIncompatibleCharging;
     private boolean mDisplayShieldEnabled;
+    private boolean mPowerSaveEnabled;
     // Error state where we know nothing about the current battery state
     private boolean mBatteryStateUnknown;
     // Lazily-loaded since this is expected to be a rare-if-ever state
@@ -269,6 +271,7 @@ public class BatteryMeterView extends LinearLayout implements DarkReceiver {
         mAccessorizedDrawable.setPowerSaveEnabled(isPowerSave);
         mCircleDrawable.setPowerSaveEnabled(isPowerSave);
         mFullCircleDrawable.setPowerSaveEnabled(isPowerSave);
+        mPowerSaveEnabled = isPowerSave;
         updateShowPercent();
     }
 
@@ -354,19 +357,19 @@ public class BatteryMeterView extends LinearLayout implements DarkReceiver {
     private void setPercentTextAtCurrentLevel() {
         if (mBatteryPercentView != null) {
             mEstimateText = null;
-            // Use the high voltage symbol ⚡ (u26A1 unicode) but prevent the system
-            // to load its emoji colored variant with the uFE0E flag
-            String bolt = "\u26A1\uFE0E";
-            CharSequence mChargeIndicator = mCharging && (mBatteryStyle == BATTERY_STYLE_TEXT)
-                ? (bolt + " ") : "";
-            String percentText = mChargeIndicator + NumberFormat.getPercentInstance().format(mLevel / 100f);
             String percentText = NumberFormat.getPercentInstance().format(mLevel / 100f);
+            if (mBatteryStyle == BATTERY_STYLE_TEXT && mPluggedIn) {
+                // Use the high voltage symbol ⚡ (u26A1 unicode) but prevent the system
+                // from loading its emoji colored variant, using the uFE0E flag
+                percentText += "\u26A1\uFE0E";
+            }
             // Setting text actually triggers a layout pass (because the text view is set to
             // wrap_content width and TextView always relayouts for this). Avoid needless
             // relayout if the text didn't actually change.
             if (!TextUtils.equals(mBatteryPercentView.getText(), percentText)) {
                 mBatteryPercentView.setText(percentText);
             }
+            updatePercentTextColor();
 
             updateContentDescription();
         }
@@ -398,6 +401,21 @@ public class BatteryMeterView extends LinearLayout implements DarkReceiver {
         setContentDescription(contentDescription);
     }
 
+    private void updatePercentTextColor() {
+        if (mBatteryPercentView == null) {
+            return;
+        }
+        if (mBatteryStyle == BATTERY_STYLE_TEXT && mPowerSaveEnabled) {
+            // Use the error (red) color, same as battery saver icon
+            mBatteryPercentView.setTextColor(Utils.getColorError(getContext()));
+        } else if (mTextColor != 0) {
+            mBatteryPercentView.setTextColor(mTextColor);
+        } else {
+            mBatteryPercentView.setTextColor(Utils.getColorAttr(
+                    getContext(), android.R.attr.textColorPrimary));
+        }
+    }
+
     private void removeBatteryPercentView() {
         if (mBatteryPercentView != null) {
             removeView(mBatteryPercentView);
@@ -423,7 +441,6 @@ public class BatteryMeterView extends LinearLayout implements DarkReceiver {
                 }
                 float fontHeight = mBatteryPercentView.getPaint().getFontMetricsInt(null);
                 mBatteryPercentView.setLineHeight(TypedValue.COMPLEX_UNIT_PX, fontHeight);
-                if (mTextColor != 0) mBatteryPercentView.setTextColor(mTextColor);
                 addView(mBatteryPercentView, new LayoutParams(
                         LayoutParams.WRAP_CONTENT,
                         (int) Math.ceil(fontHeight)));
@@ -590,9 +607,7 @@ public class BatteryMeterView extends LinearLayout implements DarkReceiver {
         mCircleDrawable.setColors(foregroundColor, backgroundColor, singleToneColor);
         mFullCircleDrawable.setColors(foregroundColor, backgroundColor, singleToneColor);
         mTextColor = singleToneColor;
-        if (mBatteryPercentView != null) {
-            mBatteryPercentView.setTextColor(singleToneColor);
-        }
+        updatePercentTextColor();
 
         if (mUnknownStateDrawable != null) {
             mUnknownStateDrawable.setTint(singleToneColor);
