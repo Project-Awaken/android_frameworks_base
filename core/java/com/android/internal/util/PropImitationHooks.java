@@ -52,6 +52,7 @@ public class PropImitationHooks {
     private static final String PACKAGE_GPHOTOS = "com.google.android.apps.photos";
     private static final String PACKAGE_NETFLIX = "com.netflix.mediaclient";
     private static final String PACKAGE_SETUPWIZARD = "com.google.android.setupwizard";
+    private static final String PACKAGE_SMS_ORGANIZER = "com.microsoft.android.smsorganizer";
     private static final String PACKAGE_SUBSCRIPTION_RED = "com.google.android.apps.subscriptions.red";
     private static final String PACKAGE_TURBO = "com.google.android.apps.turbo";
     private static final String PACKAGE_VELVET = "com.google.android.googlequicksearchbox";
@@ -149,7 +150,7 @@ public class PropImitationHooks {
             dlog("Spoofing Pixel 5 for: " + packageName);
             sPixelFiveProps.forEach(PropImitationHooks::setPropValue);
         } else if (sSpoofGapps && (packageName.equals(PACKAGE_GBOARD) || packageName.equals(PACKAGE_SETUPWIZARD)
-                || packageName.equals(PACKAGE_SUBSCRIPTION_RED) || packageName.equals(PACKAGE_TURBO)
+                || packageName.equals(PACKAGE_SMS_ORGANIZER) || packageName.equals(PACKAGE_SUBSCRIPTION_RED) || packageName.equals(PACKAGE_TURBO)
                 || packageName.equals(PACKAGE_VELVET) || (packageName.equals(PACKAGE_GMS) && processName.equals(PROCESS_GMS_PERSISTENT)))) {
             dlog("Spoofing Pixel 8 Pro for: " + packageName + " process: " + processName);
             sPixelEightProps.forEach(PropImitationHooks::setPropValue);
