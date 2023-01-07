@@ -56,6 +56,7 @@ public class DataSwitchTile extends QSTileImpl<BooleanState> {
             refreshState();
         }
     };
+    private static final String SETTING_USER_PREF_DATA_SUB = "user_preferred_data_sub";
     private final MyCallStateListener mPhoneStateListener;
     private final SubscriptionManager mSubscriptionManager;
     private final TelephonyManager mTelephonyManager;
@@ -261,6 +262,7 @@ public class DataSwitchTile extends QSTileImpl<BooleanState> {
         final int newSubID = newSubInfo.getSubscriptionId();
         mTelephonyManager.createForSubscriptionId(newSubID).setDataEnabled(true);
         mSubscriptionManager.setDefaultDataSubId(newSubID);
+        Settings.Global.putInt(mContext.getContentResolver(), SETTING_USER_PREF_DATA_SUB, newSubID);
         Log.d(TAG, "Enabled subID: " + newSubID);
 
         if (currentSubInfo.isOpportunistic()) {
