@@ -25,5 +25,5 @@
     <!-- Deep sleep info -->
     <string name="status_deep_sleep">(Głęboki sen: %1$d%2$s)</string>
     <!-- String for removal of sensitive info on about, depending on tap -->
-    <string name="device_info_protected_single_press">Tap to show info</string>
+    <string name="device_info_protected_single_press">Dotknij, aby wyświetlić informacje</string>
 </resources>
