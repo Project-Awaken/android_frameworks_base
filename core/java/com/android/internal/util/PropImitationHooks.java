@@ -35,6 +35,8 @@ import com.android.internal.R;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.Set;
 
 public class PropImitationHooks {
 
@@ -42,10 +44,13 @@ public class PropImitationHooks {
     private static final boolean DEBUG = false;
 
     private static final String PACKAGE_ARCORE = "com.google.ar.core";
+    private static final String PACKAGE_ASI = "com.google.android.as";
     private static final String PACKAGE_FINSKY = "com.android.vending";
     private static final String PACKAGE_GMS = "com.google.android.gms";
     private static final String PROCESS_GMS_UNSTABLE = PACKAGE_GMS + ".unstable";
+    private static final String PACKAGE_GPHOTOS = "com.google.android.apps.photos";
     private static final String PACKAGE_NETFLIX = "com.netflix.mediaclient";
+    private static final String PACKAGE_VELVET = "com.google.android.googlequicksearchbox";
 
     private static final String PROP_SECURITY_PATCH = "persist.sys.pihooks.security_patch";
     private static final String PROP_FIRST_API_LEVEL = "persist.sys.pihooks.first_api_level";
@@ -53,8 +58,39 @@ public class PropImitationHooks {
     private static final ComponentName GMS_ADD_ACCOUNT_ACTIVITY = ComponentName.unflattenFromString(
             "com.google.android.gms/.auth.uiflows.minutemaid.MinuteMaidActivity");
 
+    private static final String FEATURE_NEXUS_PRELOAD =
+            "com.google.android.apps.photos.NEXUS_PRELOAD";
+
+    private static final Map<String, String> sPixelFiveProps = Map.of(
+        "PRODUCT", "redfin",
+        "DEVICE", "redfin",
+        "MANUFACTURER", "Google",
+        "BRAND", "google",
+        "MODEL", "Pixel 5",
+        "FINGERPRINT", "google/redfin/redfin:13/TQ3A.230901.001/10750268:user/release-keys"
+    );
+
+    private static final Map<String, String> sPixelOneProps = Map.of(
+        "PRODUCT", "sailfish",
+        "DEVICE", "sailfish",
+        "MANUFACTURER", "Google",
+        "BRAND", "google",
+        "MODEL", "Pixel",
+        "FINGERPRINT", "google/sailfish/sailfish:10/QP1A.191005.007.A3/5972272:user/release-keys"
+    );
+
+    private static final Set<String> sPixelFeatures = Set.of(
+        "PIXEL_2017_PRELOAD",
+        "PIXEL_2018_PRELOAD",
+        "PIXEL_2019_MIDYEAR_PRELOAD",
+        "PIXEL_2019_PRELOAD",
+        "PIXEL_2020_EXPERIENCE",
+        "PIXEL_2020_MIDYEAR_EXPERIENCE"
+    );
+
     private static volatile String[] sCertifiedProps;
     private static volatile String sStockFp, sNetflixModel;
+    private static volatile boolean sSpoofGapps;
 
     private static volatile String sProcessName;
     private static volatile boolean sIsGms, sIsFinsky, sIsPhotos;
@@ -77,13 +113,17 @@ public class PropImitationHooks {
         sCertifiedProps = res.getStringArray(R.array.config_certifiedBuildProperties);
         sStockFp = res.getString(R.string.config_stockFingerprint);
         sNetflixModel = res.getString(R.string.config_netflixSpoofModel);
+        sSpoofGapps = res.getBoolean(R.bool.config_spoofGoogleApps);
 
         sProcessName = processName;
         sIsGms = packageName.equals(PACKAGE_GMS) && processName.equals(PROCESS_GMS_UNSTABLE);
         sIsFinsky = packageName.equals(PACKAGE_FINSKY);
+        sIsPhotos = sSpoofGapps && packageName.equals(PACKAGE_GPHOTOS);
 
-        /* Set Certified Properties for GMSCore
-         * Set Stock Fingerprint for ARCore
+        /* Set certified properties for GMSCore
+         * Set stock fingerprint for ARCore
+         * Set Pixel 5 for Google and ASI
+         * Set Pixel XL for Google Photos
          * Set custom model for Netflix
          */
         if (sIsGms) {
@@ -91,6 +131,13 @@ public class PropImitationHooks {
         } else if (!sStockFp.isEmpty() && packageName.equals(PACKAGE_ARCORE)) {
             dlog("Setting stock fingerprint for: " + packageName);
             setPropValue("FINGERPRINT", sStockFp);
+        } else if (sSpoofGapps && (packageName.equals(PACKAGE_VELVET)
+                || packageName.equals(PACKAGE_ASI))) {
+            dlog("Spoofing Pixel 5 for: " + packageName);
+            sPixelFiveProps.forEach(PropImitationHooks::setPropValue);
+        } else if (sIsPhotos) {
+            dlog("Spoofing Pixel 1 for Google Photos");
+            sPixelOneProps.forEach((PropImitationHooks::setPropValue));
         } else if (!sNetflixModel.isEmpty() && packageName.equals(PACKAGE_NETFLIX)) {
             dlog("Setting model to " + sNetflixModel + " for Netflix");
             setPropValue("MODEL", sNetflixModel);
@@ -206,6 +253,19 @@ public class PropImitationHooks {
             dlog("Blocked key attestation sIsGms=" + sIsGms + " sIsFinsky=" + sIsFinsky);
             throw new UnsupportedOperationException();
         }
+    }
+
+    public static boolean hasSystemFeature(String name, boolean has) {
+        if (sIsPhotos) {
+            if (has && sPixelFeatures.stream().anyMatch(name::contains)) {
+                dlog("Blocked system feature " + name + " for Google Photos");
+                has = false;
+            } else if (!has && name.equalsIgnoreCase(FEATURE_NEXUS_PRELOAD)) {
+                dlog("Enabled system feature " + name + " for Google Photos");
+                has = true;
+            }
+        }
+        return has;
     }
 
     public static void dlog(String msg) {
