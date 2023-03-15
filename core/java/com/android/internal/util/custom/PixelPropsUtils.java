@@ -33,7 +33,7 @@ public class PixelPropsUtils {
     private static final String TAG = PixelPropsUtils.class.getSimpleName();
     private static final boolean DEBUG = false;
 
-    private static final String SAMSUNG = "com.samsung.android.";
+    private static final String SAMSUNG = "com.samsung.";
 
     private static final Map<String, Object> propsToChangePixel5;
     private static final Map<String, Object> propsToChangePixel7Pro;
