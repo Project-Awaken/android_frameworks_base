@@ -834,12 +834,9 @@ public class ApplicationPackageManager extends PackageManager {
             "com.google.android.feature.GOOGLE_EXPERIENCE"
     };
 
-    private static final String[] featuresP22 = {
+    private static final String[] featuresTensor = {
             "com.google.android.feature.PIXEL_2022_EXPERIENCE",
             "com.google.android.feature.PIXEL_2022_MIDYEAR_EXPERIENCE",
-    };
-
-    private static final String[] featuresP21 = {
             "com.google.android.feature.PIXEL_2021_EXPERIENCE",
             "com.google.android.feature.PIXEL_2021_MIDYEAR_EXPERIENCE"
     };
@@ -858,11 +855,18 @@ public class ApplicationPackageManager extends PackageManager {
         if (packageName != null &&
                 packageName.equals("com.google.android.apps.photos")) {
             if (Arrays.asList(featuresPixel).contains(name)) return false;
-            if (Arrays.asList(featuresP22).contains(name)) return false;
-            if (Arrays.asList(featuresP21).contains(name)) return false;
+            if (Arrays.asList(featuresTensor).contains(name)) return false;
             if (Arrays.asList(featuresNexus).contains(name)) return true;
         }
         if (Arrays.asList(featuresPixel).contains(name)) return true;
+        if (Arrays.asList(featuresTensor).contains(name)) {
+            return false;
+        } else if (packageName != null &&
+                packageName.contains("com.google.android.apps.nexuslauncher") &&
+                Arrays.asList(featuresTensor).contains(name)) {
+           return false;
+        }
+
         return mHasSystemFeatureCache.query(new HasSystemFeatureQuery(name, version));
     }
 
