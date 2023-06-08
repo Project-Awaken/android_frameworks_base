@@ -1,6 +1,8 @@
 /*
  * Copyright (C) 2022 The Pixel Experience Project
  *               2021-2022 crDroid Android Project
+ *           (C) 2023 ArrowOS
+ *           (C) 2023 The LibreMobileOS Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +19,15 @@
 
 package com.android.internal.util.custom;
 
+import android.app.ActivityTaskManager;
 import android.app.Application;
+import android.app.TaskStackListener;
+import android.content.Context;
+import android.content.ComponentName;
 import android.content.res.Resources;
+import android.os.Binder;
 import android.os.Build;
+import android.os.Process;
 import android.util.Log;
 
 import com.android.internal.R;
@@ -36,6 +44,9 @@ public class PixelPropsUtils {
     private static final String TAG = PixelPropsUtils.class.getSimpleName();
     private static final boolean DEBUG = false;
 
+    private static final ComponentName GMS_ADD_ACCOUNT_ACTIVITY = ComponentName.unflattenFromString(
+            "com.google.android.gms/.auth.uiflows.minutemaid.MinuteMaidActivity");
+    private static final String PACKAGE_GMS = "com.google.android.gms";
     private static final String PACKAGE_NETFLIX = "com.netflix.mediaclient";
     private static final String SAMSUNG = "com.samsung.";
 
@@ -104,8 +115,8 @@ public class PixelPropsUtils {
     private static final String sNetflixModel =
             Resources.getSystem().getString(R.string.config_netflixSpoofModel);
 
-    private static volatile boolean sIsGms = false;
-    private static volatile boolean sIsFinsky = false;
+    private static volatile String sProcessName;
+    private static volatile boolean sIsGms, sIsFinsky;
 
     static {
         propsToKeep = new HashMap<>();
@@ -160,17 +171,54 @@ public class PixelPropsUtils {
         if (isGoogleCameraPackage(packageName)) {
             return;
         }
+
+        Map<String, Object> propsToChange = new HashMap<>();
+        if (packageName.equals(PACKAGE_GMS)) {
+            final String processName = Application.getProcessName();
+            if (processName.equals("com.google.android.gms.unstable")) {
+                sIsGms = true;
+
+                final boolean was = isGmsAddAccountActivityOnTop();
+                final TaskStackListener taskStackListener = new TaskStackListener() {
+                    @Override
+                    public void onTaskStackChanged() {
+                        final boolean is = isGmsAddAccountActivityOnTop();
+               if (is ^ was) {
+                  dlog("GmsAddAccountActivityOnTop is:" + is + " was:" + was +
+                            ", killing myself!"); // process will restart automatically later
+                    Process.killProcess(Process.myPid());
+                        }
+                    }
+                };
+                try {
+                    ActivityTaskManager.getService().registerTaskStackListener(taskStackListener);
+                } catch (Exception e) {
+                    Log.e(TAG, "Failed to register task stack listener!", e);
+                }
+                if (was) return;
+
+               dlog("Spoofing build for GMS");
+               setPropValue("FINGERPRINT", "google/marlin/marlin:7.1.2/NJH47F/4146041:user/release-keys");
+               setPropValue("PRODUCT", "marlin");
+               setPropValue("DEVICE", "marlin");
+               setPropValue("MODEL", "Pixel XL");
+               setVersionField("DEVICE_INITIAL_SDK_INT", Build.VERSION_CODES.N_MR1);
+               } else {
+                propsToChangePixel7Pro.forEach((k, v) -> setPropValue(k, v));
+            }
+            return;
+        }
+
         if (packageName.startsWith("com.google.")
                 || packageName.startsWith(SAMSUNG)
                 || Arrays.asList(extraPackagesToChange).contains(packageName)) {
 
-            Map<String, Object> propsToChange = new HashMap<>();
+            if (packageName.equals("com.android.vending")) {
+                sIsFinsky = true;
+            }
 
             if (packageName.equals("com.google.android.apps.photos")) {
                 propsToChange.putAll(propsToChangePixelXL);
-            } else if (packageName.equals("com.android.vending")) {
-                sIsFinsky = true;
-                return;
             } else if (!sNetflixModel.isEmpty() && packageName.equals(PACKAGE_NETFLIX)) {
                 dlog("Setting model to " + sNetflixModel + " for Netflix");
                 setPropValue("MODEL", sNetflixModel);
@@ -196,20 +244,6 @@ public class PixelPropsUtils {
                 }
                 if (DEBUG) Log.d(TAG, "Defining " + key + " prop for: " + packageName);
                 setPropValue(key, value);
-            }
-            if (packageName.equals("com.google.android.gms")) {
-                final String processName = Application.getProcessName();
-                if (processName.equals("com.google.android.gms.unstable")) {
-                    sIsGms = true;
-                    setPropValue("FINGERPRINT", "google/marlin/marlin:7.1.2/NJH47F/4146041:user/release-keys");
-                    setPropValue("PRODUCT", "marlin");
-                    setPropValue("DEVICE", "marlin");
-                    setPropValue("MODEL", "Pixel XL");
-                    setVersionField("DEVICE_INITIAL_SDK_INT", Build.VERSION_CODES.N_MR1);
-                }else{
-                    propsToChangePixel7Pro.forEach((k, v) -> setPropValue(k, v));
-                }
-                return;
             }
             // Set proper indexing fingerprint
             if (packageName.equals("com.google.android.settings.intelligence")) {
@@ -242,6 +276,32 @@ public class PixelPropsUtils {
         }
     }
 
+    private static boolean isGmsAddAccountActivityOnTop() {
+        try {
+            final ActivityTaskManager.RootTaskInfo focusedTask =
+                    ActivityTaskManager.getService().getFocusedRootTaskInfo();
+            return focusedTask != null && focusedTask.topActivity != null
+                    && focusedTask.topActivity.equals(GMS_ADD_ACCOUNT_ACTIVITY);
+        } catch (Exception e) {
+            Log.e(TAG, "Unable to get top activity!", e);
+        }
+        return false;
+    }
+
+    public static boolean shouldBypassTaskPermission(Context context) {
+        // GMS doesn't have MANAGE_ACTIVITY_TASKS permission
+        final int callingUid = Binder.getCallingUid();
+        final int gmsUid;
+        try {
+            gmsUid = context.getPackageManager().getApplicationInfo(PACKAGE_GMS, 0).uid;
+            dlog("shouldBypassTaskPermission: gmsUid:" + gmsUid + " callingUid:" + callingUid);
+        } catch (Exception e) {
+            Log.e(TAG, "shouldBypassTaskPermission: unable to get gms uid", e);
+            return false;
+        }
+        return gmsUid == callingUid;
+    }
+
     private static boolean isCallerSafetyNet() {
         return sIsGms && Arrays.stream(Thread.currentThread().getStackTrace())
                 .anyMatch(elem -> elem.getClassName().contains("DroidGuard"));
@@ -255,7 +315,8 @@ public class PixelPropsUtils {
         }
     }
 
-    private static void dlog(String msg) {
+    public static void dlog(String msg) {
       if (DEBUG) Log.d(TAG, msg);
+        if (DEBUG) Log.d(TAG, "[" + sProcessName + "] " + msg);
     }
 }
