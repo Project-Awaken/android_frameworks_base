@@ -6053,6 +6053,12 @@ public final class Settings {
         public static final String CUSTOM_NOTIFICATION_VIBRATION_PATTERN = "custom_notification_vibration_pattern";
 
         /**
+         * Whether to enable smart 5G mode
+         * @hide
+         */
+        public static final String SMART_5G = "smart_5g";
+
+        /**
          * These are all public system settings
          *
          * @hide
