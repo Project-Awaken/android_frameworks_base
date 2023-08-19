@@ -37,13 +37,13 @@
     <string name="pocket_lock_message_long_press">Πατήστε παρατεταμένα το κουμπί λειτουργίας για ξεκλείδωμα</string>
     <!-- Pocket View -->
     <string name="pocket_view_title">Η λειτουργία τσέπης είναι ενεργοποιημένη</string>
-    <string name="pocket_view_title_cancel">To use your phone:</string>
-    <string name="pocket_view_top_tag_cancel">Check if the blue area of your phone is clear of any obstructions, and clean off any dirt or dust.</string>
+    <string name="pocket_view_title_cancel">Για να χρησιμοποιήσετε το τηλέφωνό σας:</string>
+    <string name="pocket_view_top_tag_cancel">Ελέγξτε εάν η μπλε περιοχή του τηλεφώνου σας είναι καθαρή από τυχόν εμπόδια και καθαρίστε τη βρωμιά ή τη σκόνη.</string>
     <string name="pocket_view_top_tag_cancel2">Πατήστε παρατεταμένα το κουμπί λειτουργίας για αναγκαστική έξοδο από τη λειτουργία τσέπης.</string>
     <!-- PowerOffAlarmService -->
     <string name="notification_channel_poweroff_alarm">Απενεργοποίηση ξυπνητηριού</string>
     <string name="poweroff_alarm_title">Η απενεργοποίηση ξυπνητηριού έχει ρυθμιστεί</string>
-    <string name="poweroff_alarm_body">An alarm was detected. You can turn off your phone and it\'ll power on 2 minutes before it\'s due</string>
+    <string name="poweroff_alarm_body">Εντοπίστηκε ένα ξυπνητήρι. Μπορείτε να απενεργοποιήσετε το τηλέφωνό σας και θα ενεργοποιηθεί 2 λεπτά πριν την ημερομηνία λήξης</string>
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_fakePackageSignature">Μίμηση υπογραφής πακέτου</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->

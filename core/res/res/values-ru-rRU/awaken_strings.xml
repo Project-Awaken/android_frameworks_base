@@ -37,13 +37,13 @@
     <string name="pocket_lock_message_long_press">Нажмите и удерживайте кнопку питания для разблокировки</string>
     <!-- Pocket View -->
     <string name="pocket_view_title">Режим \"В кармане\" включен</string>
-    <string name="pocket_view_title_cancel">To use your phone:</string>
-    <string name="pocket_view_top_tag_cancel">Check if the blue area of your phone is clear of any obstructions, and clean off any dirt or dust.</string>
+    <string name="pocket_view_title_cancel">Чтобы использовать ваш телефон:</string>
+    <string name="pocket_view_top_tag_cancel">Проверьте, не закрыта ли синяя область вашего телефона какими-либо предметами, или же очистите её от грязи и пыли.</string>
     <string name="pocket_view_top_tag_cancel2">Нажмите и удерживайте кнопку питания, чтобы принудительно выйти из режима \"В кармане\".</string>
     <!-- PowerOffAlarmService -->
     <string name="notification_channel_poweroff_alarm">Оповещение об отключении питания</string>
     <string name="poweroff_alarm_title">Оповещение об отключении питания установлено</string>
-    <string name="poweroff_alarm_body">An alarm was detected. You can turn off your phone and it\'ll power on 2 minutes before it\'s due</string>
+    <string name="poweroff_alarm_body">Обнаружен сигнал будильника. Вы можете выключить телефон и он будет включен за 2 минуты до начала работы</string>
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_fakePackageSignature">Подмена подписи пакета</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->

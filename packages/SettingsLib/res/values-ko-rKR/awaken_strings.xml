@@ -19,11 +19,11 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Description for the screen zoom level that makes interface elements smaller. [CHAR LIMIT=24] -->
-    <string name="screen_zoom_summary_smaller">Smaller</string>
+    <string name="screen_zoom_summary_smaller">더 작은</string>
     <!-- Description for the screen zoom level that makes interface elements smallest. [CHAR LIMIT=24] -->
-    <string name="screen_zoom_summary_smallest">Smallest</string>
+    <string name="screen_zoom_summary_smallest">가장 작은</string>
     <!-- Deep sleep info -->
-    <string name="status_deep_sleep">(Deep sleep: %1$d%2$s)</string>
+    <string name="status_deep_sleep">(깊은 잠: %1$d%2$s)</string>
     <!-- String for removal of sensitive info on about, depending on tap -->
-    <string name="device_info_protected_single_press">Tap to show info</string>
+    <string name="device_info_protected_single_press">정보를 표시하려면 탭하세요.</string>
 </resources>

@@ -62,6 +62,8 @@
     <string name="usage_wifi_default_suffix">Wi-Fi</string>
     <!-- DC Dimming -->
     <string name="quick_settings_dc_dimming_label">DC Karartma</string>
+    <!-- Face Unlock -->
+    <string name="face_unlock_recognizing">Recognizing face...</string>
     <!-- Heads up QS tile -->
     <string name="quick_settings_heads_up_label">Bildirim pencereleri</string>
     <string name="accessibility_quick_settings_heads_up_off">Bildirim pencereleri kapalı.</string>
