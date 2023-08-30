@@ -24,6 +24,7 @@
 
     <!-- Pocket Service -->
     <java-symbol type="bool" name="config_pocketModeSupported" />
+    <java-symbol type="bool" name="config_pocketModeLightSensorSupported" />
     <java-symbol type="string" name="config_pocketJudgeVendorSensorName" />
 
     <!-- Pocket bridge -->
