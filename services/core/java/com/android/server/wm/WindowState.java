@@ -3596,10 +3596,18 @@ class WindowState extends WindowContainer<WindowState> implements WindowManagerP
         // apps won't always be considered as foreground state.
         // Exclude private presentations as they can only be shown on private virtual displays and
         // shouldn't be the cause of an app be considered foreground.
-        if (mAttrs.type >= FIRST_SYSTEM_WINDOW && mAttrs.type != TYPE_TOAST
-                && mAttrs.type != TYPE_PRIVATE_PRESENTATION) {
+        // Exclude presentations on virtual displays as they are not actually visible.
+        if (mAttrs.type >= FIRST_SYSTEM_WINDOW
+                && mAttrs.type != TYPE_TOAST
+                && mAttrs.type != TYPE_PRIVATE_PRESENTATION
+                && !(mAttrs.type == TYPE_PRESENTATION && isOnVirtualDisplay())
+        ) {
             mWmService.mAtmService.mActiveUids.onNonAppSurfaceVisibilityChanged(mOwnerUid, shown);
         }
+    }
+
+    private boolean isOnVirtualDisplay() {
+        return getDisplayContent().mDisplay.getType() == Display.TYPE_VIRTUAL;
     }
 
     private void logExclusionRestrictions(int side) {
@@ -3867,11 +3875,7 @@ class WindowState extends WindowContainer<WindowState> implements WindowManagerP
         // configuration update when the window has requested to be hidden. Doing so can lead to
         // the client erroneously accepting a configuration that would have otherwise caused an
         // activity restart. We instead hand back the last reported {@link MergedConfiguration}.
-        // Also note since starting window isn't a window of activity, it won't make activity
-        // restart, so here should allow starting window to set the last reported configuration
-        // during relayout, which could happen before activity request visible.
         if (useLatestConfig || (relayoutVisible && (mActivityRecord == null
-                || mAttrs.type == TYPE_APPLICATION_STARTING
                 || mActivityRecord.isVisibleRequested()))) {
             final Configuration globalConfig = getProcessGlobalConfiguration();
             final Configuration overrideConfig = getMergedOverrideConfiguration();
