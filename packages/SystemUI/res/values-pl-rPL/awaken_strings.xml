@@ -63,7 +63,7 @@
     <!-- DC Dimming -->
     <string name="quick_settings_dc_dimming_label">DC Dimming</string>
     <!-- Face Unlock -->
-    <string name="face_unlock_recognizing">Recognizing face...</string>
+    <string name="face_unlock_recognizing">Rozpoznawanie twarzy...</string>
     <!-- Heads up QS tile -->
     <string name="quick_settings_heads_up_label">Wyskakujące powiadomienia</string>
     <string name="accessibility_quick_settings_heads_up_off">Wyskakujące powiadomienia wyłączone.</string>

@@ -63,7 +63,7 @@
     <!-- DC Dimming -->
     <string name="quick_settings_dc_dimming_label">DC Karartma</string>
     <!-- Face Unlock -->
-    <string name="face_unlock_recognizing">Recognizing face...</string>
+    <string name="face_unlock_recognizing">Yüz algılanıyor...</string>
     <!-- Heads up QS tile -->
     <string name="quick_settings_heads_up_label">Bildirim pencereleri</string>
     <string name="accessibility_quick_settings_heads_up_off">Bildirim pencereleri kapalı.</string>
