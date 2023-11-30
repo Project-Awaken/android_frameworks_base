@@ -116,6 +116,9 @@
     <string name="accessibility_quick_settings_sync_off">Sync off.</string>
     <string name="accessibility_quick_settings_sync_on">Sync on.</string>
 
+    <!-- Text while recognizing face -->
+    <string name="face_unlock_recognizing">Recognizing face...</string>
+
     <!-- Title of statusbar tuner -->
     <string name="status_bar_icons">Status bar icons</string>
 
