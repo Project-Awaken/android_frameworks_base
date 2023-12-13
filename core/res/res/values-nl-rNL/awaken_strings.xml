@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+    Copyright (C) 2020-2023 The AwakenOS Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Advanced reboot -->
+    <string name="reboot_to_recovery_title">Herstart naar Recoverymodus</string>
+    <string name="reboot_to_recovery_message">Herstarten naar Recoverymodus\u2026</string>
+    <string name="reboot_to_bootloader_title">Herstart naar Bootloader</string>
+    <string name="reboot_to_bootloader_message">Opnieuw opstarten naar bootloader\u2026</string>
+    <string name="reboot_title">Reboot</string>
+    <string name="reboot_message">Rebooting system</string>
+    <!-- Button that copies the url to the log of a crashed application -->
+    <string name="aerr_copy">Kopieer crashlog link</string>
+    <string name="url_copy_success">URL succesvol gekopieerd</string>
+    <string name="url_copy_failed">An error occured while uploading the log to Memochō</string>
+    <!-- Cycle through ringer modes -->
+    <string name="volume_dialog_ringer_guidance_normal">Geluid bij oproepen en meldingen</string>
+    <!-- Health interface -->
+    <string name="charging_control_notification_channel">Charging control</string>
+    <string name="charging_control_notification_title">Charging control</string>
+    <string name="charging_control_notification_cancel_once">Cancel</string>
+    <string name="charging_control_notification_content_limit">Battery will be charged to %1$d%%</string>
+    <string name="charging_control_notification_content_limit_reached">Battery is charged to %1$d%%</string>
+    <string name="charging_control_notification_content_target">Battery will be fully charged at %1$s</string>
+    <string name="charging_control_notification_content_target_reached">Battery is charged</string>
+    <!-- Pocket Lock -->
+    <string name="pocket_lock_message_long_press">Houd de aan-uitknop ingedrukt om te ontgrendelen</string>
+    <!-- Pocket View -->
+    <string name="pocket_view_title">Pocket mode is aan</string>
+    <string name="pocket_view_title_cancel">To use your phone:</string>
+    <string name="pocket_view_top_tag_cancel">Check if the blue area of your phone is clear of any obstructions, and clean off any dirt or dust.</string>
+    <string name="pocket_view_top_tag_cancel2">Houd de aan-/uitknop ingedrukt om de zakmodus af te breken.</string>
+</resources>

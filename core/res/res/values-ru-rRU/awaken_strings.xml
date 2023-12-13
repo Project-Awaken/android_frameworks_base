@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+    Copyright (C) 2020-2023 The AwakenOS Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Advanced reboot -->
+    <string name="reboot_to_recovery_title">Перезагрузить в режим восстановления</string>
+    <string name="reboot_to_recovery_message">Перезагрузка в режим восстановления\u2026</string>
+    <string name="reboot_to_bootloader_title">Перезагрузить в режим fastboot</string>
+    <string name="reboot_to_bootloader_message">Перезагрузка в режим fastboot\u2026</string>
+    <string name="reboot_title">Перезагрузка</string>
+    <string name="reboot_message">Перезагрузка системы</string>
+    <!-- Button that copies the url to the log of a crashed application -->
+    <string name="aerr_copy">Копировать URL журнала ошибки</string>
+    <string name="url_copy_success">Ссылка успешно скопирована</string>
+    <string name="url_copy_failed">Произошла ошибка при загрузке журнала в Memochō</string>
+    <!-- Cycle through ringer modes -->
+    <string name="volume_dialog_ringer_guidance_normal">Сигнал для звонков и уведомлений будет активен</string>
+    <!-- Health interface -->
+    <string name="charging_control_notification_channel">Charging control</string>
+    <string name="charging_control_notification_title">Charging control</string>
+    <string name="charging_control_notification_cancel_once">Cancel</string>
+    <string name="charging_control_notification_content_limit">Battery will be charged to %1$d%%</string>
+    <string name="charging_control_notification_content_limit_reached">Battery is charged to %1$d%%</string>
+    <string name="charging_control_notification_content_target">Battery will be fully charged at %1$s</string>
+    <string name="charging_control_notification_content_target_reached">Battery is charged</string>
+    <!-- Pocket Lock -->
+    <string name="pocket_lock_message_long_press">Нажмите и удерживайте кнопку питания для разблокировки</string>
+    <!-- Pocket View -->
+    <string name="pocket_view_title">Режим \"В кармане\" включен</string>
+    <string name="pocket_view_title_cancel">Чтобы использовать ваш телефон:</string>
+    <string name="pocket_view_top_tag_cancel">Проверьте, не закрыта ли синяя область вашего телефона какими-либо предметами, или же очистите её от грязи и пыли.</string>
+    <string name="pocket_view_top_tag_cancel2">Нажмите и удерживайте кнопку питания, чтобы принудительно выйти из режима \"В кармане\".</string>
+</resources>

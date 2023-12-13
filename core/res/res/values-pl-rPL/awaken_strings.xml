@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+    Copyright (C) 2020-2023 The AwakenOS Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Advanced reboot -->
+    <string name="reboot_to_recovery_title">Uruchom ponownie w trybie Recovery</string>
+    <string name="reboot_to_recovery_message">Restartowanie do trybu recovery\u2026</string>
+    <string name="reboot_to_bootloader_title">Uruchom ponownie w trybie Bootloader</string>
+    <string name="reboot_to_bootloader_message">Restartowanie do trybu bootloader\u2026</string>
+    <string name="reboot_title">Zresetuj</string>
+    <string name="reboot_message">Ponowne uruchamianie systemu</string>
+    <!-- Button that copies the url to the log of a crashed application -->
+    <string name="aerr_copy">Skopiuj adres URL dziennika awarii</string>
+    <string name="url_copy_success">Pomyślnie skopiowano adres URL</string>
+    <string name="url_copy_failed">Wystąpił błąd podczas przesyłania logów do Memochō</string>
+    <!-- Cycle through ringer modes -->
+    <string name="volume_dialog_ringer_guidance_normal">Połączenia i powiadomienia będą uruchamiały dzwonek</string>
+    <!-- Health interface -->
+    <string name="charging_control_notification_channel">Kontrola ładowania</string>
+    <string name="charging_control_notification_title">Kontrola ładowania</string>
+    <string name="charging_control_notification_cancel_once">Anuluj</string>
+    <string name="charging_control_notification_content_limit">Bateria zostanie naładowana do %1$d%%</string>
+    <string name="charging_control_notification_content_limit_reached">Bateria jest naładowana w %1$d%%</string>
+    <string name="charging_control_notification_content_target">Bateria zostanie w pełni naładowana przy %1$s</string>
+    <string name="charging_control_notification_content_target_reached">Bateria jest naładowana</string>
+    <!-- Pocket Lock -->
+    <string name="pocket_lock_message_long_press">Naciśnij i przytrzymaj przycisk zasilania, aby odblokować</string>
+    <!-- Pocket View -->
+    <string name="pocket_view_title">Tryb kieszonkowy jest włączony</string>
+    <string name="pocket_view_title_cancel">Aby korzystać z telefonu:</string>
+    <string name="pocket_view_top_tag_cancel">Sprawdź, czy niebieska część telefonu jest czysta i usuń ewentualny kurz lub brud.</string>
+    <string name="pocket_view_top_tag_cancel2">Przytrzymaj przycisk zasilania, aby wymusić wyjście z trybu kieszonkowego.</string>
+</resources>
