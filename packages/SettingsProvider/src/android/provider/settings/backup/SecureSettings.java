@@ -265,5 +265,6 @@ public class SecureSettings {
         Settings.Secure.BERRY_BLACK_THEME,
         Settings.Secure.STATUS_BAR_CLOCK_POSITION,
         Settings.Secure.GESTURE_NAVBAR_LENGTH_MODE,
+        Settings.Secure.VPN_ENFORCE_DNS,
     };
 }

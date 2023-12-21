@@ -418,5 +418,7 @@ public class SecureSettingsValidators {
         VALIDATORS.put(Secure.BERRY_BLACK_THEME, BOOLEAN_VALIDATOR);
         VALIDATORS.put(Secure.STATUS_BAR_CLOCK_POSITION, BOOLEAN_VALIDATOR);
         VALIDATORS.put(Secure.GESTURE_NAVBAR_LENGTH_MODE, new InclusiveIntegerRangeValidator(0, 2));
+        VALIDATORS.put(Secure.VPN_ENFORCE_DNS, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(Secure.VPN_ENFORCE_DNS_STORE, new DiscreteValueValidator(new String[] {"-1", "0", "1", "2"}));
     }
 }
