@@ -436,13 +436,13 @@ public class BiometricUnlockController extends KeyguardUpdateMonitorCallback imp
     public void startWakeAndUnlock(BiometricSourceType biometricSourceType,
                                    boolean isStrongBiometric) {
         int mode = calculateMode(biometricSourceType, isStrongBiometric);
+        startWakeAndUnlock(mode);
         if (mode == MODE_WAKE_AND_UNLOCK
                 || mode == MODE_WAKE_AND_UNLOCK_PULSING || mode == MODE_UNLOCK_COLLAPSING
                 || mode == MODE_WAKE_AND_UNLOCK_FROM_DREAM || mode == MODE_DISMISS_BOUNCER) {
             vibrateSuccess(biometricSourceType);
             onBiometricUnlockedWithKeyguardDismissal(biometricSourceType);
         }
-        startWakeAndUnlock(mode);
     }
 
     public void startWakeAndUnlock(@WakeAndUnlockMode int mode) {

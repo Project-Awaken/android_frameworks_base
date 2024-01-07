@@ -47,6 +47,7 @@ import com.android.systemui.statusbar.NotificationShadeWindowController
 import com.android.systemui.statusbar.commandline.Command
 import com.android.systemui.statusbar.commandline.CommandRegistry
 import com.android.systemui.statusbar.phone.BiometricUnlockController
+import com.android.systemui.statusbar.phone.BiometricUnlockController.MODE_WAKE_AND_UNLOCK
 import com.android.systemui.statusbar.policy.ConfigurationController
 import com.android.systemui.statusbar.policy.KeyguardStateController
 import com.android.systemui.util.ViewController
@@ -95,6 +96,9 @@ class AuthRippleController @Inject constructor(
 
     private var udfpsController: UdfpsController? = null
     private var udfpsRadius: Float = -1f
+
+    private val isRippleEnabled: Boolean
+        get() = biometricUnlockController.mode != MODE_WAKE_AND_UNLOCK
 
     override fun start() {
         init()
@@ -187,6 +191,8 @@ class AuthRippleController @Inject constructor(
     }
 
     private fun showUnlockedRipple() {
+        if (!isRippleEnabled) return
+
         notificationShadeWindowController.setForcePluginOpen(true, this)
 
         // This code path is not used if the KeyguardTransitionRepository is managing the light
@@ -211,6 +217,13 @@ class AuthRippleController @Inject constructor(
 
     override fun onKeyguardFadingAwayChanged() {
         if (featureFlags.isEnabled(Flags.LIGHT_REVEAL_MIGRATION)) {
+            return
+        }
+
+        if (!isRippleEnabled) {
+            // reset and hide the scrim so it doesn't appear on the next notification shade usage
+            lightRevealScrim.revealAmount = 1f
+            startLightRevealScrimOnKeyguardFadingAway = false
             return
         }
 
