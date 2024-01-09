@@ -177,6 +177,13 @@ public class ThemeOverlayController implements CoreStartable, Dumpable {
     // Determines if we should ignore THEME_CUSTOMIZATION_OVERLAY_PACKAGES setting changes.
     private boolean mSkipSettingChange;
 
+    private static final List<String> sReevalSettings = new ArrayList<>(Arrays.asList(
+        Settings.Secure.THEME_CUSTOMIZATION_OVERLAY_PACKAGES,
+        Settings.Secure.QS_BRIGHTNESS_POSITION_BOTTOM,
+        Settings.Secure.QS_SHOW_AUTO_BRIGHTNESS_BUTTON,
+        Settings.Secure.QS_SHOW_BRIGHTNESS
+    ));
+
     private final DeviceProvisionedListener mDeviceProvisionedListener =
             new DeviceProvisionedListener() {
                 @Override
@@ -446,31 +453,31 @@ public class ThemeOverlayController implements CoreStartable, Dumpable {
         filter.addAction(Intent.ACTION_WALLPAPER_CHANGED);
         mBroadcastDispatcher.registerReceiver(mBroadcastReceiver, filter, mMainExecutor,
                 UserHandle.ALL);
-        mSecureSettings.registerContentObserverForUser(
-                Settings.Secure.THEME_CUSTOMIZATION_OVERLAY_PACKAGES,
-                false,
-                new ContentObserver(mBgHandler) {
-                    @Override
-                    public void onChange(boolean selfChange, Collection<Uri> collection, int flags,
-                            int userId) {
-                        if (DEBUG) Log.d(TAG, "Overlay changed for user: " + userId);
-                        if (mUserTracker.getUserId() != userId) {
-                            return;
-                        }
-                        if (!mDeviceProvisionedController.isUserSetup(userId)) {
-                            Log.i(TAG, "Theme application deferred when setting changed.");
-                            mDeferredThemeEvaluation = true;
-                            return;
-                        }
-                        if (mSkipSettingChange) {
-                            if (DEBUG) Log.d(TAG, "Skipping setting change");
-                            mSkipSettingChange = false;
-                            return;
-                        }
-                        reevaluateSystemTheme(true /* forceReload */);
-                    }
-                },
-                UserHandle.USER_ALL);
+        ContentObserver observer = new ContentObserver(mBgHandler) {
+            @Override
+            public void onChange(boolean selfChange, Collection<Uri> collection, int flags,
+                    int userId) {
+                if (DEBUG) Log.d(TAG, "Overlay changed for user: " + userId);
+                if (mUserTracker.getUserId() != userId) {
+                    return;
+                }
+                if (!mDeviceProvisionedController.isUserSetup(userId)) {
+                    Log.i(TAG, "Theme application deferred when setting changed.");
+                    mDeferredThemeEvaluation = true;
+                    return;
+                }
+                if (mSkipSettingChange) {
+                    if (DEBUG) Log.d(TAG, "Skipping setting change");
+                    mSkipSettingChange = false;
+                    return;
+                }
+                reevaluateSystemTheme(true /* forceReload */);
+            }
+        };
+        for (String setting : sReevalSettings) {
+            mSecureSettings.registerContentObserverForUser(
+                    setting, false, observer, UserHandle.USER_ALL);
+        }
         mContrast = mUiModeManager.getContrast();
         mUiModeManager.addContrastChangeListener(mMainExecutor, contrast -> {
             mContrast = contrast;
