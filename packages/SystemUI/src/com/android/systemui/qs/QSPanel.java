@@ -265,20 +265,19 @@ public class QSPanel extends LinearLayout {
     }
 
     public void setBrightnessViewMargin(boolean top) {
-        if (mBrightnessView != null) {
-            MarginLayoutParams lp = (MarginLayoutParams) mBrightnessView.getLayoutParams();
-            if (top) {
-                lp.topMargin = mContext.getResources()
-                        .getDimensionPixelSize(R.dimen.qs_brightness_margin_top);
-                lp.bottomMargin = mContext.getResources()
-                        .getDimensionPixelSize(R.dimen.qs_brightness_margin_bottom);
-            } else {
-                lp.topMargin = mContext.getResources()
-                        .getDimensionPixelSize(R.dimen.quick_qs_brightness_margin_top);
-                lp.bottomMargin = 0;
-            }
-            mBrightnessView.setLayoutParams(lp);
+        if (mBrightnessView == null) return;
+        MarginLayoutParams lp = (MarginLayoutParams) mBrightnessView.getLayoutParams();
+        if (top) {
+            lp.topMargin = mContext.getResources()
+                    .getDimensionPixelSize(R.dimen.qs_brightness_margin_top);
+            lp.bottomMargin = mContext.getResources()
+                    .getDimensionPixelSize(R.dimen.qs_brightness_margin_bottom);
+        } else {
+            lp.topMargin = mContext.getResources()
+                    .getDimensionPixelSize(R.dimen.quick_qs_brightness_margin_top);
+            lp.bottomMargin = 0;
         }
+        mBrightnessView.setLayoutParams(lp);
     }
 
     /** */
