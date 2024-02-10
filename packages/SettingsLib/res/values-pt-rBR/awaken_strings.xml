@@ -24,4 +24,6 @@
     <string name="screen_zoom_summary_smallest">Muito pequeno</string>
     <!-- Deep sleep info -->
     <string name="status_deep_sleep">(Sono profundo: %1$d%2$s)</string>
+    <!-- String for removal of sensitive info on about, depending on tap -->
+    <string name="device_info_protected_single_press">Tap to show info</string>
 </resources>

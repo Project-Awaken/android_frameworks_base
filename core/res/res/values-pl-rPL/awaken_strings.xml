@@ -17,14 +17,14 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Advanced reboot -->
-    <string name="reboot_to_recovery_title">Uruchom ponownie w trybie Recovery</string>
-    <string name="reboot_to_recovery_message">Restartowanie do trybu recovery\u2026</string>
-    <string name="reboot_to_bootloader_title">Uruchom ponownie w trybie Bootloader</string>
-    <string name="reboot_to_bootloader_message">Restartowanie do trybu bootloader\u2026</string>
-    <string name="reboot_title">Zresetuj</string>
+    <string name="reboot_to_recovery_title">Recovery</string>
+    <string name="reboot_to_recovery_message">Uruchamianie w trybie Recovery</string>
+    <string name="reboot_to_bootloader_title">Bootloader</string>
+    <string name="reboot_to_bootloader_message">Uruchamianie w trybie Bootloader</string>
+    <string name="reboot_title">Uruchom ponownie</string>
     <string name="reboot_message">Ponowne uruchamianie systemu</string>
     <!-- App lock -->
-    <string name="unlock_application">Unlock <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
+    <string name="unlock_application">Odblokuj <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
     <!-- Button that copies the url to the log of a crashed application -->
     <string name="aerr_copy">Skopiuj adres URL dziennika awarii</string>
     <string name="url_copy_success">Pomyślnie skopiowano adres URL</string>

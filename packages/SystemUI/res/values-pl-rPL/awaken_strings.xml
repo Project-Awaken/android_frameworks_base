@@ -28,8 +28,8 @@
     <string name="quick_settings_aod_label">Tryb Always-On-Display</string>
     <string name="quick_settings_aod_off_powersave_label">Tryb AOD wyłączony\nOszczędzanie baterii</string>
     <!-- Bluetooth dialog -->
-    <string name="bluetooth_is_off">Bluetooth is off</string>
-    <string name="tap_a_device_to_connect">Tap to connect or disconnect a device</string>
+    <string name="bluetooth_is_off">Bluetooth jest wyłączony</string>
+    <string name="tap_a_device_to_connect">Dotknij, aby połączyć lub rozłączyć urządzenie</string>
     <!-- Caffeine QS tile -->
     <string name="quick_settings_caffeine_label">Kofeina</string>
     <string name="accessibility_quick_settings_caffeine_off">Kofeina wył.</string>
@@ -61,7 +61,7 @@
     <string name="usage_data_default_suffix">Dane</string>
     <string name="usage_wifi_default_suffix">Wi-Fi</string>
     <!-- DC Dimming -->
-    <string name="quick_settings_dc_dimming_label">DC Dimming</string>
+    <string name="quick_settings_dc_dimming_label">Redukcja migotania</string>
     <!-- Face Unlock -->
     <string name="face_unlock_recognizing">Rozpoznawanie twarzy...</string>
     <!-- Heads up QS tile -->
@@ -83,10 +83,10 @@
     <string name="quick_settings_monotoggle_tile_stereo">Dźwięk stereo</string>
     <!-- QuickSettings: InternetDialog: Summary for how many devices are connected to the hotspot [CHAR LIMIT=NONE] -->
     <plurals name="quick_settings_internet_hotspot_summary_num_devices">
-        <item quantity="one">%d device connected</item>
-        <item quantity="few">%d devices connected</item>
-        <item quantity="many">%d devices connected</item>
-        <item quantity="other">%d devices connected</item>
+        <item quantity="one">%d połączone urządzenie</item>
+        <item quantity="few">%d połączone urządzenia</item>
+        <item quantity="many">%d połączonych urządzeń</item>
+        <item quantity="other">%d połączonych urządzeń</item>
     </plurals>
     <!-- Screenshot Delete Toast -->
     <string name="delete_screenshot_toast">Zrzut ekranu usunięty</string>
