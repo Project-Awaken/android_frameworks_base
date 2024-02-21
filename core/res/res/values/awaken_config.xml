@@ -68,6 +68,10 @@
     <string-array name="config_forceEnabledComponents" translatable="false">
     </string-array>
 
+    <!-- Whether device implements proximity sensor based checks to prevent
+         accidental unlocks when the screen is off. -->
+    <bool name="config_proximityCheckOnFpsUnlock">false</bool>
+
     <!-- Whether to cleanup fingerprints upon connection to the daemon and when user switches -->
     <bool name="config_cleanupUnusedFingerprints">true</bool>
 
