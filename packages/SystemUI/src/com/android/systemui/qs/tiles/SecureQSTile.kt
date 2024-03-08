@@ -30,7 +30,7 @@ import com.android.systemui.qs.logging.QSLogger
 import com.android.systemui.statusbar.policy.KeyguardStateController
 import com.android.systemui.qs.tileimpl.QSTileImpl
 
-internal abstract class SecureQSTile<TState : QSTile.State> protected constructor(
+abstract class SecureQSTile<TState : QSTile.State> protected constructor(
     host: QSHost, uiEventLogger: QsEventLogger, backgroundLooper: Looper, mainHandler: Handler, falsingManager: FalsingManager,
     metricsLogger: MetricsLogger, statusBarStateController: StatusBarStateController,
     activityStarter: ActivityStarter, qsLogger: QSLogger,
