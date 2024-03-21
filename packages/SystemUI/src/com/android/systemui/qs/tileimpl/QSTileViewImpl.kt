@@ -136,7 +136,7 @@ open class QSTileViewImpl @JvmOverloads constructor(
 
     private lateinit var ripple: RippleDrawable
     private lateinit var backgroundDrawable: LayerDrawable
-    private lateinit var backgroundBaseDrawable: Drawable
+    protected lateinit var backgroundBaseDrawable: Drawable
     private lateinit var backgroundOverlayDrawable: Drawable
 
     private var backgroundColor: Int = 0
