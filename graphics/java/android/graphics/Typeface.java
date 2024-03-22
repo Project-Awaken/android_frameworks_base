@@ -1432,11 +1432,18 @@ public class Typeface {
     public static void updateDefaultFont(Resources res) {
         synchronized (SYSTEM_FONT_MAP_LOCK) {
             String familyName = res.getString(com.android.internal.R.string.config_bodyFontFamily);
+            String headlineFamilyName = res.getString(
+                    com.android.internal.R.string.config_headlineFontFamily);
             Typeface typeface = sSystemFontMap.get(familyName);
+            Typeface headlineTypeface = sSystemFontMap.get(headlineFamilyName);
             if (typeface == null) {
-                // This should never happen, but if the system font family name is invalid, just return
-                // instead of crashing the app.
+                // This should never happen, but if the system font family name is invalid, just
+                // return instead of crashing the app.
                 return;
+            }
+            if (headlineTypeface == null) {
+                // Fallback to body font
+                headlineTypeface = typeface;
             }
 
             setDefault(typeface);
@@ -1454,6 +1461,13 @@ public class Typeface {
             sSystemFontOverrides.put("sans-serif-black", create(typeface, 900, false));
 
             setPublicDefaults(familyName);
+
+            // Replace google fonts
+            sSystemFontOverrides.put("google-sans-text", typeface);
+            sSystemFontOverrides.put("google-sans-text-medium", create(typeface, 500, false));
+
+            sSystemFontOverrides.put("google-sans", headlineTypeface);
+            sSystemFontOverrides.put("google-sans-medium", create(headlineTypeface, 500, false));
         }
     }
 
