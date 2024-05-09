@@ -71,7 +71,7 @@
     <!-- Label for notification action to delete a screen recording file [CHAR LIMIT=35] -->
     <string name="screenrecord_delete_label">Deletar</string>
     <!-- A toast message shown after successfully deleting a screen recording [CHAR LIMIT=NONE] -->
-    <string name="screenrecord_delete_description">Screen recording deleted</string>
+    <string name="screenrecord_delete_description">Gravação de tela excluída</string>
     <!-- Label for UI element which allows deleting the screenshot [CHAR LIMIT=30] -->
     <string name="screenshot_delete_label">Deletar</string>
     <!-- Content description indicating that tapping the element will allow deleting the screenshot [CHAR LIMIT=NONE] -->
@@ -86,16 +86,16 @@
         <item quantity="other">%d dispositivos conectados</item>
     </plurals>
     <!-- Screen record -->
-    <string name="screenrecord_stopdot_label">Show stop dot</string>
-    <string name="screenrecord_stopdot_summary">Long press to move it</string>
+    <string name="screenrecord_stopdot_label">Mostrar ponto de parar gravação</string>
+    <string name="screenrecord_stopdot_summary">Toque longo para mover</string>
     <string name="screenrecord_lowquality_label">Qualidade mais baixa</string>
-    <string name="screenrecord_lowquality_summary">For smaller file size</string>
-    <string name="screenrecord_longer_timeout_switch_label">Larger file size limit</string>
-    <string name="screenrecord_longer_timeout_switch_summary">Limit recording size to 15 GB</string>
-    <string name="screenrecord_skip_time_label">Skip timer</string>
-    <string name="screenrecord_skip_time_summary">Remove the 3 second wait</string>
+    <string name="screenrecord_lowquality_summary">Para gerar arquivos menores</string>
+    <string name="screenrecord_longer_timeout_switch_label">Arquivos maiores</string>
+    <string name="screenrecord_longer_timeout_switch_summary">Limite o tamanho da gravação para 15 GB</string>
+    <string name="screenrecord_skip_time_label">Pular cronômetro</string>
+    <string name="screenrecord_skip_time_summary">Remover espera de 3 segundos</string>
     <string name="screenrecord_hevc_switch_label">HEVC encoding</string>
-    <string name="screenrecord_hevc_switch_summary">Use the more efficient HEVC encoder</string>
+    <string name="screenrecord_hevc_switch_summary">Use o codificador HEVC mais eficiente</string>
     <!-- Screenshot Delete Toast -->
     <string name="delete_screenshot_toast">Captura de tela excluída</string>
     <!-- Screenshot QS tile -->
